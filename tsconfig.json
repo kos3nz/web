@@ -1,8 +1,72 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  // "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
+    // astro.base
+    // Enable top-level await, and other modern ESM features.
+    "target": "ESNext",
+    "module": "ESNext",
+    // Enable node-style module resolution, for things like npm package imports.
+    "moduleResolution": "node",
+    // Enable JSON imports.
+    "resolveJsonModule": true,
+    // Properly support importing CJS modules in ESM
+    "esModuleInterop": true,
+    // Enable stricter transpilation for better output.
+    "isolatedModules": true,
+    // Astro directly run TypeScript code, no transpilation needed.
+    "noEmit": true,
+    // Report an error when importing a file using a casing different from the casing on disk.
+    "forceConsistentCasingInFileNames": true,
+    // Skip typechecking libraries and .d.ts files
+    "skipLibCheck": true,
+    // TypeScript 5.0 changed how `isolatedModules` and `importsNotUsedAsValues` works, deprecating the latter
+    // Until the majority of users are on TypeScript 5.0, we'll have to supress those deprecation errors
+    "ignoreDeprecations": "5.0",
+
+    // astro.strict
+    "strict": true,
+    // Error when a value import is only used as a type.
+    "importsNotUsedAsValues": "error",
+
+    // astro.strictest
+    // Report errors for fallthrough cases in switch statements
+    "noFallthroughCasesInSwitch": true,
+    // Force functions designed to override their parent class to be specified as `override`.
+    "noImplicitOverride": true,
+    // Force functions to specify that they can return `undefined` if a possible code path does not return a value.
+    "noImplicitReturns": true,
+    // Report an error when a variable is declared but never used.
+    // "noUnusedLocals": true,
+    // Report an error when a parameter is declared but never used.
+    // "noUnusedParameters": true,
+    // Force the usage of the indexed syntax to access fields declared using an index signature.
+    "noUncheckedIndexedAccess": true,
+    // Report an error when the value `undefined` is given to an optional property that doesn't specify `undefined` as a valid value.
+    "exactOptionalPropertyTypes": true,
+    // Report an error for unreachable code instead of just a warning.
+    "allowUnreachableCode": false,
+    // Report an error for unused labels instead of just a warning.
+    "allowUnusedLabels": false,
+
+    // Check your imports and tell you when import type should be used (since Typescript 5.0)
+    // "verbatimModuleSyntax": true,
+
+    // Emit .js files with the JSX changed to _jsx calls
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+
+    // Importing the jsx and jsxs factory functions for React
+    "jsxImportSource": "react",
+
+    // Allows Typescript files to impoert each other with a Typescript-specific extension like .ts, .mts, or .tsx
+    "allowImportingTsExtensions": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/ui/*": ["src/ui/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
