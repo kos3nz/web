@@ -2,7 +2,7 @@
 
 import { useState } from 'preact/hooks'
 
-export default function Card() {
+export function Card() {
   const [test, setTest] = useState('foo')
 
   return (
