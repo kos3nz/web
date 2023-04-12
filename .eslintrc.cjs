@@ -67,6 +67,7 @@ module.exports = {
       // It's the setting you need when using TypeScript.
       parserOptions: {
         parser: '@typescript-eslint/parser',
+        project: false,
         extraFileExtensions: ['.astro'],
         // The script of Astro components uses ESM.
         sourceType: 'module',
