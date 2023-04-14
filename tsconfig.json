@@ -52,8 +52,7 @@
     // "verbatimModuleSyntax": true,
 
     // Emit .js files with the JSX changed to _jsx calls
-    "jsx": "react-jsx",
-
+    "jsx": "preserve",
     // Importing the jsx and jsxs factory functions for React
     "jsxImportSource": "react",
 

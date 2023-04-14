@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/preact": "^2.1.0",
     "@astrojs/react": "^2.1.0",
+    "@astrojs/solid-js": "^2.1.0",
     "@astrojs/tailwind": "^3.1.1",
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
@@ -22,7 +23,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
-    "react-use-measure": "^2.1.1"
+    "react-use-measure": "^2.1.1",
+    "solid-js": "^1.4.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",
@@ -38,6 +40,7 @@
     "eslint-plugin-mdx": "^2.0.5",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-solid": "^0.12.0",
     "eslint-plugin-tailwindcss": "^3.10.1",
     "eslint-plugin-vitest": "^0.0.54",
     "postcss-html": "^1.5.0",

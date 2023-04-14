@@ -25,12 +25,17 @@ module.exports = {
     {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
       extends: [
-        'airbnb', // peerDependencies: eslint, eslint-plugin-import, eslint-plugin-react, eslint-plugin-react-hooks, and eslint-plugin-jsx-a11y
-        'airbnb/hooks', // Additional configuration for react hooks
+        'plugin:import/recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:solid/typescript',
+        'plugin:jsx-a11y/recommended',
       ],
 
       rules: {
-        semi: 'off',
+        // semi: 'off',
+        // Allow indentation for decorators
+        indent: ['error', 2, { ignoredNodes: ['PropertyDefinition'] }],
         // Suppress errors for missing 'import React' in files
         'react/react-in-jsx-scope': 'off',
         // Allow jsx syntax in jsx and tsx files
@@ -38,6 +43,8 @@ module.exports = {
           'error',
           { extensions: ['.jsx', '.tsx'] },
         ],
+        'react/no-unknown-property': 'off',
+        'solid/no-react-specific-props': 'off',
       },
     },
     {
@@ -46,6 +53,11 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
+      rules: {
+        // Allow
+        // '@typescript-eslint/no-misused-promises': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
+      },
     },
 
     // Configuration for Astro
