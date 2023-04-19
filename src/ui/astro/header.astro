@@ -1,67 +1,23 @@
 ---
 import Logo from 'ui/solidjs/motion-logo.tsx'
 import Drawer from 'ui/solidjs/drawer.tsx'
-import HomeIcon from 'ui/solidjs/icons/home-icon.tsx'
-import PostsIcon from 'ui/solidjs/icons/posts-icon.tsx'
-import SnippetsIcon from 'ui/solidjs/icons/snippets-icon.tsx'
+import Navigation from 'ui/solidjs/navigation.tsx'
 
-const navItems = {
-  '/': { label: 'Home', Icon: HomeIcon },
-  '/posts': { label: 'Posts', Icon: PostsIcon },
-  '/snippets': { label: 'Snippets', Icon: SnippetsIcon },
-} as const
-
-const pathName = Astro.url.pathname
-
-let currentPath = pathName
-
-if (pathName.includes('/posts')) currentPath = '/posts'
-if (pathName.includes('/snippets')) currentPath = '/snippets'
+const pathname = Astro.url.pathname
 ---
 
 <div class="sticky top-4 z-50 mx-auto max-w-6xl px-6">
   <header
-    class="relative flex items-center justify-between rounded-xl bg-slate-800/90 px-6 py-3 backdrop-blur-sm [@supports(backdrop-filter:blur(0px))]:bg-teal-50/5"
+    class="relative flex items-center justify-between rounded-xl bg-slate-800/90 px-6 py-3 backdrop-blur-sm [@supports(backdrop-filter:blur(0px))]:bg-slate-100/5"
   >
-    <!-- Shadow -->
-    <div
-      class="absolute inset-0 z-[-1] rounded-xl bg-transparent shadow-lg shadow-teal-950/60"
-    >
-    </div>
-
     <a href="/" class="p-1">
       <Logo client:load />
     </a>
 
     <nav class="flex flex-1 items-center justify-end">
-      <!-- Navigation -->
-      <ol class="hidden sm:flex sm:items-center sm:gap-x-4">
-        {
-          Object.entries(navItems).map(([path, { label, Icon }]) => (
-            <li>
-              <a
-                href={path}
-                class:list={[
-                  'flex items-center gap-x-1 text-sm font-bold p-2 rounded-md cursor-pointer',
-                  {
-                    'bg-teal-800/50 text-slate-50 shadow-highlight':
-                      currentPath === path,
-                  },
-                  {
-                    'transision duration-300 hover:text-teal-400':
-                      currentPath !== path,
-                  },
-                ]}
-              >
-                <Icon />
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ol>
-
-      <!-- Drawer -->
+      <div class="hidden sm:block">
+        <Navigation pathname={pathname} client:visible />
+      </div>
       <div class="block sm:hidden">
         <Drawer client:visible />
       </div>

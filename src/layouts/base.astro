@@ -21,12 +21,13 @@ const { title = "K's web", description } = Astro.props
   </head>
   <body>
     <Header />
-    <main class="relative mx-auto max-w-6xl px-6">
+    <main class="relative mx-auto max-w-6xl px-6 py-24">
       <slot />
     </main>
     <!-- Footer -->
   </body>
 </html>
+
 <style is:global>
   :root {
     --accent: 124, 58, 237;
@@ -41,6 +42,8 @@ const { title = "K's web", description } = Astro.props
   html,
   body {
     @apply h-full w-full bg-slate-900 font-sans text-slate-200;
+
+    -webkit-tap-highlight-color: transparent;
   }
 
   code {
