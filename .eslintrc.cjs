@@ -26,6 +26,7 @@ module.exports = {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
       extends: [
         'plugin:import/recommended',
+        'plugin:import/typescript',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         'plugin:solid/typescript',
@@ -35,7 +36,8 @@ module.exports = {
       rules: {
         // semi: 'off',
         // Allow indentation for decorators
-        indent: ['error', 2, { ignoredNodes: ['PropertyDefinition'] }],
+        // indent: ['error', 2, { ignoredNodes: ['PropertyDefinition'] }],
+        indent: 'off',
         // Suppress errors for missing 'import React' in files
         'react/react-in-jsx-scope': 'off',
         // Allow jsx syntax in jsx and tsx files
@@ -45,6 +47,13 @@ module.exports = {
         ],
         'react/no-unknown-property': 'off',
         'solid/no-react-specific-props': 'off',
+        'solid/no-destructure': 'off',
+      },
+
+      settings: {
+        'import/resolver': {
+          typescript: true,
+        },
       },
     },
     {
@@ -54,9 +63,9 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       rules: {
-        // Allow
-        // '@typescript-eslint/no-misused-promises': 'off',
+        '@typescript-eslint/no-misused-promises': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
+        'react/prop-types': 'off',
       },
     },
 
