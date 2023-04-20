@@ -1,5 +1,3 @@
-/** @jsxImportSource solid-js */
-
 import { createSignal } from 'solid-js'
 
 export function createNavigationMarker() {

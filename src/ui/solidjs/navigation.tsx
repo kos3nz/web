@@ -2,7 +2,7 @@
 
 import cx from 'clsx'
 import { createNavigationMarker } from 'hooks/solidjs/create-navigation-marker'
-import { For, onMount } from 'solid-js'
+import { For, Show, onMount } from 'solid-js'
 import HomeIcon from 'ui/solidjs/icons/home-icon.tsx'
 import PostsIcon from 'ui/solidjs/icons/posts-icon.tsx'
 import SnippetsIcon from 'ui/solidjs/icons/snippets-icon.tsx'
@@ -56,7 +56,7 @@ export default function Navigation(props: { pathname: string }) {
                 <item.Icon />
                 <span>{item.label}</span>
               </a>
-              {isActive && (
+              <Show when={isActive}>
                 <div
                   class={cx(
                     'layout',
@@ -68,7 +68,7 @@ export default function Navigation(props: { pathname: string }) {
                     scaleX(${position().scaleX})`,
                   }}
                 />
-              )}
+              </Show>
             </li>
           )
         }}

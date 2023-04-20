@@ -1,26 +1,23 @@
 ---
-import Logo from 'ui/solidjs/motion-logo.tsx'
+import Logo from 'ui/solidjs/logo.tsx'
 import Drawer from 'ui/solidjs/drawer.tsx'
 import Navigation from 'ui/solidjs/navigation.tsx'
+import Header from 'ui/solidjs/header.tsx'
 
 const pathname = Astro.url.pathname
 ---
 
-<div class="sticky top-4 z-50 mx-auto max-w-6xl px-6">
-  <header
-    class="relative flex items-center justify-between rounded-xl bg-slate-800/90 px-6 py-3 backdrop-blur-sm [@supports(backdrop-filter:blur(0px))]:bg-slate-100/5"
-  >
-    <a href="/" class="p-1">
-      <Logo client:load />
-    </a>
+<Header client:load>
+  <a href="/" aria-label="Home" class="p-1">
+    <Logo />
+  </a>
 
-    <nav class="flex flex-1 items-center justify-end">
-      <div class="hidden sm:block">
-        <Navigation pathname={pathname} client:visible />
-      </div>
-      <div class="block sm:hidden">
-        <Drawer client:visible />
-      </div>
-    </nav>
-  </header>
-</div>
+  <nav class="flex flex-1 items-center justify-end">
+    <div class="hidden sm:block">
+      <Navigation pathname={pathname} client:visible />
+    </div>
+    <div class="block sm:hidden">
+      <Drawer client:visible />
+    </div>
+  </nav>
+</Header>
