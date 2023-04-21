@@ -1,7 +1,10 @@
 ---
 import Layout from 'layouts/base.astro'
+import Profile from 'ui/solidjs/profile.tsx'
 ---
 
 <Layout>
-  <div></div>
+  <div class="mt-10 flex justify-center">
+    <Profile client:load />
+  </div>
 </Layout>

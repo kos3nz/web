@@ -3,12 +3,12 @@
 import cx from 'clsx'
 import { createNavigationMarker } from 'hooks/solidjs/create-navigation-marker'
 import { For, Show, onMount } from 'solid-js'
-import HomeIcon from 'ui/solidjs/icons/home-icon.tsx'
+import AboutIcon from 'ui/solidjs/icons/about-icon.tsx'
 import PostsIcon from 'ui/solidjs/icons/posts-icon.tsx'
 import SnippetsIcon from 'ui/solidjs/icons/snippets-icon.tsx'
 
 const navItems = [
-  { path: '/', label: 'Home', Icon: HomeIcon },
+  { path: '/', label: 'About', Icon: AboutIcon },
   { path: '/posts', label: 'Posts', Icon: PostsIcon },
   { path: '/snippets', label: 'Snippets', Icon: SnippetsIcon },
 ] as const
