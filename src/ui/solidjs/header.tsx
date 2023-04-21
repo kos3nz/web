@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import cx from 'clsx'
-import { createScrollDirection } from 'hooks/solidjs/create-scroll-direction'
+import { createScrollDirection } from '@hooks/solidjs/create-scroll-direction'
 import type { JSXElement } from 'solid-js'
 
 export default function Header(props: { children: JSXElement }) {

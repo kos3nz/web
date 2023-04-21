@@ -1,6 +1,6 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js'
-import { getViewportTop } from 'utils/client'
-import { throttle } from 'utils/helpers'
+import { getViewportTop } from '@utils/client'
+import { throttle } from '@utils/helpers'
 
 export const createScrollDirection = (bounds = 100) => {
   const [direction, setDirection] = createSignal<'up' | 'down'>('up')

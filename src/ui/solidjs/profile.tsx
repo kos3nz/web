@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 
-import MotionLogo from 'ui/solidjs/motion-logo'
+import MotionLogo from '@ui/solidjs/motion-logo'
 
 export default function Profile() {
   return (

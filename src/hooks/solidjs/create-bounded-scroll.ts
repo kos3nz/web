@@ -1,7 +1,7 @@
 import { transform } from 'framer-motion/dom'
 import { createEffect, createSignal, onCleanup } from 'solid-js'
-import { getViewportTop } from 'utils/client'
-import { clamp } from 'utils/helpers'
+import { getViewportTop } from '@utils/client'
+import { clamp } from '@utils/helpers'
 
 export const createBoundedScroll = (bounds = 150) => {
   const [scrollY, setScrollY] = createSignal(0)

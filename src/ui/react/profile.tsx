@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import MotionLogo from 'ui/react/motion-logo'
+import MotionLogo from '@ui/react/motion-logo'
 
 export default function Profile() {
   return (

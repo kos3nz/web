@@ -1,11 +1,11 @@
 /** @jsxImportSource solid-js */
 
 import cx from 'clsx'
-import { createNavigationMarker } from 'hooks/solidjs/create-navigation-marker'
 import { For, Show, onMount } from 'solid-js'
-import AboutIcon from 'ui/solidjs/icons/about-icon.tsx'
-import PostsIcon from 'ui/solidjs/icons/posts-icon.tsx'
-import SnippetsIcon from 'ui/solidjs/icons/snippets-icon.tsx'
+import { createNavigationMarker } from '@hooks/solidjs/create-navigation-marker'
+import AboutIcon from '@ui/solidjs/icons/about-icon.tsx'
+import PostsIcon from '@ui/solidjs/icons/posts-icon.tsx'
+import SnippetsIcon from '@ui/solidjs/icons/snippets-icon.tsx'
 
 const navItems = [
   { path: '/', label: 'About', Icon: AboutIcon },

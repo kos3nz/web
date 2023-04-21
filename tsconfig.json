@@ -59,11 +59,13 @@
     // Allows Typescript files to impoert each other with a Typescript-specific extension like .ts, .mts, or .tsx
     "allowImportingTsExtensions": true,
 
-    "baseUrl": "src"
-    // "paths": {
-    //   "@/layouts/*": ["src/layouts/*"],
-    //   "@/ui/*": ["src/ui/*"]
-    // }
+    "baseUrl": ".",
+    "paths": {
+      "@hooks/*": ["src/hooks/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@ui/*": ["src/ui/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
