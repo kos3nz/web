@@ -1,6 +1,6 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js'
-import { getViewportTop } from '@utils/client'
-import { throttle } from '@utils/helpers'
+import { getOffsetTop } from 'utils/client'
+import { throttle } from 'utils/helpers'
 
 export const createScrollDirection = (bounds = 100) => {
   const [direction, setDirection] = createSignal<'up' | 'down'>('up')
@@ -8,10 +8,10 @@ export const createScrollDirection = (bounds = 100) => {
   const [scrollYBounded, setScrollYBounded] = createSignal(0)
 
   const handleThrottledScroll = throttle(
-    { interval: 50, trailing: true, leading: false },
+    { interval: 100, trailing: true, leading: false },
     () => {
       const previous = scrollY()
-      const current = getViewportTop()
+      const current = getOffsetTop()
       const diff = current - previous
 
       setScrollYBounded(scrollYBounded() + diff)
@@ -27,7 +27,7 @@ export const createScrollDirection = (bounds = 100) => {
   )
 
   createEffect(() => {
-    setScrollY(getViewportTop())
+    setScrollY(getOffsetTop())
 
     window.addEventListener('scroll', handleThrottledScroll)
     // console.log('The scroll event attached')

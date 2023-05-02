@@ -1,36 +1,38 @@
 /** @jsxImportSource solid-js */
 
+import { useStore } from '@nanostores/solid'
 import cx from 'clsx'
-import { createSignal } from 'solid-js'
+import { isDrawerOpen } from 'store/drawerStore'
 
 export default function Drawer() {
-  const [open, setOpen] = createSignal(false)
+  const $isDrawerOpen = useStore(isDrawerOpen)
 
   return (
-    <button
-      class="space-y-[4px] p-2"
-      onClick={() => {
-        setOpen((state) => !state)
-      }}
-    >
-      <span
-        class={cx(
-          'block h-[2px] w-5 rounded-md bg-current duration-300',
-          open() ? 'translate-y-1.5 -rotate-[135deg]' : '',
-        )}
-      />
-      <span
-        class={cx(
-          'block h-[2px] w-3.5 rounded-md bg-current',
-          open() ? 'opacity-0 duration-100' : 'duration-700',
-        )}
-      />
-      <span
-        class={cx(
-          'block h-[2px] rounded-md bg-current duration-300',
-          open() ? 'w-5 -translate-y-1.5 rotate-[135deg]' : 'w-2',
-        )}
-      />
-    </button>
+    <>
+      <button
+        id="drawer-handler"
+        class="space-y-[4px] p-1"
+        onClick={() => isDrawerOpen.set(!$isDrawerOpen())}
+      >
+        <span
+          class={cx(
+            'block h-[2px] w-5 rounded-md bg-current duration-300',
+            $isDrawerOpen() ? 'translate-y-1.5 -rotate-[135deg]' : '',
+          )}
+        />
+        <span
+          class={cx(
+            'block h-[2px] w-3.5 rounded-md bg-current',
+            $isDrawerOpen() ? 'opacity-0 duration-100' : 'duration-700',
+          )}
+        />
+        <span
+          class={cx(
+            'block h-[2px] rounded-md bg-current duration-300',
+            $isDrawerOpen() ? 'w-5 -translate-y-1.5 rotate-[135deg]' : 'w-2',
+          )}
+        />
+      </button>
+    </>
   )
 }

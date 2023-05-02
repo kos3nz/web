@@ -1,7 +1,7 @@
 import { transform } from 'framer-motion/dom'
 import { createEffect, createSignal, onCleanup } from 'solid-js'
-import { getViewportTop } from '@utils/client'
-import { clamp } from '@utils/helpers'
+import { getOffsetTop } from 'utils/client'
+import { clamp } from 'utils/helpers'
 
 export const createBoundedScroll = (bounds = 150) => {
   const [scrollY, setScrollY] = createSignal(0)
@@ -10,7 +10,7 @@ export const createBoundedScroll = (bounds = 150) => {
 
   const handleScroll = () => {
     const previous = scrollY()
-    const current = getViewportTop()
+    const current = getOffsetTop()
     const diff = current - previous
     const newScrollYBounded = scrollYBounded() + diff
 
@@ -30,10 +30,10 @@ export const createBoundedScroll = (bounds = 150) => {
   })
 
   createEffect(() => {
-    setScrollY(getViewportTop())
+    setScrollY(getOffsetTop())
 
     window.addEventListener('scroll', handleScroll)
-    console.log('The scroll event attached')
+    // console.log('The scroll event attached')
 
     onCleanup(() => {
       window.removeEventListener('scroll', handleScroll)

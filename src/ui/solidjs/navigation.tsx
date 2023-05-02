@@ -2,31 +2,24 @@
 
 import cx from 'clsx'
 import { For, Show, onMount } from 'solid-js'
-import { createNavigationMarker } from '@hooks/solidjs/create-navigation-marker'
-import AboutIcon from '@ui/solidjs/icons/about-icon.tsx'
-import PostsIcon from '@ui/solidjs/icons/posts-icon.tsx'
-import SnippetsIcon from '@ui/solidjs/icons/snippets-icon.tsx'
-
-const navItems = [
-  { path: '/', label: 'About', Icon: AboutIcon },
-  { path: '/posts', label: 'Posts', Icon: PostsIcon },
-  { path: '/snippets', label: 'Snippets', Icon: SnippetsIcon },
-] as const
+import { createNavigationMarker } from 'hooks/solidjs/create-navigation-marker'
+import { navItems } from 'src/const/navigation-items'
 
 export default function Navigation(props: { pathname: string }) {
-  // eslint-disable-next-line solid/reactivity
-  let currentPath = props.pathname
-  if (currentPath.includes('/posts')) currentPath = '/posts'
-  if (currentPath.includes('/snippets')) currentPath = '/snippets'
+  const currentPath = () => {
+    if (props.pathname.includes('/blog')) return '/blog'
+    if (props.pathname.includes('/snippets')) return '/snippets'
+    return props.pathname
+  }
 
   const { position, handleMount, handleMouseEnter, handleMouseLeave } =
     createNavigationMarker()
 
   return (
-    <ol class="relative flex items-center">
+    <ul class="relative flex items-center gap-x-4">
       <For each={navItems}>
         {(item) => {
-          const isActive = currentPath === item.path
+          const isActive = currentPath() === item.path
           let ref: HTMLLIElement | undefined
 
           onMount(() => {
@@ -47,10 +40,10 @@ export default function Navigation(props: { pathname: string }) {
               <a
                 href={item.path}
                 class={cx([
-                  'relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md py-2 pl-4 pr-4 text-sm font-bold',
+                  'relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md px-2 py-1.5 text-sm font-bold',
                   isActive
-                    ? 'bg-teal-800/50 text-slate-50 shadow-highlight lg:bg-transparent lg:shadow-none'
-                    : 'transision-color text-slate-500 duration-300 hover:text-slate-50',
+                    ? 'text-cyan-400 lg:text-slate-50'
+                    : 'text-slate-400 transition-colors duration-300 hover:text-slate-50',
                 ])}
               >
                 <item.Icon />
@@ -60,7 +53,7 @@ export default function Navigation(props: { pathname: string }) {
                 <div
                   class={cx(
                     'layout',
-                    'pointer-events-none absolute inset-0 hidden origin-left rounded-md bg-teal-800/50 shadow-highlight transition-transform duration-300 lg:block',
+                    'pointer-events-none absolute bottom-0 left-0 hidden h-[2px] w-full origin-left rounded-sm bg-cyan-500 transition-transform duration-[400ms] lg:block',
                   )}
                   style={{
                     transform: `
@@ -73,6 +66,6 @@ export default function Navigation(props: { pathname: string }) {
           )
         }}
       </For>
-    </ol>
+    </ul>
   )
 }

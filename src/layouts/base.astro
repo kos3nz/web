@@ -1,12 +1,13 @@
 ---
-import Header from '@ui/astro/header.astro'
+import Header from 'ui/astro/header.astro'
+import DrawerMenu from 'ui/solidjs/drawer-menu.tsx'
 
 export interface Props {
   title?: string
   description?: string
 }
 
-const { title = "K's web", description } = Astro.props
+const { title, description } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -16,15 +17,16 @@ const { title = "K's web", description } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title ? title + " | K's Web" : "K's Web"}</title>
     {description && <meta name="description" content={description} />}
   </head>
   <body>
     <Header />
-    <main class="relative mx-auto max-w-6xl px-6 pb-24 pt-40">
+    <main class="relative mx-auto max-w-6xl px-6 pb-20 pt-40">
       <slot />
     </main>
     <!-- Footer -->
+    <DrawerMenu client:idle />
   </body>
 </html>
 
@@ -46,8 +48,71 @@ const { title = "K's web", description } = Astro.props
     -webkit-tap-highlight-color: transparent;
   }
 
+  pre:has(code[data-line-numbers]) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
   code {
+    counter-reset: line;
+  }
+
+  code[data-line-numbers] > .line::before {
+    display: inline-block;
+    width: 2rem;
+    margin-right: 1rem;
+    color: #64748b;
+    text-align: right;
+    content: counter(line);
+    counter-increment: line;
+  }
+
+  code[data-line-numbers-max-digits='2'] > .line::before {
+    width: 2rem;
+  }
+
+  code[data-line-numbers-max-digits='3'] > .line::before {
+    width: 2rem;
+  }
+
+  pre > code {
+    display: grid;
     font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
       'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+  }
+
+  code .highlighted {
+    background-color: rgb(200 200 255 / 10%);
+    border-left: 2px solid #60a5fa;
+  }
+
+  /* Anchor */
+  .prose .anchor {
+    @apply absolute inset-0 no-underline outline-none;
+  }
+
+  .prose .anchor .anchor-icon {
+    @apply absolute hidden cursor-pointer lg:-ml-6 lg:block lg:opacity-0 lg:transition-opacity lg:duration-200;
+  }
+
+  .prose .anchor:hover .anchor-icon {
+    @apply lg:opacity-100;
+  }
+
+  .prose .anchor:focus .anchor-icon {
+    @apply lg:opacity-100;
+  }
+
+  /* Custom scrollbar */
+  *::-webkit-scrollbar {
+    /* @apply h-[4px] w-[4px]; */
+  }
+
+  *::-webkit-scrollbar-track {
+    /* @apply bg-slate-900; */
+  }
+
+  *::-webkit-scrollbar-thumb {
+    /* @apply rounded-2xl bg-slate-400; */
   }
 </style>

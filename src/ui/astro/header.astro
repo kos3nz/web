@@ -1,22 +1,22 @@
 ---
-import Logo from '@ui/solidjs/logo.tsx'
-import Drawer from '@ui/solidjs/drawer.tsx'
-import Navigation from '@ui/solidjs/navigation.tsx'
-import Header from '@ui/solidjs/header.tsx'
+import Logo from 'ui/solidjs/logo.tsx'
+import Drawer from 'ui/solidjs/drawer.tsx'
+import Navigation from 'ui/solidjs/navigation.tsx'
+import Header from 'ui/solidjs/header.tsx'
 
 const pathname = Astro.url.pathname
 ---
 
 <Header client:load>
   <a href="/" aria-label="Home" class="p-1">
-    <Logo />
+    <Logo class="h-[31.5px] w-[14px] md:h-9 md:w-4" />
   </a>
 
-  <nav class="flex flex-1 items-center justify-end">
-    <div class="hidden sm:block">
+  <nav class="flex items-center justify-end">
+    <div class="hidden md:block">
       <Navigation pathname={pathname} client:visible />
     </div>
-    <div class="block sm:hidden">
+    <div class="block md:hidden">
       <Drawer client:visible />
     </div>
   </nav>
