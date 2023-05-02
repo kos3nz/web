@@ -21,7 +21,7 @@ dependencies:
     version: 10.16.0(solid-js@1.7.4)
   '@nanostores/solid':
     specifier: ^0.3.2
-    version: 0.3.2(nanostores@0.8.1)(solid-js@1.7.4)
+    version: 0.3.2(nanostores@0.7.0)(solid-js@1.7.4)
   '@types/react':
     specifier: ^18.2.0
     version: 18.2.0
@@ -38,8 +38,8 @@ dependencies:
     specifier: ^10.12.6
     version: 10.12.6(react-dom@18.2.0)(react@18.2.0)
   nanostores:
-    specifier: ^0.8.1
-    version: 0.8.1
+    specifier: ^0.7.0
+    version: 0.7.0
   node-html-parser:
     specifier: ^6.1.5
     version: 6.1.5
@@ -1126,13 +1126,13 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@nanostores/solid@0.3.2(nanostores@0.8.1)(solid-js@1.7.4):
+  /@nanostores/solid@0.3.2(nanostores@0.7.0)(solid-js@1.7.4):
     resolution: {integrity: sha512-OH4m81Bls8NCH2ANzqEujPvzzzLlunm0e6Vpqy9mMgBYzOcqxWr3SrZgIVA7KhMsjftINwcpMN7/FKo2MQa1aQ==}
     peerDependencies:
       nanostores: ^0.7.0
       solid-js: '>=1.4.0'
     dependencies:
-      nanostores: 0.8.1
+      nanostores: 0.7.0
       solid-js: 1.7.4
     dev: false
 
@@ -5241,9 +5241,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /nanostores@0.8.1:
-    resolution: {integrity: sha512-1ZCfQtII2XeFDrtqXL2cdQ/diGrLxzRB3YMyQjn8m7GSGQrJfGST2iuqMpWnS/ZlifhtjgR/SX0Jy6Uij6lRLA==}
-    engines: {node: ^16.0.0 || >=18.0.0}
+  /nanostores@0.7.0:
+    resolution: {integrity: sha512-y+ma9MVXuPzXKEXaRYW/iL/xG/HtMwB8fmFcMfUqt5fCNR/na2kDubbZGV4furUMTgmxfySJs0cQjORWhaPDyA==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     dev: false
 
   /natural-compare-lite@1.4.0:
