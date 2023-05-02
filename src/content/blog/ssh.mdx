@@ -1,0 +1,201 @@
+---
+title: 'SSHについて'
+tags: ['terminal']
+publishedDate: 2023-02-05
+---
+
+import Code from 'ui/astro/code.astro'
+
+SSH (Secure Shell) は、接続先のコンピュータ（またはサーバ）と安全に通信をするためのプロトコルです。  
+これに準拠したソフトウェアを使うことで SSH 通信が可能になります。そのソフトウェアの代表的なものに OpenSSH があり、Linux や macOS は標準でサポートしています。
+
+SSH 接続は `client-server` モデルを採用しており、接続を確立するために接続元 (クライエント側) は `ssh` (SSH client)、接続先 (サーバ側) は `sshd` (SSH Daemon) を使用しています。
+
+---
+
+## Ssh Key の作成
+
+ssh key を作成するために、`ssh-keygen` コマンドを使います。
+
+```sh
+ssh-keygen -t ed25519 -C "label_for_ssh_key" -f ~/.ssh/id_ALGORITHM
+```
+
+- `-t` : 作成する ssh key タイプ（使用するアルゴリズム）を指定します。
+
+| Type                | Default | Bits                   |
+| ------------------- | ------- | ---------------------- |
+| rsa (Default)       | 2048    | 1024, 2048, 3072, 4096 |
+| dsa (Deprecated)    | 1024    | 1024                   |
+| ecdsa               | 256     | 256, 384, 521          |
+| ed25519 (preferred) | 256     | 256                    |
+
+`-t` フラグを渡さない場合、rsa アルゴリズムが使われたキーが作成されます。RSA は最も広く使用され、互換性のあるアルゴリズムですが、セキュリティ面で bit 数の高いキーを生成する必要があります。Ed25519 (ECC) はより強固な暗号アルゴリズムを備えており、小さな bit 数 (256bits) で bit 数の高い RSA アルゴリズムと同等のセキュリティを実現できるため、パフォーマンスも良いとされています。[Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac#generating-a-new-ssh-key) や [Gitlab](https://docs.gitlab.com/ee/user/ssh.html#see-if-you-have-an-existing-ssh-key-pair) でも Ed25519 が推奨されています。[こちらの記事 - Proton Mail now offers elliptic curve cryptography for advanced security and faster speeds](https://proton.me/blog/elliptic-curve-cryptography) も大変参考になります。
+
+- `-C` : ssh key 用のコメント。パフォーマンスには影響しません。
+- `-c` : ssh key コメントの変更。
+
+```sh
+ssh-keygen -c -C new_comment -f ~/.ssh/id_rsa_foo
+```
+
+- `-f` : ssh key のファイル名を absolute path で指定します。`-f` フラグを渡さない場合のデフォルト値は `~/.ssh/id_ALGORITHM` です。(例 : rsa で作成した場合 => id*rsa ) デフォルト値のままでも問題はありませんが、複数のキーを作成する場合などに備えて `id_rsa*<extra-name>` のようにしておく方が無難です。デフォルト値の場合、新たにキーを作成時に上書きされてしまうのを防ぐためです。
+- `-p` : パスフレーズを変更、または削除 (変更、削除前にパスフレーズの入力が必要です。削除する場合は新しいパスフレーズの入力時に何もタイプせずに `ENTER` を押すだけです。)
+
+上記のコマンドを実行するとパスフレーズの入力を求められるので入力します。
+
+```shell
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
+> Enter same passphrase again: [Type passphrase again]
+```
+
+パスフレーズを入力し終えたら、ssh key が `.ssh` ディレクトリ配下に作成されているはずです。
+
+```sh
+ls ~/.ssh
+> id_rsa_foo id_rsa_foo.pub
+```
+
+`id_rsa_foo` が絶対に公開してはいけない Private key、`id_rsa_foo.pub` が ssh 接続を行うサーバー先に配置する Public key になります。
+
+---
+
+## Ssh Agent に Key を追加する
+
+次に SSH Agent に鍵を追加します。
+
+> SSH Agent とは:  
+>  `ssh-agent` は ssh 接続時に使われる ssh key とパスフレーズをメモリに保持してくれるプログラムです。これにより ssh 接続時にパスフレーズを入力する必要がなくなります。
+
+ローカル PC にキーを追加する場合は、既に SSH Agent は起動していると思いますが、リモートサーバにて追加するときなど、そうでない場合はまず SSH Agent をバックグラウンドで起動しましょう。
+
+```sh
+eval "$(ssh-agent -s)"
+> Agent pid 49302
+```
+
+作成したキーを追加するには 2 つの方法があります。
+
+### ~/.ssh/config の AddKeysToAgent で追加
+
+1 つ目は config ファイルを使って追加する方法です。このファイルは `.ssh` ディレクトリ配下に置きます。
+
+config は ssh コマンド実行の際に、読み込まれるファイルです。これを元に ssh 接続してくれます。  
+ssh 実行の際、以下の順番で読み込まれます。
+
+1. command-line options
+2. user's configuration file (~/.ssh/config)
+3. system-wide configuration file (/etc/ssh/ssh_config)
+
+下記のように設定します。
+
+```config
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519_foo
+```
+
+- `Host` : こちらに指定したホスト名とマッチするときのみ、ssh 接続を制限してくれます。`Host *` のようにグローバルに ssh 接続を設定することもできますが、セキュリティ面であまり推奨されていません。
+- `AddKeysToAgent` : ssh-agent に自動的にキーとパスフレーズを追加してくれます。
+- `UseKeychain` : mac OS で、キーチェーンからパスフレーズを参照してロードしてくれます。PC 再起動時、ssh-agent に登録されたキーとパスフレーズはリセットされます。そのたびに、ssh 接続時パスフレーズを入力する必要がありますが、キーチェーンに保存することでリセット後でもパスフレーズを入力する必要がありません。キーチェーンにパスフレーズが存在しない場合は入力を求められ、その後キーチェーンにパスフレーズを追加してくれます。(キーチェーンにはパスフレーズのみ保存されます。)
+- `IdentityFile` : どの ssh キーを使用するかを指定します。Private key のファイルを記入してください。
+
+### Ssh-add コマンドで追加
+
+2 つ目は `ssh-add` で追加する方法です。
+
+```sh
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519_foo
+```
+
+macOS 用に `--apple-use-keychain` フラグを追加することで、パスフレーズの入力なしにキー作成時に登録したパスフレーズをキーチェーンに保存してくれます。以後、config ファイルの UseKeychain オプションによってキーチェーンのパスフレーズを参照し、ssh 接続をしてくれるようになります。
+
+他に `ssh-add` コマンドには主に以下のフラグオプションがあります。
+
+- `-l` : ssh-agent に登録済みのパブリックキーのフィンガープリントを一覧表示。
+- `-L` : ssh-agent に登録済みのパブリックキーの一覧表示。
+- `-d` : ssh-agent に登録済みのキーとパスフレーズの削除。パブリックキーのファイルを指定しますが、プライベートキーのファイルを入力しても `.pub` をアペンドして探してくれるのでどちらの指定でも問題なく削除してくれます。
+- `-D` : ssh-agent に登録済みのキーとパスフレーズをすべて削除。
+- `-t life` : ssh-agent に登録しておく期間を指定できます。指定しなければ通常は無期限になります。単位はデフォルトで秒、または sshd_config で設定されているタイムフォーマット (秒、分、時、日、週) で設定されます。
+- `-E` : パブリックキーのフィンガープリントを表示するとき �
+
+<Code >
+
+```javascript title="test1.js" showLineNumbers
+function test1(str) {
+  return str.length
+}
+```
+
+```javascript title="test2.js" showLineNumbers
+function test2(str) {
+  return str.length
+}
+```
+
+```javascript title="test-config-3.js" showLineNumbers {2-6}
+function test3(str) {
+  return str.length
+}
+```
+
+```javascript title="test-and-component-4.js" showLineNumbers
+function test4(str) {
+  return str.length
+}
+
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+// 🔥 Super granular and accurate highlighting
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body className="bg-zinc-800 text-zinc-200">
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+</Code>
+
+```javascript showLineNumbers {1-3}
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+// 🔥 Super granular and accurate highlighting
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body className="bg-zinc-800 text-zinc-200">
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+```javascript showLineNumbers
+function getStringLength(str) {
+  return str.length
+}
+```
