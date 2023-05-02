@@ -20,7 +20,54 @@ module.exports = {
       boxShadow: {
         highlight: 'inset 0 2px 0 0 rgb(255 255 255 / 5%)',
       },
+
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            'h1,h2,h3,h4': {
+              position: 'relative',
+              'scroll-margin-top': defaultTheme.spacing[24],
+            },
+            thead: {
+              borderBottomColor: theme('colors.slate.400'),
+            },
+            blockquote: {
+              color: theme('colors.slate.500'),
+            },
+            'blockquote code': {
+              color: theme('colors.slate.300'),
+            },
+            'blockquote p:first-of-type::before': false,
+            'blockquote p:last-of-type::after': false,
+            pre: {
+              'margin-top': 0,
+            },
+            code: {
+              padding: defaultTheme.spacing[1],
+              'background-color': 'rgb(148 163 184 / 20%)',
+              color: theme('colors.slate.300'),
+            },
+            'code::before': {
+              content: 'none',
+            },
+            'code::after': {
+              content: 'none',
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+
+  daisyui: {
+    styled: true,
+    themes: false,
+    base: false,
+    utils: true,
+    logs: false,
+    rtl: false,
+    prefix: '',
+    darkTheme: 'dark',
+  },
 }

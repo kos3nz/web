@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import Layout from 'layouts/base.astro'
+import TableOfContents from 'ui/solidjs/table-of-contents.tsx'
+import HeadingsList from 'ui/solidjs/headings-list.tsx'
+import Tag from 'ui/solidjs/tag.tsx'
+import DateTime from 'ui/solidjs/date-time.tsx'
+
+interface Props {
+  entry: CollectionEntry<'blog'>
+}
+
+type AstroHeading = {
+  depth: number
+  slug: string
+  text: string
+}
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true
+  })
+
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { entry: post },
+  }))
+}
+
+// 2. When it's time to render, you can get the entry directly from the prop
+const { entry } = Astro.props
+const { Content, headings: astroHeadings } = await entry.render()
+
+const headings = (astroHeadings as AstroHeading[]).map((heading) => {
+  return {
+    depth: heading.depth,
+    hash: `#${heading.slug}`,
+    text: heading.text.split('#')[1],
+  }
+})
+---
+
+<Layout title={entry.slug}>
+  <div class="fixed bottom-4 right-0 z-50 flex w-full justify-center lg:hidden">
+    <HeadingsList headings={headings} client:visible />
+  </div>
+  <div class="lg:flex lg:flex-row-reverse lg:gap-x-10">
+    <aside class="hidden w-64 lg:block">
+      <div class="sticky top-32">
+        <TableOfContents headings={headings} client:visible />
+      </div>
+    </aside>
+    <article
+      class="!prose-invert prose-slate prose-cyan prose max-w-none flex-1 space-y-8 prose-blockquote:border-l prose-blockquote:border-yellow-400 prose-code:rounded-md"
+    >
+      <div>
+        <DateTime dateTime={entry.data.publishedDate} />
+
+        <h1 class="mt-4">{entry.data.title}</h1>
+
+        <div class="flex gap-x-2">
+          {entry.data.tags.map((tag) => <Tag name={tag} />)}
+        </div>
+      </div>
+
+      <div
+        class="flex aspect-[16/9] items-center justify-center overflow-hidden rounded-2xl border border-slate-400/20 bg-slate-800/50 text-5xl font-bold"
+      >
+        Image
+      </div>
+
+      <Content />
+    </article>
+  </div>
+</Layout>
