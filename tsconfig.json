@@ -48,6 +48,8 @@
     // Report an error for unused labels instead of just a warning.
     // "allowUnusedLabels": false,
 
+    "strictNullChecks": true,
+
     // Check your imports and tell you when import type should be used (since Typescript 5.0)
     // "verbatimModuleSyntax": true,
 
@@ -61,10 +63,12 @@
 
     "baseUrl": ".",
     "paths": {
-      "@hooks/*": ["src/hooks/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@ui/*": ["src/ui/*"],
-      "@utils/*": ["src/utils/*"]
+      "hooks/*": ["src/hooks/*"],
+      "layouts/*": ["src/layouts/*"],
+      "store/*": ["src/store/*"],
+      "types/*": ["src/types/*"],
+      "ui/*": ["src/ui/*"],
+      "utils/*": ["src/utils/*"]
     }
   },
   "include": ["src/**/*"],
