@@ -4,6 +4,6 @@ import SnippetsIcon from 'ui/solidjs/icons/snippets-icon.tsx'
 
 export const navItems = [
   { path: '/', label: 'About', Icon: AboutIcon },
-  { path: '/blog', label: 'Blog', Icon: BlogIcon },
-  { path: '/snippets', label: 'Snippets', Icon: SnippetsIcon },
+  { path: '/blog/', label: 'Blog', Icon: BlogIcon },
+  { path: '/snippets/', label: 'Snippets', Icon: SnippetsIcon },
 ] as const

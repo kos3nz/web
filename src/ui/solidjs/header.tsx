@@ -11,7 +11,7 @@ export default function Header(props: { children: JSXElement }) {
   return (
     <div
       class={cx(
-        'fixed left-1/2 top-3 z-50 w-full max-w-6xl translate-x-[-50%] px-6 transition-transform duration-1000 ease-in-out',
+        'fixed left-1/2 top-3 z-50 w-full max-w-6xl translate-x-[-50%] px-6 transition-transform duration-700 ease-in-out',
         direction() === 'down'
           ? '-translate-y-[calc(100%+24px)]'
           : 'translate-y-0',

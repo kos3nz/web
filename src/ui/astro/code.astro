@@ -27,9 +27,9 @@ if (codeTitles.length !== codeBlocks.length)
       {
         codeTitles.map((title, i) => (
           <button
-            id="tab"
             type="button"
             class:list={[
+              'tab',
               'px-3 py-1.5 text-sm text-slate-400 shrink-0 rounded-t-md transition-colors duration-300 hover:text-slate-100',
               i === 0 && 'active',
             ]}
@@ -86,7 +86,7 @@ if (codeTitles.length !== codeBlocks.length)
       super()
 
       const titles = this.dataset.titles?.split(',')
-      const tabs = this.querySelectorAll('#tab')
+      const tabs = this.querySelectorAll('.tab')
       const codeBlocks = this.querySelectorAll('[data-code-visible]')
       const bar = this.querySelector('#bar') as HTMLSpanElement
       const initialBarStyle = {

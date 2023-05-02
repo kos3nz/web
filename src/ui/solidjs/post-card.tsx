@@ -8,7 +8,7 @@ import DateTime from 'ui/solidjs/date-time.tsx'
 export default function PostCard({ post }: { post: Post }) {
   return (
     <a
-      href={`/blog/${post.slug}`}
+      href={`/blog/${post.slug}/`}
       class="group relative flex flex-col rounded-xl ring-1 ring-slate-400/20 transition duration-500 hover:ring-cyan-400/20"
     >
       {/* Shadow */}
