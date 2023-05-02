@@ -5,7 +5,11 @@ module.exports = {
     es2022: true,
   },
 
-  extends: ['eslint:recommended', 'plugin:tailwindcss/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:tailwindcss/recommended',
+    // 'prettier'
+  ],
 
   // Requires typescript parser here to parse typescript in Astro <script> tag
   parser: '@typescript-eslint/parser',
@@ -119,7 +123,7 @@ module.exports = {
       rules: {
         // If you are using "prettier/prettier" rule,
         // you don't need to format inside <script> as it will be formatted as a `.astro` file.
-        'prettier/prettier': 'off',
+        // 'prettier/prettier': 'off',
       },
     },
 
@@ -129,7 +133,7 @@ module.exports = {
       extends: ['plugin:mdx/recommended'],
       settings: {
         // optional, if you want to lint code blocks at the same time
-        'mdx/code-blocks': true,
+        // 'mdx/code-blocks': true,
         // optional, if you want to disable language mapper, set it to `false`
         // if you want to override the default language mapper inside, you can provide your own
         // "mdx/language-mapper": {},
