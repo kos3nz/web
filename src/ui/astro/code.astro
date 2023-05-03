@@ -38,6 +38,7 @@ if (codeTitles.length !== codeBlocks.length)
           </button>
         ))
       }
+
       <span
         id="bar"
         class="pointer-events-none absolute bottom-0 left-0 h-[2px] origin-left rounded bg-gradient-to-tr from-indigo-500 to-cyan-500 transition-transform duration-300"
@@ -46,10 +47,42 @@ if (codeTitles.length !== codeBlocks.length)
     {
       codeBlocks.map((code, i) => (
         <div
+          class="relative"
           data-title={codeTitles[i]}
           data-code-visible={i === 0 ? 'show' : 'hidden'}
         >
+          {/* Code Block */}
           {code}
+
+          {/* Copy to Clipboard*/}
+          <div class="copy-btn absolute right-2 top-2">
+            <span class="invisible absolute -top-6 right-[-15px] rounded-lg border border-slate-400/20 bg-slate-200 px-1.5 py-[3px] text-xs font-semibold text-slate-900 opacity-0 transition duration-300">
+              Copied!
+            </span>
+
+            <button
+              aria-label="Copy to clipboard"
+              title="Copy to clipboard"
+              class="group relative p-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 text-slate-500 transition-colors duration-300 group-hover:text-slate-100"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                <rect x="9" y="3" width="6" height="4" rx="2" />
+                <path d="M9 12h6" />
+                <path d="M9 16h6" />
+              </svg>
+            </button>
+          </div>
         </div>
       ))
     }
@@ -72,6 +105,11 @@ if (codeTitles.length !== codeBlocks.length)
     background-color: #222436;
     /* border-bottom: 1.5px solid #06b6d4; */
   }
+
+  span.copied {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
 </style>
 
 <style is:global>
@@ -80,53 +118,4 @@ if (codeTitles.length !== codeBlocks.length)
   }
 </style>
 
-<script>
-  class AstroCode extends HTMLElement {
-    constructor() {
-      super()
-
-      const titles = this.dataset.titles?.split(',')
-      const tabs = this.querySelectorAll('.tab')
-      const codeBlocks = this.querySelectorAll('[data-code-visible]')
-      const bar = this.querySelector('#bar') as HTMLSpanElement
-      const initialBarStyle = {
-        width: tabs[0].getBoundingClientRect().width,
-      }
-      bar.style.width = `${initialBarStyle.width}px`
-
-      tabs?.forEach((tab, i) => {
-        // Do nothing when only one codeblock is provided
-        if (!titles || titles.length <= 1) return
-
-        const title = titles[i]
-
-        tab.addEventListener('click', () => {
-          tabs.forEach((button) => {
-            if (button.textContent?.trim() === title) {
-              button.classList.add('active')
-            } else {
-              button.classList.remove('active')
-            }
-          })
-
-          codeBlocks.forEach((code) => {
-            if (code.getAttribute('data-title') === title) {
-              code.setAttribute('data-code-visible', 'show')
-            } else {
-              code.setAttribute('data-code-visible', 'hidden')
-            }
-          })
-
-          const x = (tab as HTMLButtonElement).offsetLeft
-          const width = tab.getBoundingClientRect().width
-
-          bar.style.transform = `translateX(${x}px) scaleX(${
-            width / initialBarStyle.width
-          })`
-        })
-      })
-    }
-  }
-
-  customElements.define('astro-code', AstroCode)
-</script>
+<script src="./scripts/code.ts"></script>

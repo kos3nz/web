@@ -41,6 +41,8 @@ module.exports = {
             'blockquote p:last-of-type::after': false,
             pre: {
               'margin-top': 0,
+              'padding-top': defaultTheme.spacing[4],
+              'padding-bottom': defaultTheme.spacing[4],
             },
             code: {
               padding: defaultTheme.spacing[1],

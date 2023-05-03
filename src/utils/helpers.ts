@@ -6,6 +6,13 @@ export function clamp(value: number, min: number, max: number) {
 }
 
 /**
+ * Wait specific time
+ */
+export function sleep(wait: number) {
+  return new Promise((resolve) => setTimeout(resolve, wait))
+}
+
+/**
  * Given an interval and a function returns a new function
  * that will only call the source function if interval milliseconds
  * have passed since the last invocation
