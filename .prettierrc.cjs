@@ -15,7 +15,7 @@ module.exports = {
   ],
   overrides: [
     {
-      files: '*.astro',
+      files: '**/*.astro',
       options: {
         parser: 'astro',
       },
