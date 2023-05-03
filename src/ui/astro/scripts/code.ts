@@ -1,12 +1,10 @@
-import { sleep } from 'utils/helpers'
-
 export class AstroCode extends HTMLElement {
   constructor() {
     super()
 
     const titles = this.dataset.titles?.split(',')
-    const codeBlocks = this.querySelectorAll('[data-code-visible]')
     const tabs = this.querySelectorAll('.tab')
+    const codeBlocks = this.querySelectorAll('[data-code-visible]')
 
     const bar = this.querySelector('#bar') as HTMLSpanElement
     const initialBarStyle = {
@@ -43,32 +41,6 @@ export class AstroCode extends HTMLElement {
         bar.style.transform = `translateX(${x}px) scaleX(${
           width / initialBarStyle.width
         })`
-      })
-    })
-
-    codeBlocks.forEach((codeBlock) => {
-      const content = codeBlock.querySelector('pre')?.textContent?.trim()
-      const copyBtn = codeBlock.querySelector('.copy-btn')
-      const message = copyBtn?.querySelector('span')
-      let timeoutId: number | undefined
-
-      copyBtn?.addEventListener('click', () => {
-        if (timeoutId) clearTimeout(timeoutId)
-
-        message?.classList.remove('invisible')
-        message?.classList.add('visible')
-        message?.classList.add('copied')
-
-        navigator.clipboard.writeText(content || '')
-
-        timeoutId = setTimeout(async () => {
-          message?.classList.remove('copied')
-
-          await sleep(300)
-
-          message?.classList.remove('visible')
-          message?.classList.add('invisible')
-        }, 1500)
       })
     })
   }

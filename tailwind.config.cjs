@@ -45,7 +45,6 @@ module.exports = {
               'padding-bottom': defaultTheme.spacing[4],
             },
             code: {
-              padding: defaultTheme.spacing[1],
               'background-color': 'rgb(148 163 184 / 20%)',
               color: theme('colors.slate.300'),
             },
