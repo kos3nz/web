@@ -11,14 +11,16 @@ const blogCollection = defineCollection({
   }),
 })
 
-// const snippetCollection = defineCollection({
-//   schema: z.object({
-//     title: z.string(),
-//     tags: z.array(z.string()),
-//   }),
-// })
+const snippetCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    tags: z.array(z.string()),
+    draft: z.boolean().optional(),
+  }),
+})
 
 export const collections = {
   blog: blogCollection,
-  // snippets: snippetCollection,
+  snippets: snippetCollection,
 }

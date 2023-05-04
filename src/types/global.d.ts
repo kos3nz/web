@@ -9,3 +9,10 @@ export type Post = {
   publishedDate: Date
   updatedDate: Date | undefined
 }
+
+export type Snippet = {
+  slug: string
+  title: string
+  description: string
+  tags: string[]
+}
