@@ -8,6 +8,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 // import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrettyCode from 'rehype-pretty-code'
 import moonLightII from './theme/moonlight-ii.json'
+// import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,12 +50,16 @@ export default defineConfig({
           theme: moonLightII,
           // Keep the background or use a custom background color?
           keepBackground: true,
-
           // Callback hooks to add custom logic to nodes when visiting them.
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty lines to be copy/pasted
             if (node.children.length === 0) {
-              node.children = [{ type: 'text', value: ' ' }]
+              node.children = [
+                {
+                  type: 'text',
+                  value: ' ',
+                },
+              ]
             }
           },
           onVisitHighlightedLine(node) {
@@ -70,5 +75,12 @@ export default defineConfig({
       // rehypePresetMinify,
     ],
   },
-  integrations: [tailwind(), react(), solidJs(), mdx()],
+
+  integrations: [
+    tailwind(),
+    react(),
+    solidJs(),
+    mdx(),
+    // compress()
+  ],
 })
