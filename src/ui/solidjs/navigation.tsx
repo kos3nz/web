@@ -12,7 +12,7 @@ export default function Navigation(props: { pathname: string }) {
     return props.pathname
   }
 
-  const { position, handleMount, handleMouseEnter, handleMouseLeave } =
+  const { position, handleOnMount, handleOnMouseEnter, handleOnMouseLeave } =
     createNavigationMarker()
 
   return (
@@ -23,7 +23,7 @@ export default function Navigation(props: { pathname: string }) {
           let ref: HTMLLIElement | undefined
 
           onMount(() => {
-            handleMount(ref, isActive)
+            handleOnMount(ref, isActive)
           })
 
           return (
@@ -31,10 +31,10 @@ export default function Navigation(props: { pathname: string }) {
               ref={ref}
               class="relative"
               onMouseEnter={() => {
-                handleMouseEnter(ref, isActive)
+                handleOnMouseEnter(ref, isActive)
               }}
               onMouseLeave={() => {
-                handleMouseLeave(isActive)
+                handleOnMouseLeave(isActive)
               }}
             >
               <a

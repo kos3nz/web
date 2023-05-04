@@ -8,7 +8,7 @@ export const createBoundedScroll = (bounds = 150) => {
   const [scrollYBounded, setScrollYBounded] = createSignal(0)
   const [scrollYBoundedProgress, setScrollYBoundedProgress] = createSignal(0)
 
-  const handleScroll = () => {
+  const handleOnScroll = () => {
     const previous = scrollY()
     const current = getOffsetTop()
     const diff = current - previous
@@ -32,11 +32,11 @@ export const createBoundedScroll = (bounds = 150) => {
   createEffect(() => {
     setScrollY(getOffsetTop())
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleOnScroll)
     // console.log('The scroll event attached')
 
     onCleanup(() => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleOnScroll)
       // console.log('The scroll event removed')
     })
   })

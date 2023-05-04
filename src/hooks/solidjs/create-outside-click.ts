@@ -8,7 +8,7 @@ export const createOutsideClick = <T extends HTMLElement>(
   elements: (T | string | undefined)[],
   cb: (event: MouseEvent) => void,
 ) => {
-  const handleClick = (event: MouseEvent) => {
+  const handleOnClick = (event: MouseEvent) => {
     const isInsideElement = elements.some((value) => {
       if (!value) return
 
@@ -29,10 +29,10 @@ export const createOutsideClick = <T extends HTMLElement>(
   }
 
   onMount(() => {
-    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('mousedown', handleOnClick)
 
     onCleanup(() => {
-      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('mousedown', handleOnClick)
     })
   })
 }

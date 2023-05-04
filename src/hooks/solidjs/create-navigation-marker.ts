@@ -8,7 +8,7 @@ export function createNavigationMarker() {
     scaleX: 1,
   })
 
-  const handleMount = (ref: HTMLElement | undefined, isActive: boolean) => {
+  const handleOnMount = (ref: HTMLElement | undefined, isActive: boolean) => {
     if (!ref || !isActive) return
 
     const x = ref.offsetLeft // the left position (in pixels) relative to the parent. (the parent that has { posision: relative })
@@ -21,7 +21,7 @@ export function createNavigationMarker() {
     }))
   }
 
-  const handleMouseEnter = (
+  const handleOnMouseEnter = (
     ref: HTMLElement | undefined,
     isActive: boolean,
   ) => {
@@ -37,7 +37,7 @@ export function createNavigationMarker() {
     }))
   }
 
-  const handleMouseLeave = (isActive: boolean) => {
+  const handleOnMouseLeave = (isActive: boolean) => {
     if (isActive) return
 
     setPosition((state) => ({
@@ -49,8 +49,8 @@ export function createNavigationMarker() {
 
   return {
     position,
-    handleMount,
-    handleMouseEnter,
-    handleMouseLeave,
+    handleOnMount,
+    handleOnMouseEnter,
+    handleOnMouseLeave,
   }
 }

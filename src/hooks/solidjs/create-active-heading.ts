@@ -47,7 +47,7 @@ export const createActiveHeading = (headings: Heading[]) => {
     }
   }
 
-  const handleScroll = throttle(
+  const handleOnScroll = throttle(
     { interval: 100, trailing: true, leading: false },
     getActiveHash,
   )
@@ -55,10 +55,10 @@ export const createActiveHeading = (headings: Heading[]) => {
   createEffect(() => {
     getActiveHash()
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleOnScroll)
 
     onCleanup(() => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleOnScroll)
       // console.log('The scroll event removed')
     })
   })

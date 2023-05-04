@@ -7,7 +7,7 @@ export const createScrollDirection = (bounds = 100) => {
   const [scrollY, setScrollY] = createSignal(0)
   const [scrollYBounded, setScrollYBounded] = createSignal(0)
 
-  const handleThrottledScroll = throttle(
+  const handleOnThrottledScroll = throttle(
     { interval: 100, trailing: true, leading: false },
     () => {
       const previous = scrollY()
@@ -29,11 +29,11 @@ export const createScrollDirection = (bounds = 100) => {
   createEffect(() => {
     setScrollY(getOffsetTop())
 
-    window.addEventListener('scroll', handleThrottledScroll)
+    window.addEventListener('scroll', handleOnThrottledScroll)
     // console.log('The scroll event attached')
 
     onCleanup(() => {
-      window.removeEventListener('scroll', handleThrottledScroll)
+      window.removeEventListener('scroll', handleOnThrottledScroll)
       // console.log('The scroll event removed')
     })
   })
