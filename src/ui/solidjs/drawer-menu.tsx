@@ -45,7 +45,7 @@ export default function DrawerMenu() {
               >
                 <a
                   href={item.path}
-                  class="my-1 flex w-full items-center justify-center gap-x-1.5 rounded-md py-3 text-sm font-bold transition-colors duration-300 hover:text-cyan-500"
+                  class="my-2 flex w-full items-center justify-center gap-x-1.5 rounded-md py-4 text-sm font-bold transition-colors duration-300 hover:text-cyan-500"
                 >
                   <span class="shrink-0">
                     <item.Icon />

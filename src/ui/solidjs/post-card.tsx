@@ -11,6 +11,7 @@ export default function PostCard({ post }: { post: Post }) {
       href={`/blog/${post.slug}/`}
       class="group relative overflow-hidden rounded-xl"
     >
+      {/* Gradient */}
       <span class="absolute inset-0 bg-slate-400/20" />
       <span class="absolute -right-1/2 -top-1/2 h-full w-full origin-bottom-left rotate-12 bg-[radial-gradient(#22d3ee_0%,_transparent_75%)] transition-transform duration-500 lg:group-hover:-rotate-12" />
 
