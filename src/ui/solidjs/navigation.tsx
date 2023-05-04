@@ -7,8 +7,8 @@ import { navItems } from 'src/const/navigation-items'
 
 export default function Navigation(props: { pathname: string }) {
   const currentPath = () => {
-    if (props.pathname.includes('/blog')) return '/blog'
-    if (props.pathname.includes('/snippets')) return '/snippets'
+    if (props.pathname.includes('/blog/')) return '/blog/'
+    if (props.pathname.includes('/snippets/')) return '/snippets/'
     return props.pathname
   }
 
@@ -42,7 +42,7 @@ export default function Navigation(props: { pathname: string }) {
                 class={cx([
                   'relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md px-2 py-1.5 text-sm font-bold',
                   isActive
-                    ? 'text-cyan-400 lg:text-slate-50'
+                    ? 'text-slate-50'
                     : 'text-slate-400 transition-colors duration-300 hover:text-slate-50',
                 ])}
               >
@@ -50,6 +50,11 @@ export default function Navigation(props: { pathname: string }) {
                 <span>{item.label}</span>
               </a>
               <Show when={isActive}>
+                <div
+                  class={cx(
+                    'absolute bottom-0 left-0 block h-[2px] w-full rounded-sm bg-cyan-500 lg:hidden',
+                  )}
+                />
                 <div
                   class={cx(
                     'layout',
