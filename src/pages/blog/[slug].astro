@@ -43,7 +43,7 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
 })
 ---
 
-<Layout title={entry.slug}>
+<Layout title={entry.data.title}>
   <div class="fixed bottom-4 right-0 z-50 flex w-full justify-center lg:hidden">
     <HeadingsList headings={headings} client:visible />
   </div>
@@ -53,13 +53,13 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
         <TableOfContents headings={headings} client:visible />
       </div>
     </aside>
-    <article
-      class="!prose-invert prose-slate prose-cyan prose max-w-none flex-1 space-y-8 prose-blockquote:border-l prose-blockquote:border-yellow-400 prose-code:p-1 prose-code:rounded-md"
+    <div
+      class="!prose-invert prose-slate prose-cyan prose max-w-none flex-1 space-y-8"
     >
       <div>
         <DateTime dateTime={entry.data.publishedDate} />
 
-        <h1 class="mt-4">{entry.data.title}</h1>
+        <h1 class="mt-4 md:text-[42px]">{entry.data.title}</h1>
 
         <div class="flex gap-x-2">
           {entry.data.tags.map((tag) => <Tag name={tag} />)}
@@ -72,7 +72,11 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
         Image
       </div>
 
-      <Content components={{pre: Pre}} />
-    </article>
+      <article
+        class="md:prose-lg prose-blockquote:border-l prose-blockquote:border-yellow-400 prose-code:rounded-md prose-code:p-1 prose-pre:mt-0"
+      >
+        <Content components={{ pre: Pre }} />
+      </article>
+    </div>
   </div>
 </Layout>
