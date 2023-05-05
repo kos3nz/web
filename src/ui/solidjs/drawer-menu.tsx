@@ -8,7 +8,13 @@ import { navItems } from 'src/const/navigation-items'
 
 import { isDrawerOpen } from 'store/drawerStore'
 
-export default function DrawerMenu() {
+export default function DrawerMenu(props: { pathname: string }) {
+  const currentPath = () => {
+    if (props.pathname.includes('/blog/')) return '/blog/'
+    if (props.pathname.includes('/snippets/')) return '/snippets/'
+    return props.pathname
+  }
+
   let drawerMenuRef: HTMLDivElement | undefined
   const $isDrawerOpen = useStore(isDrawerOpen)
 
@@ -30,17 +36,18 @@ export default function DrawerMenu() {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         ref={drawerMenuRef}
         class={cx(
-          'fixed bottom-0 left-0 z-[100] w-full overflow-hidden rounded-t-2xl transition-transform duration-500 ease-in-out',
+          'fixed bottom-0 left-0 z-[100] w-full overflow-hidden transition-transform duration-500 ease-in-out',
           $isDrawerOpen() ? 'translate-y-0' : 'translate-y-[100%]',
         )}
       >
-        <ul class="grid grid-cols-3 gap-x-1 bg-slate-800 px-2">
+        <ul class="grid grid-cols-3 bg-slate-800">
           <For each={navItems}>
             {(item, i) => (
               <li
                 class={cx(
                   'flex items-center justify-center',
                   i() !== 0 && 'before:text-slate-100/20 before:content-["|"]',
+                  currentPath() === item.path && 'border-t-2 border-cyan-500',
                 )}
               >
                 <a

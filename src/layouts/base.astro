@@ -8,6 +8,7 @@ export interface Props {
 }
 
 const { title, description } = Astro.props
+const { pathname } = Astro.url
 ---
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ const { title, description } = Astro.props
       <slot />
     </main>
     <!-- Footer -->
-    <DrawerMenu client:idle />
+    <DrawerMenu pathname={pathname} client:idle />
   </body>
 </html>
 
