@@ -57,6 +57,10 @@ const { title, description } = Astro.props
     counter-reset: line;
   }
 
+  code .line {
+    padding-right: 3rem;
+  }
+
   code[data-line-numbers] > .line::before {
     display: inline-block;
     width: 2rem;
