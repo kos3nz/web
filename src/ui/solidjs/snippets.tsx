@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 
 import { For } from 'solid-js'
-import { filterValue } from 'store/filterStore'
-import type { Snippet } from 'types/global'
+import { filterValue } from 'store/filter-store.ts'
+import type { Snippet } from 'types/global.d.ts'
 import SnippetCard from 'ui/solidjs/snippet-card.tsx'
 
 export default function Snippets(props: { snippets: Snippet[] }) {

@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 
 import { For } from 'solid-js'
-import { filterValue } from 'store/filterStore'
-import type { Post } from 'types/global'
+import { filterValue } from 'store/filter-store.ts'
+import type { Post } from 'types/global.d.ts'
 import PostCard from 'ui/solidjs/post-card.tsx'
 
 export default function Posts(props: { posts: Post[] }) {

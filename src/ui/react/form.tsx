@@ -63,14 +63,14 @@ export default function ValidatedForm() {
 
         <textarea
           {...register('message')}
-          className="textarea w-full bg-slate-800 text-base focus-visible:outline-slate-200"
+          className="textarea w-full bg-slate-800 text-base focus-visible:outline-slate-100/75"
           rows={10}
           placeholder="Message / お問い合わせ内容"
         />
 
         <button
           type="submit"
-          className="btn mx-auto block bg-indigo-600 hover:bg-indigo-600/60 focus-visible:outline-slate-200"
+          className="btn mx-auto block bg-cyan-500/60 hover:bg-cyan-300/60 focus-visible:outline-slate-100/75"
         >
           Confirm / 確認する
         </button>
@@ -101,7 +101,7 @@ function FormInput({
       {/* <label className='pointer-events-none'>{label}</label> */}
       <input
         {...register(name, { ...options })}
-        className="input w-full bg-slate-800 focus-visible:outline-slate-200"
+        className="input w-full bg-slate-800 focus-visible:outline-slate-100/75"
         placeholder={placeholder}
         aria-invalid={errors?.[name] ? 'true' : 'false'}
       />

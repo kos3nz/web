@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -31,8 +32,15 @@ module.exports = {
             thead: {
               borderBottomColor: theme('colors.slate.400'),
             },
+            a: {
+              color: colors.slate[100],
+              'text-decoration-color': colors.cyan[600],
+              'text-underline-offset': '2px',
+            },
             blockquote: {
-              color: theme('colors.slate.500'),
+              color: colors.slate[500],
+              'border-color': colors.yellow[500],
+              'border-left-width': '2px',
             },
             'blockquote code': {
               color: theme('colors.slate.300'),

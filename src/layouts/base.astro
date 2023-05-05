@@ -23,10 +23,9 @@ const { pathname } = Astro.url
   </head>
   <body>
     <Header />
-    <main class="relative mx-auto max-w-6xl px-6 pb-32 pt-40">
+    <main class="relative mx-auto max-w-6xl px-6 pb-28 pt-40">
       <slot />
     </main>
-    <!-- Footer -->
     <DrawerMenu pathname={pathname} client:idle />
   </body>
 </html>

@@ -46,13 +46,15 @@ export default function DrawerMenu(props: { pathname: string }) {
               <li
                 class={cx(
                   'flex items-center justify-center',
-                  i() !== 0 && 'before:text-slate-100/20 before:content-["|"]',
-                  currentPath() === item.path && 'border-t-2 border-cyan-500',
+                  // i() !== 0 && 'before:text-slate-100/20 before:content-["|"]',
+                  currentPath() === item.path
+                    ? 'border-t-2 border-cyan-400'
+                    : 'text-slate-400',
                 )}
               >
                 <a
                   href={item.path}
-                  class="my-2 flex w-full items-center justify-center gap-x-1.5 rounded-md py-4 text-sm font-bold transition-colors duration-300 hover:text-cyan-500"
+                  class="flex w-full items-center justify-center gap-x-1.5 rounded-md py-5 text-sm font-bold transition-colors duration-300 hover:text-slate-100"
                 >
                   <span class="shrink-0">
                     <item.Icon />
