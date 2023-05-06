@@ -3,8 +3,8 @@ import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import Layout from 'layouts/base.astro'
 import Pre from 'ui/astro/pre.astro'
-import TableOfContents from 'ui/solidjs/table-of-contents.tsx'
-import HeadingsList from 'ui/solidjs/headings-list.tsx'
+import HeadingsDesktop from 'ui/solidjs/headings-desktop.tsx'
+import HeadingsMobile from 'ui/solidjs/headings-mobile.tsx'
 import Tag from 'ui/solidjs/tag.tsx'
 import DateTime from 'ui/solidjs/date-time.tsx'
 
@@ -44,18 +44,10 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
 ---
 
 <Layout title={entry.data.title}>
-  <div class="fixed bottom-4 right-0 z-50 flex w-full justify-center lg:hidden">
-    <HeadingsList headings={headings} client:visible />
-  </div>
+  <HeadingsMobile headings={headings} client:visible />
   <div class="lg:flex lg:flex-row-reverse lg:gap-x-10">
-    <aside class="hidden w-64 lg:block">
-      <div class="sticky top-32">
-        <TableOfContents headings={headings} client:visible />
-      </div>
-    </aside>
-    <div
-      class="!prose-invert prose-slate prose-cyan prose max-w-none flex-1 space-y-8"
-    >
+    <HeadingsDesktop headings={headings} client:visible />
+    <div class="!prose-invert prose-slate prose max-w-none flex-1 space-y-8">
       <div>
         <DateTime dateTime={entry.data.publishedDate} />
 
@@ -72,9 +64,7 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
         Image
       </div>
 
-      <article
-        class="md:prose-lg prose-blockquote:border-l prose-blockquote:border-yellow-400 prose-code:rounded-md prose-code:p-1 prose-pre:mt-0"
-      >
+      <article class="prose-code:rounded-md prose-code:p-1 prose-pre:mt-0">
         <Content components={{ pre: Pre }} />
       </article>
     </div>
