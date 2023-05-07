@@ -1,6 +1,6 @@
 ---
 import Header from 'ui/astro/header.astro'
-import DrawerMenu from 'ui/solidjs/drawer-menu.tsx'
+import DrawerMenu from 'ui/react/drawer-menu.tsx'
 
 export interface Props {
   title?: string
@@ -26,7 +26,7 @@ const { pathname } = Astro.url
     <main class="relative mx-auto max-w-6xl px-6 pb-28 pt-40">
       <slot />
     </main>
-    <DrawerMenu pathname={pathname} client:idle />
+    <DrawerMenu pathname={pathname} client:media="(max-width: 768px)" />
   </body>
 </html>
 
@@ -45,6 +45,7 @@ const { pathname } = Astro.url
   body {
     @apply h-full w-full bg-slate-900 font-sans text-slate-200;
 
+    touch-action: var(--touch-action);
     -webkit-tap-highlight-color: transparent;
   }
 

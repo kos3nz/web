@@ -2,17 +2,13 @@
 
 import { useStore } from '@nanostores/solid'
 import cx from 'clsx'
-import { isDrawerOpen } from 'store/drawer-store.ts'
+import { isDrawerOpen, openDrawer } from 'store/drawer-store.ts'
 
 export default function Drawer() {
   const $isDrawerOpen = useStore(isDrawerOpen)
 
   return (
-    <button
-      id="drawer-trigger"
-      class="space-y-[4px] p-1"
-      onClick={() => isDrawerOpen.set(!$isDrawerOpen())}
-    >
+    <button id="drawer-trigger" class="space-y-[4px] p-1" onClick={openDrawer}>
       <span
         class={cx(
           'block h-[2px] w-5 rounded-md bg-current duration-300',

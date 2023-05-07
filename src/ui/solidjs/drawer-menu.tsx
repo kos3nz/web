@@ -5,7 +5,7 @@ import cx from 'clsx'
 import { For, onMount } from 'solid-js'
 import { createOutsideClick } from 'hooks/solidjs/create-outside-click'
 import { navItems } from 'src/const/navigation-items'
-import { isDrawerOpen } from 'store/drawer-store.ts'
+import { closeDrawer, isDrawerOpen } from 'store/drawer-store.ts'
 
 export default function DrawerMenu(props: { pathname: string }) {
   const currentPath = () => {
@@ -18,9 +18,7 @@ export default function DrawerMenu(props: { pathname: string }) {
   const $isDrawerOpen = useStore(isDrawerOpen)
 
   onMount(() => {
-    createOutsideClick([drawerMenuRef, '#drawer-handler'], () => {
-      isDrawerOpen.set(false)
-    })
+    createOutsideClick([drawerMenuRef], closeDrawer)
   })
 
   return (
@@ -32,7 +30,6 @@ export default function DrawerMenu(props: { pathname: string }) {
         )}
       />
       <div
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         ref={drawerMenuRef}
         class={cx(
           'fixed bottom-0 left-0 z-[100] w-full overflow-hidden transition-transform duration-300 ease-in-out',
