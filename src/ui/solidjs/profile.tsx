@@ -12,7 +12,7 @@ export default function Profile() {
       <span class="h-px w-full bg-slate-400/20 md:h-24 md:w-px" />
 
       <div class="flex max-w-lg items-center">
-        元ビール醸造士。独学でプログラミング学び、現在はWebエンジニアとして活動しています。好きな技術はReact,
+        元ビール醸造士。独学でプログラミングを学び、現在はWebエンジニアとして活動しています。好きな技術はReact,
         Typescript, Next.js, Remix, SolidJSなど。
       </div>
     </div>
