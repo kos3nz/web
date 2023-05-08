@@ -7,12 +7,12 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: [
-        // 'Helvetica Neue', // macOS English
-        // 'Arial', // window English
-        // 'Hiragino Sans', // macOS Japanese
-        // 'Hiragino Kaku Gothic ProN', // macOS Japanese
-        // 'BIZ UDPGothic', // window Japanese
-        // 'Meiryo', // window Japanese
+        'Helvetica Neue', // macOS English
+        'Arial', // window English
+        'Hiragino Sans', // macOS Japanese
+        'Hiragino Kaku Gothic ProN', // macOS Japanese
+        'BIZ UDPGothic', // window Japanese
+        'Meiryo', // window Japanese
         ...defaultTheme.fontFamily.sans, // sans-serif for android
       ],
     },

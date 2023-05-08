@@ -12,7 +12,7 @@ const { pathname } = Astro.url
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -23,7 +23,7 @@ const { pathname } = Astro.url
   </head>
   <body>
     <Header />
-    <main class="relative mx-auto max-w-6xl px-6 pb-28 pt-40">
+    <main class="relative mx-auto max-w-6xl px-6 pb-24 pt-36">
       <slot />
     </main>
     <DrawerMenu pathname={pathname} client:media="(max-width: 768px)" />

@@ -51,7 +51,7 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
       <div>
         <DateTime dateTime={entry.data.publishedDate} />
 
-        <h1 class="mt-4 md:text-[42px]">{entry.data.title}</h1>
+        <h1 class="mb-9 mt-2 md:text-[42px]">{entry.data.title}</h1>
 
         <div class="flex gap-x-2">
           {entry.data.tags.map((tag) => <Tag name={tag} />)}

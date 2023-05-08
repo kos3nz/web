@@ -25,8 +25,8 @@ function Search() {
         type="search"
         name="query"
         id="query"
-        placeholder="Search posts..."
-        class="input flex-1 bg-transparent pr-12 text-lg focus-visible:outline-slate-100/75"
+        placeholder="Search..."
+        class="input flex-1 bg-transparent pr-12 text-lg focus-visible:outline-cyan-500/75"
         onInput={(e) => searchQuery.set(e.target.value)}
       />
       <div class="pointer-events-none absolute right-2 p-2">
@@ -57,7 +57,7 @@ function TagButton(props: { name: string }) {
       type="button"
       class={cx(
         // 'rounded-xl bg-slate-600/50 px-[12px] py-2 text-sm font-bold lowercase shadow-highlight transition duration-300 hover:scale-105',
-        'btn-xs btn bg-slate-800 focus-visible:outline-slate-100/75',
+        'btn-xs btn bg-slate-800 focus-visible:outline-cyan-500/75',
         isSelected() ? 'text-cyan-500' : 'text-slate-200',
       )}
       onClick={toggleFilter}

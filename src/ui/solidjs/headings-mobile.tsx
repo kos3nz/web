@@ -9,7 +9,7 @@ import { createOutsideClick } from 'hooks/solidjs/create-outside-click'
 import type { Heading } from 'types/global'
 import ListIcon from 'ui/solidjs/icons/list-icon.tsx'
 import TableOfContents from 'ui/solidjs/table-of-contents.tsx'
-import ChevronIcon from './icons/chevron'
+import ChevronIcon from './icons/chevron-icon.tsx'
 
 export default function HeadingsMobile(props: { headings: Heading[] }) {
   // eslint-disable-next-line solid/reactivity

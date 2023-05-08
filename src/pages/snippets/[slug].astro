@@ -28,10 +28,10 @@ const { Content } = await entry.render()
 
 <Layout title={entry.data.title}>
   <div class="flex justify-center">
-    <div class="!prose-invert prose-slate prose w-full max-w-4xl space-y-8">
-      <h1 class="mt-4 text-center md:text-[42px]">{entry.data.title}</h1>
+    <div class="!prose-invert prose-slate prose w-full max-w-4xl">
+      <h1 class="text-center md:text-[42px]">{entry.data.title}</h1>
 
-      <div class="flex justify-center gap-x-2">
+      <div class="mb-8 flex justify-center gap-x-2">
         {entry.data.tags.map((tag) => <Tag name={tag} />)}
       </div>
 
