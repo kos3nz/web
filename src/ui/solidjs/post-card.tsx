@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import { For } from 'solid-js'
-import type { Post } from 'types/global.d.ts'
+import type { Post } from 'types/global.types.ts'
 import Tag from 'ui/solidjs/tag.tsx'
 import DateTime from 'ui/solidjs/date-time.tsx'
 

@@ -2,7 +2,7 @@
 
 import cx from 'clsx'
 import { For } from 'solid-js'
-import type { Heading } from 'types/global.d.ts'
+import type { Heading } from 'types/global.types.ts'
 
 export default function TableOfContents(props: {
   headings: Heading[]
