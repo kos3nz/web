@@ -71,6 +71,15 @@ module.exports = {
         '@typescript-eslint/no-floating-promises': 'off',
         'react/prop-types': 'off',
         'solid/prefer-for': 'off',
+        '@typescript-eslint/ban-types': [
+          'error',
+          {
+            extendDefaults: true,
+            types: {
+              '{}': false,
+            },
+          },
+        ],
       },
     },
 
