@@ -1,0 +1,18 @@
+.contact-form {
+  display: grid;
+}
+
+.contact-form astro-island > * {
+  grid-area: 1/1/2/2;
+  visibility: visible;
+  transition: all 0.3s 0.3s;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.contact-form astro-island > *[aria-hidden='true'] {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition-delay: 0s;
+  transform: scale(0.8);
+}

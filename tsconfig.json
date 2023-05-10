@@ -66,6 +66,7 @@
       "hooks/*": ["src/hooks/*"],
       "layouts/*": ["src/layouts/*"],
       "store/*": ["src/store/*"],
+      "styles/*": ["src/styles/*"],
       "types/*": ["src/types/*"],
       "ui/*": ["src/ui/*"],
       "utils/*": ["src/utils/*"]
