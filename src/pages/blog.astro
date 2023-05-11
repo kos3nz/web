@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content'
 import Layout from 'layouts/base.astro'
 import Filter from 'ui/solidjs/filter.tsx'
 import Posts from 'ui/solidjs/posts.tsx'
+import { createCloudinaryImageSrc } from 'utils/image.ts'
 
 const allPosts = (
   await getCollection('blog', ({ data }) => {
@@ -15,6 +16,10 @@ const allPosts = (
     tags: post.data.tags,
     publishedDate: post.data.publishedDate,
     updatedDate: post.data.updatedDate,
+    imageSrc: createCloudinaryImageSrc({
+      title: post.data.title,
+      tags: post.data.tags,
+    }),
   }))
   .sort(
     (post1, post2) =>

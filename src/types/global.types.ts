@@ -6,6 +6,7 @@ export type Post = {
   tags: string[]
   publishedDate: Date
   updatedDate: Date | undefined
+  imageSrc: string
 }
 
 export type Snippet = {

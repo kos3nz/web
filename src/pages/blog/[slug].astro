@@ -7,6 +7,7 @@ import HeadingsDesktop from 'ui/solidjs/headings-desktop.tsx'
 import HeadingsMobile from 'ui/solidjs/headings-mobile.tsx'
 import Tag from 'ui/solidjs/tag.tsx'
 import DateTime from 'ui/solidjs/date-time.tsx'
+import { createCloudinaryImageSrc } from 'utils/image'
 
 interface Props {
   entry: CollectionEntry<'blog'>
@@ -41,17 +42,24 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
     text: heading.text.split('#')[1],
   }
 })
+
+const imageSrc = createCloudinaryImageSrc({
+  title: entry.data.title,
+  tags: entry.data.tags,
+})
 ---
 
 <Layout title={entry.data.title}>
   <HeadingsMobile headings={headings} client:visible />
   <div class="lg:flex lg:flex-row-reverse lg:gap-x-10">
     <HeadingsDesktop headings={headings} client:visible />
-    <div class="!prose-invert prose-slate prose max-w-none flex-1 space-y-8">
+    <div class="flex-1">
       <div>
         <DateTime dateTime={entry.data.publishedDate} />
 
-        <h1 class="mb-9 mt-2 md:text-[42px]">{entry.data.title}</h1>
+        <h1 class="mb-6 mt-3 text-4xl font-bold md:text-[42px]">
+          {entry.data.title}
+        </h1>
 
         <div class="flex gap-x-2">
           {entry.data.tags.map((tag) => <Tag name={tag} />)}
@@ -59,12 +67,14 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
       </div>
 
       <div
-        class="flex aspect-[16/9] items-center justify-center overflow-hidden rounded-2xl border border-slate-400/20 bg-slate-800/50 text-5xl font-bold"
+        class="my-12 aspect-video overflow-hidden rounded-2xl border border-slate-400/20"
       >
-        Image
+        <img src={imageSrc} alt="Title Cover" />
       </div>
 
-      <article class="prose-code:rounded-md prose-code:p-1 prose-pre:mt-0">
+      <article
+        class="!prose-invert prose-slate prose max-w-none prose-code:rounded-md prose-code:p-1 prose-pre:mt-0"
+      >
         <Content components={{ pre: Pre }} />
       </article>
     </div>
