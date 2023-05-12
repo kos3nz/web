@@ -1,4 +1,5 @@
 ---
+import Footer from 'ui/astro/footer.astro'
 import Header from 'ui/astro/header.astro'
 import DrawerMenu from 'ui/react/drawer-menu.tsx'
 
@@ -26,6 +27,7 @@ const { pathname } = Astro.url
     <main class="relative mx-auto max-w-6xl px-6 pb-24 pt-36">
       <slot />
     </main>
+    <Footer />
     <DrawerMenu pathname={pathname} client:media="(max-width: 768px)" />
   </body>
 </html>
