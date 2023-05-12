@@ -6,7 +6,7 @@ import { Show, createSignal, onMount } from 'solid-js'
 
 import { createActiveHeading } from 'hooks/solidjs/create-active-heading'
 import { createOutsideClick } from 'hooks/solidjs/create-outside-click'
-import type { Heading } from 'types/global'
+import type { Heading } from 'types/global.types.ts'
 import ListIcon from 'ui/solidjs/icons/list-icon.tsx'
 import TableOfContents from 'ui/solidjs/table-of-contents.tsx'
 import ChevronIcon from './icons/chevron-icon.tsx'
@@ -27,7 +27,7 @@ export default function HeadingsMobile(props: { headings: Heading[] }) {
 
   return (
     <div class="fixed bottom-0 left-0 z-50 w-full pb-3 lg:hidden">
-      <div class="relative flex w-full justify-start px-6 text-sm md:text-base">
+      <div class="relative flex w-full justify-start px-6 text-sm">
         <button
           ref={buttonRef}
           type="button"

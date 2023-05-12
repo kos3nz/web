@@ -28,6 +28,8 @@ module.exports = {
             'h1,h2,h3,h4': {
               position: 'relative',
               'scroll-margin-top': defaultTheme.spacing[24],
+              margin: '40px 0 28px',
+              width: 'fit-content',
             },
             thead: {
               borderBottomColor: theme('colors.slate.400'),

@@ -51,13 +51,13 @@ const imageSrc = createCloudinaryImageSrc({
 
 <Layout title={entry.data.title}>
   <HeadingsMobile headings={headings} client:visible />
-  <div class="lg:flex lg:flex-row-reverse lg:gap-x-10">
+  <div class="lg:flex lg:flex-row-reverse lg:gap-x-6">
     <HeadingsDesktop headings={headings} client:visible />
-    <div class="flex-1">
+    <div class="min-w-0 flex-1">
       <div>
         <DateTime dateTime={entry.data.publishedDate} />
 
-        <h1 class="mb-6 mt-3 text-4xl font-bold md:text-[42px]">
+        <h1 class="mb-7 mt-3 text-4xl font-bold md:text-[42px]">
           {entry.data.title}
         </h1>
 

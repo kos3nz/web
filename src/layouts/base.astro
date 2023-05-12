@@ -22,9 +22,9 @@ const { pathname } = Astro.url
     <title>{title ? title + " | K's Web" : "K's Web"}</title>
     {description && <meta name="description" content={description} />}
   </head>
-  <body>
+  <body class="mx-auto flex max-w-6xl flex-col px-6">
     <Header />
-    <main class="relative mx-auto max-w-6xl px-6 pb-24 pt-36">
+    <main class="relative flex-1 pb-16 pt-36">
       <slot />
     </main>
     <Footer />
@@ -51,17 +51,27 @@ const { pathname } = Astro.url
     -webkit-tap-highlight-color: transparent;
   }
 
-  pre:has(code[data-line-numbers]) {
-    padding-right: 0;
-    padding-left: 0;
+  pre > code {
+    font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+      'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+  }
+
+  code .line {
+    padding-right: 2rem;
+  }
+
+  code .highlighted {
+    background-color: rgb(200 200 255 / 10%);
+    border-left: 2px solid #60a5fa;
   }
 
   code {
     counter-reset: line;
   }
 
-  code .line {
-    padding-right: 3rem;
+  pre:has(code[data-line-numbers]) {
+    padding-right: 0;
+    padding-left: 0;
   }
 
   code[data-line-numbers] > .line::before {
@@ -82,24 +92,13 @@ const { pathname } = Astro.url
     width: 2rem;
   }
 
-  pre > code {
-    display: grid;
-    font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
-      'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
-  }
-
-  code .highlighted {
-    background-color: rgb(200 200 255 / 10%);
-    border-left: 2px solid #60a5fa;
-  }
-
   /* Anchor */
   .prose .anchor {
     @apply absolute inset-0 no-underline outline-none;
   }
 
   .prose .anchor .anchor-icon {
-    @apply absolute hidden cursor-pointer lg:-ml-6 lg:block lg:opacity-0 lg:transition-opacity lg:duration-200;
+    @apply absolute -top-[2.5px] hidden cursor-pointer text-3xl font-bold text-cyan-500 lg:-ml-6 lg:block lg:opacity-0 lg:transition-opacity lg:duration-200;
   }
 
   .prose .anchor:hover .anchor-icon {

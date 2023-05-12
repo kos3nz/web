@@ -1,7 +1,7 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js'
 import { getOffsetBottom, getOffsetTop } from 'utils/client'
 import { throttle } from 'utils/helpers'
-import type { Heading } from 'types/global'
+import type { Heading } from 'types/global.types.ts'
 
 export const createActiveHeading = (headings: Heading[]) => {
   const [activeHeading, setActiveHeading] = createSignal<Heading | undefined>(

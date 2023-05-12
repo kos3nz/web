@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import { createActiveHeading } from 'hooks/solidjs/create-active-heading'
-import type { Heading } from 'types/global'
+import type { Heading } from 'types/global.types.ts'
 import TableOfContents from 'ui/solidjs/table-of-contents.tsx'
 
 export default function HeadingsDesktop(props: { headings: Heading[] }) {
@@ -9,8 +9,8 @@ export default function HeadingsDesktop(props: { headings: Heading[] }) {
   const activeHeading = createActiveHeading(props.headings)
 
   return (
-    <aside class="hidden w-64 lg:block">
-      <div class="sticky top-32">
+    <aside class="hidden w-72 lg:block">
+      <div class="sticky top-20">
         <TableOfContents
           headings={props.headings}
           activeHeading={activeHeading()}

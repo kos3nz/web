@@ -9,9 +9,11 @@ export default function TableOfContents(props: {
   activeHeading: Heading | undefined
 }) {
   return (
-    <div class="max-w-md rounded-lg border border-slate-400/20 p-6 text-sm">
-      <span class="block font-bold text-slate-300">Table of Contents</span>
-      <ol class="mt-3 border-l-2 border-slate-400/20 font-semibold">
+    <div class="max-w-md rounded-xl border border-slate-400/20 p-6 lg:border-0">
+      <span class="block text-xs font-bold uppercase text-slate-300">
+        On this page
+      </span>
+      <ol class="mt-3 border-l-2 border-slate-400/20 text-sm font-semibold">
         <For each={props.headings}>
           {(heading) => (
             <li class="leading-2 relative mt-3 first-of-type:mt-0">
@@ -19,9 +21,8 @@ export default function TableOfContents(props: {
                 href={heading.hash}
                 class={cx(
                   'block leading-5 transition-colors duration-300',
-                  (heading.depth === 1 || heading.depth === 2) && 'pl-3',
-                  heading.depth === 3 && 'pl-6',
-                  heading.depth === 4 && 'pl-9',
+                  (heading.depth === 1 || heading.depth === 2) && 'pl-4',
+                  heading.depth >= 3 && 'pl-8',
                   props.activeHeading?.hash === heading.hash
                     ? 'text-slate-100'
                     : 'text-slate-500 hover:text-slate-100',

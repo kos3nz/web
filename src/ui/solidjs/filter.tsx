@@ -26,7 +26,7 @@ function Search() {
         name="query"
         id="query"
         placeholder="Search..."
-        class="input flex-1 bg-transparent pr-12 text-lg focus-visible:outline-cyan-500/75"
+        class="input h-[2.5rem] flex-1 bg-transparent pr-12 focus-visible:outline-cyan-500/75"
         onInput={(e) => searchQuery.set(e.target.value)}
       />
       <div class="pointer-events-none absolute right-2 p-2">
