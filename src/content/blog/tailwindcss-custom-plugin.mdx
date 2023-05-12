@@ -1,0 +1,192 @@
+---
+title: TailwindCSS プラグインの活用方法
+tags: ['css']
+publishedDate: 2022-07-13
+---
+
+import Code from 'ui/astro/code.astro'
+
+そのままでも十分に機能豊富な Tailwind CSS。しかし、既存のクラスだけではどうしても痒いところに手が届かないケースがあると思います。
+[Arbitrary values](https://v2.tailwindcss.com/docs/just-in-time-mode#arbitrary-value-support)や、['@layer'](https://tailwindcss.com/docs/functions-and-directives#layer)を使用しカスタムクラスを作ることでカバーすることは可能です。
+
+ただ、メンテナンス視点で考えたとき、
+
+- Arbitrary values をあまりに多用するとコードの視認性が低くなる
+- '@layer'でカスタムクラスを作りすぎると後々ネームコンフリクトの可能性が出てくる、TailwindCSS Extension でクラス名の補填が効かない
+
+など、これらに頼り切っているとそれぞれ問題も発生してきます。
+
+そこで今回は、より使いやすく、より柔軟にスタイルを実装できる Plugin の作成方法を記述します。
+
+TailwindCSS Plugins は CSS の代わりに Javascript を使って、TailwindCSS に新たなスタイルを組み込みこめるようになる機能です。TailwindCSS で提供されているクラスもこのプラグインの機能を使って実装されています。
+
+---
+
+## Tailwind Plugin を作成する
+
+はじめに、plugin function を tailwind.config.js へインポートしましょう。
+
+<Code>
+
+```javascript title="tailwind.config.js" showLineNumbers {1, 5-7}
+const plugin = require('tailwindcss/plugin');
+
+module.exports = {
+  plugins: [
+    plugin(function({ addUtilities, addComponents, e, prefix, config})) {
+      // Add your custom styles here
+    }
+  ]
+}
+```
+
+</Code>
+
+plugin 関数には第一引数にシングルオブジェクトを受け取るコールバック関数を渡し、そこから [Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) することで様々な Helper Functions が使用できます。
+詳しくは[公式のドキュメント](https://tailwindcss.com/docs/plugins)をご参照ください。
+
+---
+
+### Components を追加する
+
+tailwind.config.js に下記のコードを追加します。
+スタイルは Emotion のような CSS in JS の記法になります。
+
+<Code>
+
+```typescript title="tailwind.config.js" showLineNumbers {6-23}
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  // ...
+  plugins: [
+    plugin(function ({ addUtilities, addComponents, e, prefix, config }) {
+      addComponents({
+        '.btn': {
+          position: 'relative',
+          borderRadius: '9999px',
+          padding: '16px 32px',
+          fontWeight: 700,
+          '&:active': {
+            transform: 'scale(0.9)',
+          },
+        },
+        '.btn-blue': {
+          backgroundColor: '#3490dc',
+          color: '#fff',
+          '&:hover': {
+            backgroundColor: '#2779bd',
+          },
+        },
+      })
+    }),
+  ],
+}
+```
+
+</Code>
+
+Array にすることで複数のオブジェクトを渡すこともできます。
+
+<Code>
+
+```typescript title="tailwind.config.js" showLineNumbers {7-22}
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  // ...
+  plugins: [
+    plugin(function ({ addUtilities, addComponents, e, prefix, config }) {
+      addComponents([
+        {
+          '.btn': {
+            position: 'relative',
+            // ...
+          },
+          '.btn-blue': {
+            // ...
+          },
+        },
+        {
+          '.input': {
+            // ...
+          },
+        },
+      ])
+    }),
+  ],
+}
+```
+
+</Code>
+
+少し変わった記法になりますが、['@apply'と併用](https://github.com/tailwindlabs/tailwindcss/discussions/2049)も可能です。
+
+```diff showLineNumbers
+  addComponents({
+    '.btn': {
++     '@apply relative rounded-full py-4 px-8 font-bold': {},
+-     position: 'relative',
+-     borderRadius: '9999px',
+-     padding: '16px 32px',
+-     fontWeight: 700,
+      '&:active': {
+        transform: 'scale(0.9)',
+      },
+    },
+    // ...
+  });
+```
+
+これで Element のクラスで使用可能になりました。
+
+```tsx showLineNumbers
+<button className="btn-blue btn">Button</button>
+```
+
+---
+
+### Variants を追加する
+
+Variants を追加することで、hover と focus を同時に指定できたり、デフォルトの[modifiers](https://tailwindcss.com/docs/hover-focus-and-other-states)にはないオリジナルのものを作成することができます。
+
+<Code>
+
+```javascript title="tailwind.config.js" showLineNumbers
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  // ...
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('hocus', ['&:hover', '&:focus'])
+      addVariant('supports-backdrop', '@supports (backdrop-filter: blur(0px))')
+    }),
+  ],
+}
+```
+
+</Code>
+
+```tsx showLineNumbers
+<header className="supports-backdrop:bg-slate-800/75 supports-backdrop:backdrop-blur bg-slate-800">
+  // ...
+</header>
+```
+
+---
+
+### add 関数と match 関数の違い
+
+add 関数のクラスは Static Value (引数で渡したオブジェクトのプロパティ名)のみですが, match 関数で指定したクラスは[Arbitrary values](https://v2.tailwindcss.com/docs/just-in-time-mode#arbitrary-value-support)の記法でダイナミックにスタイルを実装することが可能になります。\
+[他の方のブログ記事](https://yuheiy.com/2022-03-21-mixins-that-take-arguments-in-tailwind-css)にわかりやすい解説がありますので、詳しく知りたい方はそちらをご覧ください。そのブログ記事で紹介されている css の clamp 関数を使った[Fluid Text](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/)に関する記事も載せておきます。
+
+## まとめ
+
+TailwindCSS は非常に使いやすく、バージョンも更新されるたびに様々な機能が追加されています。しかし、プラグインを自分で作ることで、オリジナルの機能追加や、npm package を通して異なるプロジェクトでも容易にシェアしたり、一つ一つのファイルをスッキリさせ、よりプロジェクトを管理しやすくすることができます。
+
+## その他参考記事
+
+- [How To Write A Plugin For Tailwind CSS](https://nickjbasile.medium.com/how-to-write-a-plugin-for-tailwind-css-898752e3f5e2)
+
+- [Creating a custom Tailwind CSS color plugin](https://daily.dev/blog/creating-a-custom-tailwind-css-color-plugin)

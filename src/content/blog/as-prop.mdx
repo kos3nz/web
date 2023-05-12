@@ -1,0 +1,95 @@
+---
+title: React Polymorphic Component の Type Annotation
+tags: ['react', 'typescript']
+publishedDate: 2023-03-28
+draft: true
+---
+
+Chakra UI などのコンポーネントが持つ `as` prop ってとても便利ですよね。
+時には、`as` prop を持つコンポーネントを自作したい場合もあるかと思います。
+
+今回はそんなコンポーネントを作る際の Type Annotation はどうすればよいのかついて書いていきます。
+
+---
+
+## Polymorphic Component とは
+
+Polymorphic commponent とは React の Design Pattern の一つです。コンポーネント設計において、
+`as` prop (prop 名は必ずしも`as`である必要はありません) に HTML Element tag を渡す仕様にすることで
+コンポーネント内のエレメントを自由に変更することができます。
+
+Chakra UI の例:
+
+```typescript {3} showLineNumbers
+const Title = ({ children }: { children: React.ReactNode }) => (
+  <Box
+    as="h1"
+    mt="4"
+    color="gray.500"
+    fontWeight="bold"
+    letterSpacing="wide"
+    noOfLines={1}
+  >
+    {children}
+  </Box>
+)
+```
+
+上記の例では Box コンポーネントの as prop に`h1`を渡すことでデフォルト値の`div`ではなく`h1`タグが生成されます。
+
+---
+
+## Polymorphic Component を自作する
+
+早速実装していきます。
+今回は Form 内での Input を想定して、`input` と`textarea`を使い分けられるコンポーネントを作りたいと思います。
+
+まず、全ての HTML Element を as として渡せるコンポーネントは以下のようになります。
+
+```typescript showLineNumbers
+const FormInput = <T extends React.ElementType = 'input'>({
+  as,
+  ...rest
+}: React.ComponentPropsWithoutRef<T> & { as?: T }) => {
+  const Component = as || 'input'
+
+  return <Component {...rest} />
+}
+```
+
+**順に解説していきます。**
+
+1 行目は Generic type になっており、指定する型には React.ElementType に属する型しか渡せないようにします。
+React.ElementType は React の [Utility type](https://flow.org/en/docs/react/types/#toc-react-elementtype) で JSX intrinsics ( `'div'`, `'button'`, 等 ) 、もしくは React.ComponentType を持つ型です。
+ここでは JSX intrinsics のユニオン型として扱われており、指定なしの場合は `'input'` タグが渡されるようになっています。
+
+4 行目でその `T` 型を [ComponentPropsWithoutRef](https://react-typescript-cheatsheet.netlify.app/docs/advanced/patterns_by_usecase/#wrappingmirroring-a-html-element) と`as` prop に紐つけることで、
+as に渡される値が`T` 型として `ComponentPropsWithoutRef` に渡され、HTML tag の props 型が絞れるようになります。
+
+5 行目では `as` の値、もしくは値が `undefined` だった場合の fallback の値として `'input'`が渡され、 7 行目で `as` の値がコンポーネントとしてレンダリングされます。
+
+実際のコードでの流れは下記のようなイメージです。
+
+```typescript showLineNumbers
+export const Form = () => {
+  return (
+    <form>
+      <FormInput as="textarea" /> // 1. as に 'textarea' を指定した場合
+    </form>
+  )
+}
+
+// 2. 'textarea' はElementType (JSX intrinsics) に含まれるのでコンパイルが通り、指定された型があるので'input'はスルー
+const FormInput = <'textarea' extends React.ElementType = 'input'>({
+  as,
+  ...rest // 4. rest は as 以外の textarea が持つ props とTypescript が理解
+}: React.ComponentPropsWithoutRef<'textarea'> & { as?: 'textarea' }) => { // 3. T 型は textarea として扱われ
+  const Component = as || 'input' // 5. 'textarea' がコンポーネント定数に入り
+
+  return <Component {...rest} /> // 6. <textarea {...rest} /> がレンダリングされる
+}
+```
+
+## 参考
+
+- [React polymorphic components with TypeScript](https://itnext.io/react-polymorphic-components-with-typescript-f7ce72ea7af2)
