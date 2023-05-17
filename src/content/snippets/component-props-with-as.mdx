@@ -1,0 +1,72 @@
+---
+title: ComponentPropsWithAs
+description: React type which adds as prop to Component
+tags: ['react', 'types']
+---
+
+Generic の `T` 型に HTML Tag の Union type を指定し、`TProps` 型に Custom props を渡すことで `as` prop で`T` 型の HTML tag を指定できるコンポーネントを
+作成することができます。
+
+## Code
+
+```typescript showLineNumbers
+export type ComponentPropsWithAs<
+  T extends keyof JSX.IntrinsicElements,
+  TProps extends object = {},
+> = {
+  [K in T]: Omit<JSX.IntrinsicElements[T], keyof TProps> & TProps & { as?: T }
+}[T]
+```
+
+## Usage
+
+```typescript showLineNumbers
+import cx from 'clsx'
+
+type Props = {
+  name: keyof FormSchema
+  label: string
+  required?: boolean
+}
+
+function FormInput<T extends 'input' | 'textarea' = 'input'>({
+  as,
+  name,
+  label,
+  required,
+  ...rest
+}: ComponentPropsWithAs<T, Props>) {
+  const Component = as || 'input'
+
+  return (
+    <div className="form-control w-full">
+      <div className="flex items-center gap-x-2">
+        <label htmlFor={name} className="text-sm font-semibold text-slate-300">
+          {label}
+        </label>
+        {required && (
+          <span className="rounded-full border border-emerald-400/50 px-2 py-px text-xs capitalize text-emerald-400">
+            Required
+          </span>
+        )}
+      </div>
+      <Component
+        {...rest}
+        id={name}
+        className={cx(
+          'mt-2.5 w-full bg-slate-700/50 focus-visible:outline-cyan-500/75',
+          Component === 'input' ? 'input' : 'textarea',
+        )}
+      />
+    </div>
+  )
+}
+
+function Form() {
+  return (
+    <form>
+      <FormInput as="textarea" /> // 'input' か 'textarea' を指定できる
+    </form>
+  )
+}
+```

@@ -14,7 +14,7 @@ const blogCollection = defineCollection({
 const snippetCollection = defineCollection({
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     tags: z.array(z.string()),
     draft: z.boolean().optional(),
   }),
