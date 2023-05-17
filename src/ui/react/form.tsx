@@ -14,6 +14,7 @@ import { contactInfo, increaseStep, step } from 'store/contact-store.ts'
 import RightChevronIcon from './icons/chevron-right-icon.tsx'
 import type { ContactSchema } from 'types/validation.types.ts'
 import { contactSchema } from 'utils/form-validation.ts'
+import type { ComponentPropsWithAs } from 'types/helpers.ts'
 
 export default function Form() {
   const $step = useStore(step)
@@ -104,11 +105,6 @@ type CommonProps = {
   required?: boolean
 }
 
-type InputProps<T extends 'input' | 'textarea'> = {
-  [K in T]: Omit<JSX.IntrinsicElements[T], keyof CommonProps> &
-    CommonProps & { as?: T }
-}[T]
-
 function FormInput<T extends 'input' | 'textarea' = 'input'>({
   name,
   label,
@@ -118,7 +114,7 @@ function FormInput<T extends 'input' | 'textarea' = 'input'>({
   as,
   required,
   ...rest
-}: InputProps<T>) {
+}: ComponentPropsWithAs<T, CommonProps>) {
   const Component = as || 'input'
 
   return (
