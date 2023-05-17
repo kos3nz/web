@@ -141,6 +141,9 @@ module.exports = {
     {
       files: ['*.md', '*.mdx'],
       extends: ['plugin:mdx/recommended'],
+      rules: {
+        'no-unused-vars': 'off',
+      },
       settings: {
         // optional, if you want to lint code blocks at the same time
         // 'mdx/code-blocks': true,
