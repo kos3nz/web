@@ -54,22 +54,16 @@ const imageSrc = createCloudinaryImageSrc({
   <div class="lg:flex lg:flex-row-reverse lg:gap-x-6">
     <HeadingsDesktop headings={headings} client:visible />
     <div class="min-w-0 flex-1">
-      <div>
-        <DateTime dateTime={entry.data.publishedDate} />
+      <DateTime dateTime={entry.data.publishedDate} />
 
-        <h1 class="mb-7 mt-3 text-4xl font-bold md:text-[42px]">
-          {entry.data.title}
-        </h1>
-
-        <div class="flex gap-x-2">
-          {entry.data.tags.map((tag) => <Tag name={tag} />)}
-        </div>
-      </div>
-
-      <div
-        class="my-12 aspect-video overflow-hidden rounded-2xl border border-slate-400/20"
+      <h1
+        class="mb-6 mt-4 text-3xl font-bold leading-[2.5rem] md:text-[36px] md:leading-[2.725rem]"
       >
-        <img src={imageSrc} alt="Title Cover" />
+        {entry.data.title}
+      </h1>
+
+      <div class="mb-12 flex gap-x-2">
+        {entry.data.tags.map((tag) => <Tag name={tag} />)}
       </div>
 
       <article

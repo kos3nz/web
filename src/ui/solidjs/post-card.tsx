@@ -15,27 +15,27 @@ export default function PostCard({ post }: { post: Post }) {
       <span class="absolute inset-0 bg-slate-400/20" />
       <span class="absolute -right-1/2 -top-1/2 h-full w-full origin-bottom-left rotate-12 bg-[radial-gradient(rgba(6,182,212,0.5)_0%,_transparent_75%)] transition-transform duration-500 lg:group-hover:-rotate-12" />
 
-      <div class="relative flex h-full flex-col overflow-hidden rounded-xl border border-transparent">
-        <div class="aspect-video overflow-hidden bg-slate-900">
-          <img
-            src={post.imageSrc}
-            alt="Title cover"
-            loading="lazy"
-            class="object-cover"
-          />
-        </div>
+      <div class="relative flex h-full flex-col overflow-hidden">
+        {/* <div class="aspect-video overflow-hidden bg-slate-900"> */}
+        {/*   <img */}
+        {/*     src={post.imageSrc} */}
+        {/*     alt="Title cover" */}
+        {/*     loading="lazy" */}
+        {/*     class="object-cover" */}
+        {/*   /> */}
+        {/* </div> */}
 
-        <div class="flex-1 bg-slate-900 p-5">
+        <div class="flex-1 bg-slate-900">
           <div class="flex items-center justify-between border-b border-slate-400/20 pb-1">
             <DateTime dateTime={post.publishedDate} />
             <div class="flex gap-x-2">
               <For each={post.tags}>{(tag) => <Tag name={tag} />}</For>
             </div>
           </div>
-          <h3 class="mt-2.5 pb-10 text-xl font-bold md:text-xl">
+          <h3 class="mt-2.5 pb-10 text-xl font-bold transition-colors duration-500 group-hover:text-cyan-500">
             {post.title}
           </h3>
-          <div class="absolute bottom-5 left-5 flex items-center justify-between">
+          <div class="absolute bottom-0 left-0 flex items-center justify-between">
             <div class="flex items-end gap-x-1 duration-500 lg:group-hover:translate-x-1">
               <span class="text-sm font-semibold text-cyan-500 transition-colors duration-500 md:text-base lg:text-slate-400 lg:group-hover:text-cyan-500">
                 Read more

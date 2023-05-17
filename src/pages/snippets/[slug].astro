@@ -27,17 +27,23 @@ const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title}>
-  <div class="mx-auto max-w-4xl">
-    <div class="!prose-invert prose-slate prose w-full max-w-none">
-      <h1 class="w-full text-center md:text-[42px]">{entry.data.title}</h1>
+  <div class="mx-auto max-w-3xl">
+    <h1
+      class="mb-6 break-words text-3xl font-bold leading-[2.5rem] md:text-[36px] md:leading-[2.725rem]"
+    >
+      {entry.data.title}
+    </h1>
 
-      <div class="mb-8 flex justify-center gap-x-2">
-        {entry.data.tags.map((tag) => <Tag name={tag} />)}
-      </div>
-
-      <article class="prose-code:rounded-md prose-code:p-1 prose-pre:mt-0">
-        <Content components={{ pre: Pre }} />
-      </article>
+    <div class="flex gap-x-2">
+      {entry.data.tags.map((tag) => <Tag name={tag} />)}
     </div>
+
+    <hr class="my-10 border-slate-400/20" />
+
+    <article
+      class="!prose-invert prose-slate prose w-full max-w-none prose-code:rounded-md prose-code:p-1 prose-pre:mt-0"
+    >
+      <Content components={{ pre: Pre }} />
+    </article>
   </div>
 </Layout>

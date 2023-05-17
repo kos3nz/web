@@ -20,13 +20,13 @@ export default function Filter(props: { tags: string[] }) {
 
 function Search() {
   return (
-    <div class="relative flex max-w-xl items-center rounded-xl bg-slate-800/80">
+    <div class="relative flex max-w-xl items-center rounded-lg bg-slate-800/80">
       <input
         type="search"
         name="query"
         id="query"
         placeholder="Search..."
-        class="input h-[2.5rem] flex-1 bg-transparent pr-12 focus-visible:outline-cyan-500/75"
+        class="input h-[2.75rem] flex-1 bg-transparent pr-12 focus-visible:outline-cyan-500/75"
         onInput={(e) => searchQuery.set(e.target.value)}
       />
       <div class="pointer-events-none absolute right-2 p-2">

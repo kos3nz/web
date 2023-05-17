@@ -52,12 +52,14 @@ const { pathname } = Astro.url
   }
 
   pre > code {
+    display: grid;
     font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
       'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
   }
 
   code .line {
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 3rem;
   }
 
   code .highlighted {
@@ -69,7 +71,7 @@ const { pathname } = Astro.url
     counter-reset: line;
   }
 
-  pre:has(code[data-line-numbers]) {
+  pre:has(code[data-line-numbers]) .line {
     padding-right: 0;
     padding-left: 0;
   }
@@ -98,15 +100,15 @@ const { pathname } = Astro.url
   }
 
   .prose .anchor .anchor-icon {
-    @apply absolute -top-[2.5px] hidden cursor-pointer text-3xl font-bold text-cyan-500 lg:-ml-6 lg:block lg:opacity-0 lg:transition-opacity lg:duration-200;
+    @apply absolute -right-6 top-[-2px] cursor-pointer text-3xl font-bold text-cyan-500 opacity-0 transition-opacity duration-200;
   }
 
   .prose .anchor:hover .anchor-icon {
-    @apply lg:opacity-100;
+    @apply opacity-100;
   }
 
   .prose .anchor:focus .anchor-icon {
-    @apply lg:opacity-100;
+    @apply opacity-100;
   }
 
   /* Custom scrollbar */

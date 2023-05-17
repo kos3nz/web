@@ -41,8 +41,16 @@ module.exports = {
             },
             blockquote: {
               color: colors.slate[500],
-              'border-color': colors.yellow[500],
+              'border-color': colors.cyan[500],
               'border-left-width': '2px',
+              'border-radius': '0.375rem',
+              padding: defaultTheme.spacing[4],
+              'background-color': 'rgb(30 41 59 / 50%)',
+            },
+            'blockquote p': {
+              margin: 0,
+              color: theme('colors.slate.300'),
+              'font-style': 'normal',
             },
             'blockquote code': {
               color: theme('colors.slate.300'),
@@ -52,6 +60,8 @@ module.exports = {
             pre: {
               'padding-top': defaultTheme.spacing[4],
               'padding-bottom': defaultTheme.spacing[4],
+              'padding-left': 0,
+              'padding-right': 0,
             },
             code: {
               'background-color': 'rgb(148 163 184 / 20%)',
