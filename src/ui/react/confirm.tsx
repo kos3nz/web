@@ -75,7 +75,7 @@ export default function Confirm() {
 
   return (
     <div className="w-full" aria-hidden={$step !== 2}>
-      <div className="space-y-5">
+      <div className="space-y-5 text-[15px]">
         <div className="flex flex-col gap-x-4 gap-y-5 md:flex-row">
           <ListItem label="お名前" name="name" />
           <ListItem label="会社名" name="companyName" />
@@ -84,7 +84,7 @@ export default function Confirm() {
         <ListItem label="電話番号" name="phoneNumber" />
         <ListItem label="お問い合わせ内容" name="message" />
       </div>
-      <p className="mb-5 mt-10 text-center text-slate-50">
+      <p className="mb-5 mt-10 text-center text-sm text-slate-400">
         上記の内容をご確認の上、送信ボタンを押してください。
       </p>
 
@@ -131,11 +131,28 @@ function ListItem({
 }) {
   const $contactInfo = useStore(contactInfo)
 
+  let info: string | JSX.Element | JSX.Element[] = $contactInfo[name] || (
+    <>&nbsp;</>
+  )
+
+  if (name === 'message' && typeof info === 'string') {
+    info = info.split('\n').map((line, i) => (
+      <span key={i} className="mb-1 block last-of-type:mb-0">
+        {line}
+      </span>
+    ))
+  }
+
   return (
     <div className="w-full space-y-2">
-      <p className="text-sm font-semibold text-slate-300">{label}</p>
-      <p className="flex justify-between rounded-md bg-slate-700/50 px-6 py-3">
-        {$contactInfo[name] || <>&nbsp;</>}
+      <span className="text-xs font-semibold text-slate-300">{label}</span>
+      <p
+        className={cx(
+          'rounded-lg bg-slate-700/50 px-4',
+          name === 'message' ? 'py-3' : 'py-2.5',
+        )}
+      >
+        {info}
       </p>
     </div>
   )

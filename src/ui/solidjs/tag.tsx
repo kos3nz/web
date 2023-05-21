@@ -2,11 +2,8 @@
 
 export default function tag(props: { name: string }) {
   return (
-    <span
-      class={
-        'rounded-full border border-slate-400/50 px-2 py-px text-xs text-slate-400 md:text-sm'
-      }
-    >
+    <span class={'text-sm text-slate-400 md:text-base'}>
+      <span class="text-cyan-500">#</span>
       {props.name}
     </span>
   )

@@ -11,10 +11,10 @@ import {
   useForm,
 } from 'react-hook-form'
 import { contactInfo, increaseStep, step } from 'store/contact-store.ts'
-import RightChevronIcon from './icons/chevron-right-icon.tsx'
+import type { ComponentPropsWithAs } from 'types/helpers.ts'
 import type { ContactSchema } from 'types/validation.types.ts'
 import { contactSchema } from 'utils/form-validation.ts'
-import type { ComponentPropsWithAs } from 'types/helpers.ts'
+import RightChevronIcon from 'ui/react/icons/chevron-right-icon.tsx'
 
 export default function Form() {
   const $step = useStore(step)
@@ -42,47 +42,49 @@ export default function Form() {
       aria-hidden={$step !== 1}
       className="w-full"
     >
-      <div className="space-y-5">
-        <div className="flex flex-col gap-x-4 gap-y-5 md:flex-row">
+      <div className="space-y-8 md:space-y-10">
+        <div className="space-y-5">
+          <div className="flex flex-col gap-x-4 gap-y-5 md:flex-row md:items-start">
+            <FormInput
+              label="お名前"
+              name="name"
+              register={register}
+              placeholder="例: 山田太郎"
+              errors={errors}
+              required
+            />
+            <FormInput
+              label="会社名"
+              name="companyName"
+              register={register}
+              placeholder="例: 株式会社〇〇"
+              errors={errors}
+            />
+          </div>
           <FormInput
-            label="お名前"
-            name="name"
+            label="メールアドレス"
+            name="email"
             register={register}
-            placeholder="例: 山田太郎"
+            placeholder="例: example@email.com"
             errors={errors}
             required
           />
           <FormInput
-            label="会社名"
-            name="companyName"
+            label="電話番号"
+            name="phoneNumber"
             register={register}
-            placeholder="例: 株式会社〇〇"
+            placeholder="例: 090-1234-5678"
             errors={errors}
           />
+          <FormInput
+            as="textarea"
+            label="お問い合わせ内容"
+            name="message"
+            register={register}
+            placeholder="お問い合わせ内容を入力してください"
+            rows={8}
+          />
         </div>
-        <FormInput
-          label="メールアドレス"
-          name="email"
-          register={register}
-          placeholder="例: example@email.com"
-          errors={errors}
-          required
-        />
-        <FormInput
-          label="電話番号"
-          name="phoneNumber"
-          register={register}
-          placeholder="例: 090-1234-5678"
-          errors={errors}
-        />
-        <FormInput
-          as="textarea"
-          label="お問い合わせ内容"
-          name="message"
-          register={register}
-          placeholder="お問い合わせ内容を入力してください"
-          rows={8}
-        />
 
         <button
           type="submit"
@@ -120,11 +122,14 @@ function FormInput<T extends 'input' | 'textarea' = 'input'>({
   return (
     <div className="form-control w-full">
       <div className="flex items-center gap-x-2">
-        <label htmlFor={name} className="text-sm font-semibold text-slate-300">
+        <label
+          htmlFor={name}
+          className="border border-transparent text-xs font-semibold text-slate-300"
+        >
           {label}
         </label>
         {required && (
-          <span className="rounded-full border border-emerald-400/50 px-2 py-px text-xs capitalize text-emerald-400">
+          <span className="rounded-full border border-emerald-400/50 px-2 text-xs capitalize text-emerald-400">
             必須
           </span>
         )}
@@ -133,14 +138,19 @@ function FormInput<T extends 'input' | 'textarea' = 'input'>({
         {...rest}
         id={name}
         className={cx(
-          'mt-2.5 w-full bg-slate-700/50 focus-visible:outline-cyan-500/75',
-          Component === 'input' ? 'input' : 'textarea',
+          'mt-2 w-full bg-slate-700/50 text-[15px] focus-visible:outline-cyan-500/75',
+          Component === 'input'
+            ? 'input h-[2.75rem]'
+            : 'textarea py-3 leading-6',
         )}
         aria-invalid={errors?.[name] ? 'true' : 'false'}
         {...register(name, { ...options })}
       />
       {errors?.[name] && (
-        <p role="alert" className="mt-2 flex items-center gap-x-1 text-red-400">
+        <p
+          role="alert"
+          className="mt-2 flex items-center gap-x-1 text-xs text-red-400"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

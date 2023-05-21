@@ -57,7 +57,7 @@ function Step({
       >
         <div className="flex items-center justify-center">
           {status === 'complete' ? (
-            <CheckIcon className="h-3 w-3 text-slate-100 md:h-4 md:w-4" />
+            <CheckIcon className="h-3 w-3 text-slate-300 md:h-4 md:w-4" />
           ) : null}
         </div>
       </motion.div>

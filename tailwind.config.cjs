@@ -26,21 +26,43 @@ module.exports = {
         DEFAULT: {
           css: {
             'h1,h2,h3,h4': {
+              color: colors.slate[200],
               position: 'relative',
               'scroll-margin-top': defaultTheme.spacing[24],
               margin: '40px 0 28px',
               width: 'fit-content',
             },
-            thead: {
-              borderBottomColor: theme('colors.slate.400'),
+            'h3 code': {
+              'font-weight': 'bold',
+            },
+            p: {
+              color: colors.slate[400],
+            },
+            strong: {
+              color: colors.slate[200],
+            },
+            li: {
+              color: colors.slate[400],
             },
             a: {
-              color: colors.slate[100],
+              color: colors.slate[200],
               'text-decoration-color': colors.cyan[600],
               'text-underline-offset': '2px',
             },
+            thead: {
+              'border-bottom-color': `${colors.slate[800]} !important`,
+            },
+            th: {
+              color: colors.slate[300],
+            },
+            tr: {
+              'border-bottom-color': `${colors.slate[800]} !important`,
+            },
+            td: {
+              color: colors.slate[400],
+            },
             blockquote: {
-              color: colors.slate[500],
+              color: colors.slate[400],
               'border-color': colors.cyan[500],
               'border-left-width': '2px',
               'border-radius': '0.375rem',
@@ -49,23 +71,27 @@ module.exports = {
             },
             'blockquote p': {
               margin: 0,
-              color: theme('colors.slate.300'),
+              color: colors.slate[400],
               'font-style': 'normal',
+              'font-weight': 'normal',
             },
             'blockquote code': {
-              color: theme('colors.slate.300'),
+              color: colors.slate[200],
             },
             'blockquote p:first-of-type::before': false,
             'blockquote p:last-of-type::after': false,
             pre: {
+              'margin-top': '0 !important',
               'padding-top': defaultTheme.spacing[4],
               'padding-bottom': defaultTheme.spacing[4],
               'padding-left': 0,
               'padding-right': 0,
             },
             code: {
+              'border-radius': '0.375rem !important',
               'background-color': 'rgb(148 163 184 / 20%)',
               color: theme('colors.slate.300'),
+              'font-weight': 'normal',
             },
             'code::before': {
               content: 'none',

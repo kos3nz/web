@@ -26,7 +26,7 @@ function Search() {
         name="query"
         id="query"
         placeholder="Search..."
-        class="input h-[2.75rem] flex-1 bg-transparent pr-12 focus-visible:outline-cyan-500/75"
+        class="input h-[2.75rem] flex-1 bg-transparent pr-12 text-[15px] focus-visible:outline-cyan-500/75"
         onInput={(e) => searchQuery.set(e.target.value)}
       />
       <div class="pointer-events-none absolute right-2 p-2">
@@ -58,7 +58,7 @@ function TagButton(props: { name: string }) {
       class={cx(
         // 'rounded-xl bg-slate-600/50 px-[12px] py-2 text-sm font-bold lowercase shadow-highlight transition duration-300 hover:scale-105',
         'btn-xs btn bg-slate-800 focus-visible:outline-cyan-500/75',
-        isSelected() ? 'text-cyan-500' : 'text-slate-200',
+        isSelected() ? 'text-cyan-500' : 'text-slate-300',
       )}
       onClick={toggleFilter}
     >

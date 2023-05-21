@@ -26,7 +26,7 @@ export default function HeadingsMobile(props: { headings: Heading[] }) {
   })
 
   return (
-    <div class="fixed bottom-0 left-0 z-50 w-full pb-3 lg:hidden">
+    <div class="fixed bottom-0 left-0 z-50 w-full pb-3 md:hidden">
       <div class="relative flex w-full justify-start px-6 text-sm">
         <button
           ref={buttonRef}
@@ -36,16 +36,16 @@ export default function HeadingsMobile(props: { headings: Heading[] }) {
           )}
           onClick={() => setOpen((prev) => !prev)}
         >
-          <span class={cx('shrink-0 text-slate-300')}>
+          <span class={cx('shrink-0 text-slate-400')}>
             <ListIcon />
           </span>
 
           <Show when={activeHeading()}>
-            <span class={cx('shrink-0 text-slate-300')}>
+            <span class={cx('shrink-0 text-slate-400')}>
               <ChevronIcon />
             </span>
             <span class="min-w-0">
-              <div class="truncate font-semibold text-slate-50">
+              <div class="truncate font-semibold text-slate-300">
                 {activeHeading()?.text}
               </div>
             </span>

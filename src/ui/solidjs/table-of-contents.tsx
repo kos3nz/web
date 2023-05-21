@@ -9,7 +9,7 @@ export default function TableOfContents(props: {
   activeHeading: Heading | undefined
 }) {
   return (
-    <div class="max-w-md rounded-xl border border-slate-400/20 p-6 lg:border-0">
+    <div class="max-w-md rounded-xl border border-slate-400/20 p-6 md:border-0">
       <span class="block text-xs font-bold uppercase text-slate-300">
         On this page
       </span>
@@ -24,8 +24,8 @@ export default function TableOfContents(props: {
                   (heading.depth === 1 || heading.depth === 2) && 'pl-4',
                   heading.depth >= 3 && 'pl-8',
                   props.activeHeading?.hash === heading.hash
-                    ? 'text-slate-100'
-                    : 'text-slate-500 hover:text-slate-100',
+                    ? 'text-slate-200'
+                    : 'text-slate-500 hover:text-slate-200',
                 )}
               >
                 {heading.text}

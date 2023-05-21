@@ -9,13 +9,11 @@ export default function HeadingsDesktop(props: { headings: Heading[] }) {
   const activeHeading = createActiveHeading(props.headings)
 
   return (
-    <aside class="hidden w-72 lg:block">
-      <div class="sticky top-20">
-        <TableOfContents
-          headings={props.headings}
-          activeHeading={activeHeading()}
-        />
-      </div>
-    </aside>
+    <div class="sticky top-20">
+      <TableOfContents
+        headings={props.headings}
+        activeHeading={activeHeading()}
+      />
+    </div>
   )
 }

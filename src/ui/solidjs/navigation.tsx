@@ -42,8 +42,8 @@ export default function Navigation(props: { pathname: string }) {
                 class={cx([
                   'relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md px-2 py-1.5 text-sm font-bold',
                   isActive
-                    ? 'text-slate-50'
-                    : 'text-slate-400 transition-colors duration-300 hover:text-slate-50',
+                    ? 'text-slate-200'
+                    : 'text-slate-400 transition-colors duration-300 hover:text-slate-200',
                 ])}
               >
                 <item.Icon />

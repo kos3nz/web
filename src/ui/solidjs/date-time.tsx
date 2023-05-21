@@ -8,9 +8,7 @@ export default function DateTime(props: { dateTime: Date; class?: string }) {
   return (
     <time
       dateTime={props.dateTime.toISOString()}
-      class={
-        'whitespace-nowrap text-sm tracking-wide text-slate-400 md:text-base'
-      }
+      class={'whitespace-nowrap text-sm tracking-wide text-slate-400'}
     >
       {formatter.format(props.dateTime).split('/').join('-')}
     </time>

@@ -6,7 +6,7 @@ export default function SpinnerIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       {...props}
-      className="h-5 w-5 animate-spin text-slate-100"
+      className="h-5 w-5 animate-spin text-slate-300"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

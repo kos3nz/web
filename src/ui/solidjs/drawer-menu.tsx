@@ -51,7 +51,7 @@ export default function DrawerMenu(props: { pathname: string }) {
                       'flex items-center gap-x-1.5 text-sm font-semibold transition-colors duration-300',
                       currentPath() === item.path
                         ? 'border-b-2 border-cyan-400'
-                        : 'text-slate-400 group-hover:text-slate-100',
+                        : 'text-slate-400 group-hover:text-slate-300',
                     )}
                   >
                     <span class="shrink-0">
