@@ -24,7 +24,7 @@ export const createActiveHeading = (headings: Heading[]) => {
 
     const hashesPos = headings
       .map((heading) => {
-        const headingEl = document.querySelector(heading.hash)
+        const headingEl = document.getElementById(heading.hash.split('#')[1])
 
         if (headingEl) {
           return {
