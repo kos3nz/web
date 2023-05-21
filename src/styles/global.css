@@ -1,0 +1,117 @@
+:root {
+  --accent: 124, 58, 237;
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--accent)),
+    #da62c4 30%,
+    white 60%
+  );
+}
+
+html,
+body {
+  @apply h-full w-full bg-slate-900 font-sans text-slate-300;
+
+  touch-action: var(--touch-action);
+  -webkit-tap-highlight-color: transparent;
+}
+
+pre > code {
+  display: grid;
+  font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+}
+
+code {
+  counter-reset: line;
+}
+
+code .line {
+  padding-left: 1rem;
+  padding-right: 3rem;
+}
+
+code .line:has(.word) {
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
+
+code .highlighted {
+  background-color: rgb(200 200 255 / 10%);
+  border-left: 2px solid #60a5fa;
+}
+
+code .word {
+  @apply shadow-highlight;
+  padding: 0.25rem;
+  background-color: rgb(82 82 91 / 50%);
+  border-radius: 0.25rem;
+}
+
+code .word[data-word-id='r'] {
+  color: rgb(249 168 212 / 1) !important;
+  background-color: rgb(159 18 57 / 50%);
+}
+
+code .word[data-word-id='g'] {
+  color: rgb(94 234 212 / 1) !important;
+  background-color: rgb(17 94 89 / 50%);
+}
+
+code .word[data-word-id='b'] {
+  color: rgb(191 218 254 / 1) !important;
+  background-color: rgb(30 64 175 / 50%);
+}
+
+pre:has(code[data-line-numbers]) .line {
+  /* padding-right: 0; */
+  padding-left: 0;
+}
+
+code[data-line-numbers] > .line::before {
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  color: #64748b;
+  text-align: right;
+  content: counter(line);
+  counter-increment: line;
+}
+
+code[data-line-numbers-max-digits='2'] > .line::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits='3'] > .line::before {
+  width: 2rem;
+}
+
+/* Anchor */
+.prose .anchor {
+  @apply absolute inset-0 no-underline outline-none;
+}
+
+.prose .anchor .anchor-icon {
+  @apply absolute -right-6 top-[-2px] cursor-pointer text-3xl font-bold text-cyan-500 opacity-0 transition-opacity duration-200;
+}
+
+.prose .anchor:hover .anchor-icon {
+  @apply opacity-100;
+}
+
+.prose .anchor:focus .anchor-icon {
+  @apply opacity-100;
+}
+
+/* Custom scrollbar */
+*::-webkit-scrollbar {
+  /* @apply h-[4px] w-[4px]; */
+}
+
+*::-webkit-scrollbar-track {
+  /* @apply bg-slate-900; */
+}
+
+*::-webkit-scrollbar-thumb {
+  /* @apply rounded-2xl bg-slate-400; */
+}
