@@ -73,6 +73,9 @@ dependencies:
   react-use-measure:
     specifier: ^2.1.1
     version: 2.1.1(react-dom@18.2.0)(react@18.2.0)
+  remove-markdown:
+    specifier: ^0.5.0
+    version: 0.5.0
   solid-js:
     specifier: ^1.7.5
     version: 1.7.5
@@ -84,6 +87,9 @@ devDependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.2)
+  '@types/remove-markdown':
+    specifier: ^0.3.1
+    version: 0.3.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.59.2
     version: 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.40.0)(typescript@5.0.4)
@@ -1545,6 +1551,10 @@ packages:
       '@types/scheduler': 0.16.3
       csstype: 3.1.1
     dev: false
+
+  /@types/remove-markdown@0.3.1:
+    resolution: {integrity: sha512-JpJNEJEsmmltyL2LdE8KRjJ0L2ad5vgLibqNj85clohT9AyTrfN6jvHxStPshDkmtcL/ShFu0p2tbY7DBS1mqQ==}
+    dev: true
 
   /@types/resolve@1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -6949,6 +6959,10 @@ packages:
       mdast-util-to-markdown: 1.5.0
       unified: 10.1.2
     dev: true
+
+  /remove-markdown@0.5.0:
+    resolution: {integrity: sha512-x917M80K97K5IN1L8lUvFehsfhR8cYjGQ/yAMRI9E7JIKivtl5Emo5iD13DhMr+VojzMCiYk8V2byNPwT/oapg==}
+    dev: false
 
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
