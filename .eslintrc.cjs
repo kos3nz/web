@@ -7,7 +7,7 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
-    'plugin:tailwindcss/recommended',
+    // 'plugin:tailwindcss/recommended',
     // 'prettier'
   ],
 
@@ -21,7 +21,7 @@ module.exports = {
   rules: {
     'no-unused-vars': 'warn',
     // Allow adding custom classnames to components
-    'tailwindcss/no-custom-classname': 'off',
+    // 'tailwindcss/no-custom-classname': 'off',
   },
 
   overrides: [
@@ -38,7 +38,7 @@ module.exports = {
       ],
 
       rules: {
-        // semi: 'off',
+        semi: 'off',
         // Allow indentation for decorators
         // indent: ['error', 2, { ignoredNodes: ['PropertyDefinition'] }],
         indent: 'off',

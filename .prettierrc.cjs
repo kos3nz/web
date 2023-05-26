@@ -11,8 +11,9 @@ module.exports = {
   // In this case you may need to add the plugin to your Prettier config explicitly.
   plugins: [
     require.resolve('prettier-plugin-astro'),
-    require('prettier-plugin-tailwindcss'),
+    // require('prettier-plugin-tailwindcss'),
   ],
+
   overrides: [
     {
       files: '**/*.astro',
