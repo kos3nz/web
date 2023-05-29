@@ -1,14 +1,14 @@
 /** @jsxImportSource solid-js */
 
 import type { Snippet } from 'types/global.types.ts'
-import brandIcons from './icons/brand-icons'
+import { BrandIcons } from './icons.tsx'
 
 export default function SnippetCard({
   snippet: { slug, title, description, tags },
 }: {
   snippet: Snippet
 }) {
-  const Icon = brandIcons[tags[0] as keyof typeof brandIcons]
+  const Icon = BrandIcons[tags[0] as keyof typeof BrandIcons]
 
   return (
     <a

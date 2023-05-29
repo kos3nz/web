@@ -1,14 +1,18 @@
-import AboutIcon from 'ui/solidjs/icons/about-icon.tsx'
-import BlogIcon from 'ui/solidjs/icons/blog-icon.tsx'
-import SnippetsIcon from 'ui/solidjs/icons/snippets-icon.tsx'
-import ReactAboutIcon from 'ui/react/icons/about-icon.tsx'
-import ReactBlogIcon from 'ui/react/icons/blog-icon.tsx'
-import ReactSnippetsIcon from 'ui/react/icons/snippets-icon.tsx'
+import {
+  AboutIcon as SolidAboutIcon,
+  BlogIcon as SolidBlogIcon,
+  SnippetsIcon as SolidSnippetsIcon,
+} from 'ui/solidjs/icons.tsx'
+import {
+  AboutIcon as ReactAboutIcon,
+  BlogIcon as ReactBlogIcon,
+  SnippetsIcon as ReactSnippetsIcon,
+} from 'ui/react/icons.tsx'
 
-export const navItems = [
-  { path: '/', label: 'About', Icon: AboutIcon },
-  { path: '/blog/', label: 'Blog', Icon: BlogIcon },
-  { path: '/snippets/', label: 'Snippets', Icon: SnippetsIcon },
+export const solidNavItems = [
+  { path: '/', label: 'About', Icon: SolidAboutIcon },
+  { path: '/blog/', label: 'Blog', Icon: SolidBlogIcon },
+  { path: '/snippets/', label: 'Snippets', Icon: SolidSnippetsIcon },
 ] as const
 
 export const reactNavItems = [

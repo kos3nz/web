@@ -3,7 +3,7 @@
 import cx from 'clsx'
 import { For, Show, onMount } from 'solid-js'
 import { createNavigationMarker } from 'hooks/solidjs/create-navigation-marker'
-import { navItems } from 'src/const/navigation-items'
+import { solidNavItems } from 'src/const/navigation-items'
 
 export default function Navigation(props: { pathname: string }) {
   const currentPath = () => {
@@ -17,7 +17,7 @@ export default function Navigation(props: { pathname: string }) {
 
   return (
     <ul class="relative flex items-center gap-x-4">
-      <For each={navItems}>
+      <For each={solidNavItems}>
         {(item) => {
           const isActive = currentPath() === item.path
           let ref: HTMLLIElement | undefined

@@ -4,7 +4,7 @@ import { useStore } from '@nanostores/solid'
 import cx from 'clsx'
 import { For, onMount } from 'solid-js'
 import { createOutsideClick } from 'hooks/solidjs/create-outside-click'
-import { navItems } from 'src/const/navigation-items'
+import { solidNavItems } from 'src/const/navigation-items'
 import { closeDrawer, isDrawerOpen } from 'store/drawer-store.ts'
 
 export default function DrawerMenu(props: { pathname: string }) {
@@ -39,7 +39,7 @@ export default function DrawerMenu(props: { pathname: string }) {
         <span class="absolute left-1/2 top-4 h-1 w-8 -translate-x-1/2 rounded-full bg-slate-400" />
 
         <ul class="divide-y divide-slate-400/20 rounded-t-3xl bg-slate-800 px-8 pb-4 pt-8">
-          <For each={navItems}>
+          <For each={solidNavItems}>
             {(item) => (
               <li>
                 <a

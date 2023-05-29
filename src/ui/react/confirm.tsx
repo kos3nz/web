@@ -11,8 +11,7 @@ import {
   step,
 } from 'store/contact-store'
 import type { ContactSchema } from 'types/validation.types.ts'
-import PaperAirplaneIcon from './icons/paper-airplane-icon.tsx'
-import SpinnerIcon from './icons/spinner-icon.tsx'
+import { PaperAirplaneIcon, SpinnerIcon } from './icons.tsx'
 
 type Status = {
   submitted: boolean
@@ -112,7 +111,7 @@ export default function Confirm() {
             ) : (
               <>
                 Send
-                <PaperAirplaneIcon className="h-4 w-4 translate-y-[-2px] -rotate-45" />
+                <PaperAirplaneIcon className="translate-y-[-2px] -rotate-45" />
               </>
             )}
           </button>

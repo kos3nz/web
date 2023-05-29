@@ -3,7 +3,7 @@
 import { useStore } from '@nanostores/react'
 import { motion } from 'framer-motion'
 import { step } from 'store/contact-store'
-import CheckIcon from 'ui/react/icons/check-icon'
+import { CheckIcon } from 'ui/react/icons'
 
 export default function Steps() {
   const $step = useStore(step)

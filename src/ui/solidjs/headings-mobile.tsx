@@ -7,9 +7,8 @@ import { Show, createSignal, onMount } from 'solid-js'
 import { createActiveHeading } from 'hooks/solidjs/create-active-heading'
 import { createOutsideClick } from 'hooks/solidjs/create-outside-click'
 import type { Heading } from 'types/global.types.ts'
-import ListIcon from 'ui/solidjs/icons/list-icon.tsx'
 import TableOfContents from 'ui/solidjs/table-of-contents.tsx'
-import ChevronIcon from './icons/chevron-icon.tsx'
+import { ChevronIcon, ListIcon } from './icons.tsx'
 
 export default function HeadingsMobile(props: { headings: Heading[] }) {
   // eslint-disable-next-line solid/reactivity

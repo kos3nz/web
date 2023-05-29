@@ -4,7 +4,7 @@ import cx from 'clsx'
 import { For, createSignal } from 'solid-js'
 
 import { searchQuery, selectedTags } from 'store/filter-store.ts'
-import SearchIcon from 'ui/solidjs/icons/search-icon.tsx'
+import { SearchIcon } from 'ui/solidjs/icons.tsx'
 
 export default function Filter(props: { tags: string[] }) {
   return (

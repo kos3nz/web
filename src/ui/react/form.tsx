@@ -14,7 +14,7 @@ import { contactInfo, increaseStep, step } from 'store/contact-store.ts'
 import type { ComponentPropsWithAs } from 'types/helpers.ts'
 import type { ContactSchema } from 'types/validation.types.ts'
 import { contactSchema } from 'utils/form-validation.ts'
-import RightChevronIcon from 'ui/react/icons/chevron-right-icon.tsx'
+import { RightChevronIcon } from 'ui/react/icons.tsx'
 
 export default function Form() {
   const $step = useStore(step)
@@ -91,7 +91,7 @@ export default function Form() {
           className="btn mx-auto flex items-center gap-x-1 border-0 bg-cyan-400 text-slate-900 hover:bg-cyan-300 focus-visible:outline-cyan-500/75"
         >
           Continue
-          <RightChevronIcon className="h-4 w-4" />
+          <RightChevronIcon />
         </button>
       </div>
     </form>
