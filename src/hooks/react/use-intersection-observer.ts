@@ -43,7 +43,7 @@ export function useIntersectionObserver<TElement>(
       observer.disconnect()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [options?.root])
 
   useEffect(() => {
     if (!entry || frozen) return
