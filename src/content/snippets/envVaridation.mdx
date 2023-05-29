@@ -1,0 +1,34 @@
+---
+title: Env Variables Varidation
+description: Treat environment variables as a type safety object with Zod
+tags: ['typescript']
+---
+
+import Code from 'ui/astro/code.astro'
+
+---
+
+Zod のバリデーションを使って型セーフに Environment variables を扱うことができます。
+
+## Code
+
+<Code>
+
+```typescript showLineNumbers title="env.ts"
+import { z } from 'zod'
+
+const envVariables = z.object({
+  WEBHOOK_URL: z.string().url(),
+  ACCESS_TOKEN: z.string(),
+})
+
+export const env = envVariables.parse(process.env)
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv extends z.infer<typeof envVariables> {}
+  }
+}
+```
+
+</Code>

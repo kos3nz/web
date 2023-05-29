@@ -2,17 +2,20 @@
 title: Scroll Animation Component
 description: Scroll animation with framer motion
 tags: ['react', 'component']
+draft: true
 ---
 
+import Code from 'ui/astro/code.astro'
 import Playground from 'ui/solidjs/playground.tsx'
+import ScrollAnimation from 'ui/react/scroll-animation.tsx'
 
-<Playground class='p-8 flex justify-center min-h-[480px] items-center'>
+<div id="scroll-animation" class="not-prose col-span-3 !col-start-1">
+  <Playground class="overflow-y-auto">
+    <ScrollAnimation client:visible />
+  </Playground>
+</div>
 
-<button type="button" class="btn">
-  button
-</button>
-
-</Playground>
+---
 
 this is explanation about the component.
 this is explanation about the component.
