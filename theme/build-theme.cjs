@@ -1,5 +1,5 @@
 const fs = require('fs')
-const colors = require('./theme/colors.cjs')
+const colors = require('./colors.cjs')
 
 const file = 'moonlight-ii.json'
 
