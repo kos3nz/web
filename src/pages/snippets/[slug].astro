@@ -5,11 +5,12 @@ import Layout from 'layouts/base.astro'
 import Pre from 'ui/astro/pre.astro'
 import Tag from 'ui/solidjs/tag.tsx'
 
+import 'styles/mdx.css'
+
 interface Props {
   entry: CollectionEntry<'snippets'>
 }
 
-// 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const allSnippets = await getCollection('snippets', ({ data }) => {
     return data.draft !== true
@@ -21,26 +22,32 @@ export async function getStaticPaths() {
   }))
 }
 
-// 2. When it's time to render, you can get the entry directly from the prop
 const { entry } = Astro.props
 const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title}>
-  <div class="mx-auto flex max-w-3xl flex-col items-center">
+  <div class="mx-auto flex flex-col items-center">
     <h1
       class="mb-6 break-words text-3xl font-bold leading-[2.5rem] text-slate-200 md:text-[36px] md:leading-[2.725rem]"
     >
       {entry.data.title}
     </h1>
 
-    <div class="flex gap-x-2">
-      {entry.data.tags.map((tag) => <Tag name={tag} />)}
+    <div class="mb-12 flex gap-x-2">
+      {
+        entry.data.tags.map((tag, i) => (
+          <>
+            {i !== 0 && <span class="font-bold text-slate-600">·</span>}
+            <Tag name={tag} />
+          </>
+        ))
+      }
     </div>
 
-    <hr class="my-12 w-full border-slate-400/20" />
-
-    <article class="!prose-invert prose-slate prose w-full max-w-none">
+    <article
+      class="!prose-invert prose-slate prose grid w-full max-w-none grid-cols-[1fr,minmax(0,768px),1fr] [&>*]:col-start-2"
+    >
       <Content components={{ pre: Pre }} />
     </article>
   </div>
