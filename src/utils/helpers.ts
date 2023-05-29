@@ -1,3 +1,13 @@
+import cx, { ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+/**
+ * Merge TailwindCSS classes without style conflicts
+ */
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(cx(inputs))
+}
+
 /**
  * Get the value between min and max
  */

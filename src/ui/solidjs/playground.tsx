@@ -1,17 +1,25 @@
 /** @jsxImportSource solid-js */
 
 import type { JSXElement } from 'solid-js'
+import { cn } from 'utils/helpers'
 
 export default function Playground(props: {
-  class: string
+  class?: string
+  aspectRatio?: string
+  overflow?: string
   children: JSXElement
 }) {
   return (
-    // eslint-disable-next-line tailwindcss/no-contradicting-classname
-    <div class="relative overflow-hidden rounded-xl border border-slate-400/20 bg-slate-950 bg-[image:radial-gradient(circle_at_1px_1px,_#1e283b_1px,_transparent_0)] bg-[size:16px_16px] bg-[position:5px_5px]">
-      <div class="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-cyan-500/20" />
-
-      <div class={'relative ' + props.class}>{props.children}</div>
+    <div
+      class={cn(
+        'bg-slate-950 bg-[image:radial-gradient(circle_at_1px_1px,_#1e283b_1px,_transparent_0)] bg-[size:20px_20px] bg-[position:8px_8px]',
+        'relative rounded-xl border border-slate-400/20',
+        'overflow-hidden',
+        'aspect-[1/1] sm:aspect-[4/3] md:aspect-[10/6]',
+        props.class,
+      )}
+    >
+      {props.children}
     </div>
   )
 }
