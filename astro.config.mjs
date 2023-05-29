@@ -5,13 +5,15 @@ import solidJs from '@astrojs/solid-js'
 import mdx from '@astrojs/mdx'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-// import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrettyCode from 'rehype-pretty-code'
 import moonLightII from './theme/moonlight-ii.json'
-// import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
+  compressHTML: true,
+
+  integrations: [tailwind(), react(), solidJs(), mdx()],
+
   markdown: {
     // Disable built-in syntax highlighting (This needs to be false if you are using rehype-pretty-code)
     syntaxHighlight: false,
@@ -88,12 +90,4 @@ export default defineConfig({
       // rehypePresetMinify,
     ],
   },
-
-  integrations: [
-    tailwind(),
-    react(),
-    solidJs(),
-    mdx(),
-    // compress()
-  ],
 })
