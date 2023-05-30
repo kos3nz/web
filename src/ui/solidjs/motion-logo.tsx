@@ -18,7 +18,7 @@ export default function MotionLogo(props: { width?: number; height?: number }) {
       ],
       [
         'path.animation-logo',
-        { fill: ['rgba(248, 250, 252, 0)', 'rgba(248, 250, 252, 1)'] },
+        { fill: ['rgba(226, 232, 240, 0)', 'rgba(226, 232, 240, 1)'] },
         { duration: 0.4 },
       ],
     ])
