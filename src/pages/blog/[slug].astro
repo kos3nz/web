@@ -58,7 +58,7 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
   >
     <div class="col-span-1 md:col-span-2 lg:col-span-7">
       <h1
-        class="mb-6 text-3xl font-bold leading-[2.5rem] text-slate-200 md:text-[36px] md:leading-[2.725rem]"
+        class="mb-6 text-2xl font-bold leading-[2.5rem] text-slate-200 md:text-3xl md:leading-[2.725rem]"
       >
         {entry.data.title}
       </h1>
@@ -78,7 +78,9 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
         </div>
       </div>
 
-      <article class="!prose-invert prose-slate prose max-w-none">
+      <article
+        class="!prose-invert prose-slate prose max-w-none prose-h2:text-xl prose-h3:text-lg md:prose-h2:text-2xl md:prose-h3:text-xl"
+      >
         <Content components={{ pre: Pre }} />
       </article>
     </div>

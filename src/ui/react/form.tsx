@@ -42,7 +42,7 @@ export default function Form() {
       aria-hidden={$step !== 1}
       className="w-full"
     >
-      <div className="space-y-8 md:space-y-10">
+      <div className="space-y-6 md:space-y-8">
         <div className="space-y-5">
           <div className="flex flex-col gap-x-4 gap-y-5 md:flex-row md:items-start">
             <FormInput

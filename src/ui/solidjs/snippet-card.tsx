@@ -23,7 +23,7 @@ export default function SnippetCard({
           <Icon class="h-6 w-6 text-cyan-500 transition-colors duration-300 group-hover:text-cyan-500 md:text-slate-300" />
         )}
         <h3 class="mb-2 mt-4 font-bold">{title}</h3>
-        <p class="text-sm text-slate-400">{description}</p>
+        <p class="text-xs text-slate-400">{description}</p>
       </div>
     </a>
   )
