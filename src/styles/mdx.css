@@ -6,6 +6,7 @@ pre > code {
   display: grid;
   font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
     'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+  font-size: 13px !important;
 }
 
 code .line {
@@ -46,7 +47,7 @@ code .word[data-word-id='b'] {
   background-color: rgb(30 64 175 / 50%);
 }
 
-pre:has(code[data-line-numbers]) .line {
+pre code[data-line-numbers] .line {
   /* padding-right: 0; */
   padding-left: 0;
 }

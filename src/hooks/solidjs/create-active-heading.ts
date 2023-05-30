@@ -18,7 +18,7 @@ export const createActiveHeading = (headings: Heading[]) => {
     const offset = getOffsetBottom()
     const pageHeight = document.documentElement.scrollHeight // the height of the entire page
 
-    if (offset >= pageHeight) {
+    if (offset >= pageHeight - 10) {
       return setActiveHeading(headings.at(-1))
     }
 

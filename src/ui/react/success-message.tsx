@@ -12,7 +12,7 @@ export default function SuccessMessage() {
         <div className="space-y-4 text-center">
           <p className="text-4xl font-bold text-slate-200">Thank you! 🎉</p>
           <p className="font-bold">
-            お問い合わせ誠にありがとうございます。営業日2−3日以内に返信致します。
+            お問い合わせ誠にありがとうございます。土、日、祝日を除き、1-2日以内に返信致します。
           </p>
         </div>
       </div>
