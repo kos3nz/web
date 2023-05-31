@@ -2,8 +2,8 @@
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import Layout from 'layouts/base.astro'
-import Pre from 'ui/astro/pre.astro'
 import Tag from 'ui/solidjs/tag.tsx'
+import { components } from 'ui/astro/mdx-components.astro'
 
 import 'styles/mdx.css'
 
@@ -48,7 +48,7 @@ const { Content } = await entry.render()
     <article
       class="!prose-invert prose-slate prose grid w-full max-w-none grid-cols-[1fr,minmax(0,768px),1fr] [&>*]:col-start-2"
     >
-      <Content components={{ pre: Pre }} />
+      <Content components={components} />
     </article>
   </div>
 </Layout>

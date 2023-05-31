@@ -145,6 +145,7 @@ module.exports = {
       extends: ['plugin:mdx/recommended'],
       rules: {
         'no-unused-vars': 'off',
+        'react/jsx-no-undef': 'off',
       },
       settings: {
         // optional, if you want to lint code blocks at the same time

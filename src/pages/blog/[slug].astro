@@ -2,11 +2,11 @@
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import Layout from 'layouts/base.astro'
-import Pre from 'ui/astro/pre.astro'
 import HeadingsDesktop from 'ui/solidjs/headings-desktop.tsx'
 import HeadingsMobile from 'ui/solidjs/headings-mobile.tsx'
 import Tag from 'ui/solidjs/tag.tsx'
 import DateTime from 'ui/solidjs/date-time.tsx'
+import { components } from 'ui/astro/mdx-components.astro'
 // import { createCloudinaryImageSrc } from 'utils/image'
 
 import 'styles/mdx.css'
@@ -81,7 +81,7 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
       <article
         class="!prose-invert prose-slate prose max-w-none prose-h2:text-xl prose-h3:text-lg md:prose-h2:text-2xl md:prose-h3:text-xl"
       >
-        <Content components={{ pre: Pre }} />
+        <Content components={components} />
       </article>
     </div>
     <aside
