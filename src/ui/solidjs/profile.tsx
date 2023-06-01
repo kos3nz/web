@@ -70,6 +70,8 @@ export default function Profile() {
           <ul class="grid grid-cols-2 gap-2 md:grid-cols-3">
             <li>Rust</li>
             <li>React Native</li>
+            <li>Three.js</li>
+            <li>D3.js</li>
             <li>tRPC</li>
             <li>Rxjs</li>
             <li>Svelte</li>
