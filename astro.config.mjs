@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind'
 import react from '@astrojs/react'
 import solidJs from '@astrojs/solid-js'
 import mdx from '@astrojs/mdx'
+import vercel from '@astrojs/vercel/static'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrettyCode from 'rehype-pretty-code'
@@ -13,6 +14,8 @@ export default defineConfig({
   compressHTML: true,
 
   integrations: [tailwind(), react(), solidJs(), mdx()],
+
+  adapter: vercel({ analytics: true }),
 
   markdown: {
     // Disable built-in syntax highlighting (This needs to be false if you are using rehype-pretty-code)
