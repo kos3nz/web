@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -104,7 +105,31 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+    plugin(function ({ addComponents }) {
+      addComponents({
+        '.bg-grid': {
+          'background-size': '20px 20px',
+          'background-position': '10px 10px',
+          'background-image':
+            'linear-gradient(to right, rgb(148 163 184 / 8%) 1px, transparent 1px), linear-gradient(to bottom, rgb(148 163 184 / 8%) 1px, transparent 1px)',
+          'image-rendering': 'pixelated',
+          // 'mask-image':
+          //   'linear-gradient(to bottom, transparent, 10%, white, 90%, transparent)',
+          // '-webkit-mask-image':
+          //   'linear-gradient(to bottom, transparent, 10%, white, 90%, transparent)',
+        },
+        '.bg-dot': {
+          'background-size': '20px 20px',
+          'background-position': '8px 8px',
+          'background-image':
+            'radial-gradient(circle at 1px 1px, rgb(148 163 184 / 8%) 1px, transparent 0)',
+        },
+      })
+    }),
+  ],
 
   daisyui: {
     styled: true,
