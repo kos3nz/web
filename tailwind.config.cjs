@@ -65,10 +65,10 @@ module.exports = {
             blockquote: {
               color: colors.slate[400],
               'border-color': colors.cyan[500],
-              'border-left-width': '2px',
+              'border-left-width': '3px',
               'border-radius': '0.375rem',
               padding: defaultTheme.spacing[4],
-              'background-color': 'rgb(30 41 59 / 50%)',
+              'background-color': 'rgb(165 243 252 / 5%)',
             },
             'blockquote p': {
               margin: 0,
