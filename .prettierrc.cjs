@@ -1,24 +1,29 @@
+/**
+ * @type {import("prettier").Config &
+ * import("@ianvs/prettier-plugin-sort-imports").PluginConfig &
+ * import("prettier-plugin-tailwindcss").PluginOptions}
+ */
 module.exports = {
-  arrowParens: 'always',
-  printWidth: 80,
+  arrowParens: "always",
+  printWidth: 90,
   semi: false,
-  singleQuote: true,
+  singleQuote: false,
   tabWidth: 2,
-  trailingComma: 'all',
+  trailingComma: "all",
   useTabs: false,
 
   // plugin autoloading is not supported when using certain package managers, such as pnpm or Yarn PnP.
   // In this case you may need to add the plugin to your Prettier config explicitly.
   plugins: [
-    require.resolve('prettier-plugin-astro'),
-    // require('prettier-plugin-tailwindcss'),
+    require.resolve("prettier-plugin-astro"),
+    // require("prettier-plugin-tailwindcss"),
   ],
 
   overrides: [
     {
-      files: '**/*.astro',
+      files: "**/*.astro",
       options: {
-        parser: 'astro',
+        parser: "astro",
       },
     },
   ],

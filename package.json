@@ -4,10 +4,17 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "astro preview",
     "build": "astro build",
     "preview": "wrangler pages dev ./dist",
-    "format": "prettier --write \"**/*.{js,ts,jsx,tsx,astro,mdx}\"",
+    "lint": "run-p lint:es lint:style",
+    "lint:es": "eslint \"**/*.{js,ts,jsx,tsx,astro,mdx}\" --cache --cache-location node_modules/.cache/eslint/.cache",
+    "lint:style": "stylelint \"src/**/*.{css,astro}\" --cache --cache-location node_modules/.cache/stylelint/.cache",
+    "lint:fix": "run-p lint:fix:*",
+    "lint:fix:es": "pnpm lint:es --fix",
+    "lint:fix:style": "pnpm lint:style --fix",
+    "format:check": "prettier --check \"**/*.{css,js,ts,jsx,tsx,astro,mdx}\" --cache",
+    "format:write": "prettier --write \"**/*.{css,js,ts,jsx,tsx,astro,mdx}\" --cache",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -44,62 +51,60 @@
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/eslint": "^8.56.2",
     "@types/remove-markdown": "^0.3.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.7",
-    "@typescript-eslint/parser": "^5.59.7",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "daisyui": "^2.51.6",
-    "eslint": "^8.41.0",
+    "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-astro": "^0.31.4",
-    "eslint-plugin-cypress": "^2.13.3",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-mdx": "^2.1.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-solid": "^0.12.1",
-    "eslint-plugin-tailwindcss": "^3.12.0",
-    "eslint-plugin-vitest": "^0.2.3",
+    "eslint-plugin-solid": "^0.13.1",
+    "eslint-plugin-tailwindcss": "^3.14.2",
+    "eslint-plugin-vitest": "^0.3.21",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
+    "npm-run-all": "^4.1.5",
     "postcss-html": "^1.5.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.3.0",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-preset-minify": "^7.0.0",
     "rehype-pretty-code": "^0.12.6",
     "rehype-slug": "^6.0.0",
     "shiki": "^0.14.7",
     "shikiji": "^0.10.2",
-    "stylelint": "^15.6.2",
+    "stylelint": "^16.2.1",
     "stylelint-config-html": "^1.1.0",
-    "stylelint-config-recess-order": "^4.0.0",
-    "stylelint-config-standard": "^33.0.0",
-    "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
-    "stylelint-high-performance-animation": "^1.8.0",
-    "stylelint-no-unsupported-browser-features": "^6.1.0",
-    "stylelint-prettier": "^3.0.0",
-    "tailwindcss": "^3.3.2",
+    "stylelint-config-recess-order": "^4.4.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-high-performance-animation": "^1.10.0",
+    "stylelint-no-unsupported-browser-features": "^8.0.1",
+    "stylelint-prettier": "^5.0.0",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.0.4"
   },
   "lint-staged": {
-    "src/**/*.{js,ts}": [
-      "eslint --fix"
+    "src/**/*.{css,js,ts,jsx,tsx,mdx,astro}": [
+      "prettier --write --cache"
     ],
-    "src/**/*.{jsx,tsx,mdx}": [
-      "eslint --fix",
-      "prettier --write --plugin=prettier-plugin-tailwindcss"
-    ],
-    "src/**/*.astro": [
-      "eslint --fix",
-      "prettier --write --plugin=prettier-plugin-astro --plugin=prettier-plugin-tailwindcss"
+    "src/**/*.{js,ts,jsx,tsx,mdx,astro}": [
+      "eslint --fix --cache --cache-location node_modules/.cache/eslint/.cache"
     ],
     "src/**/*.{css,astro}": [
-      "stylelint --fix"
+      "stylelint --fix --cache --cache-location node_modules/.cache/stylelint/.cache"
     ]
   }
 }
