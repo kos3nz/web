@@ -4,28 +4,28 @@ code {
 
 pre > code {
   display: grid;
-  font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
-    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+  font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono", "Courier New", monospace;
   font-size: 13px !important;
 }
 
-code .line {
+code [data-line] {
   padding-right: 3rem;
   padding-left: 1rem;
   border-left: 2px solid transparent;
 }
 
-code .line:has(.word) {
+code [data-line]:has([data-highlighted-chars]) {
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
 }
 
-code .highlighted {
+code [data-highlighted-line] {
   background-color: rgb(200 200 255 / 10%);
   border-color: #60a5fa;
 }
 
-code .word {
+code [data-highlighted-chars] {
   @apply shadow-highlight;
 
   padding: 0.25rem;
@@ -33,27 +33,36 @@ code .word {
   border-radius: 0.25rem;
 }
 
-code .word[data-word-id='r'] {
-  color: rgb(249 168 212) !important;
+code [data-highlighted-chars][data-chars-id="r"] {
   background-color: rgb(159 18 57 / 50%);
 }
 
-code .word[data-word-id='g'] {
-  color: rgb(94 234 212) !important;
+code [data-highlighted-chars][data-chars-id="r"] span {
+  color: rgb(249 168 212) !important;
+}
+
+code [data-highlighted-chars][data-chars-id="g"] {
   background-color: rgb(17 94 89 / 50%);
 }
 
-code .word[data-word-id='b'] {
-  color: rgb(191 218 254) !important;
+code [data-highlighted-chars][data-chars-id="g"] span {
+  color: rgb(94 234 212) !important;
+}
+
+code [data-highlighted-chars][data-chars-id="b"] {
   background-color: rgb(30 64 175 / 50%);
 }
 
-pre code[data-line-numbers] .line {
+code [data-highlighted-chars][data-chars-id="b"] span {
+  color: rgb(191 218 254) !important;
+}
+
+pre code[data-line-numbers] [data-line] {
   /* padding-right: 0; */
   padding-left: 0;
 }
 
-code[data-line-numbers] > .line::before {
+code[data-line-numbers] > [data-line]::before {
   display: inline-block;
   width: 2rem;
   margin-right: 1rem;
@@ -63,11 +72,11 @@ code[data-line-numbers] > .line::before {
   counter-increment: line;
 }
 
-code[data-line-numbers-max-digits='2'] > .line::before {
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
   width: 2rem;
 }
 
-code[data-line-numbers-max-digits='3'] > .line::before {
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 2rem;
 }
 
