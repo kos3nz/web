@@ -22,7 +22,7 @@ export default defineConfig({
       include: ["**/react/*"],
     }),
     solid({
-      include: ["**/solid/*"],
+      include: ["**/solid/*", "**/node_modules/@motionone/solid/**"],
     }),
     mdx(),
   ],
