@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from "astro:content"
+import { getCollection } from "astro:content"
+import Layout from "@/layouts/base.astro"
+import HeadingsDesktop from "@/ui/solid/headings-desktop.tsx"
+import HeadingsMobile from "@/ui/solid/headings-mobile.tsx"
+import Tag from "@/ui/solid/tag.tsx"
+import DateTime from "@/ui/solid/date-time.tsx"
+import { components } from "@/ui/astro/mdx-components.astro"
+// import { createCloudinaryImageSrc } from '@/utils/image'
+
+import "@/styles/mdx.css"
+
+interface Props {
+  entry: CollectionEntry<"posts">
+}
+
+type AstroHeading = {
+  depth: number
+  slug: string
+  text: string
+}
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts", ({ data }) => {
+    return data.draft !== true
+  })
+
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { entry: post },
+  }))
+}
+
+// 2. When it's time to render, you can get the entry directly from the prop
+const { entry } = Astro.props
+const { Content, headings: astroHeadings } = await entry.render()
+
+const headings = (astroHeadings as AstroHeading[]).map((heading) => {
+  return {
+    depth: heading.depth,
+    hash: `#${heading.slug}`,
+    text: heading.text.split("#")[1],
+  }
+})
+
+// const imageSrc = createCloudinaryImageSrc({
+//   title: entry.data.title,
+//   tags: entry.data.tags,
+// })
+---
+
+<Layout title={entry.data.title}>
+  <HeadingsMobile headings={headings} client:visible />
+  <div class="grid grid-cols-1 md:grid-cols-3 md:gap-x-0 lg:grid-cols-10 lg:gap-x-4">
+    <div class="col-span-1 md:col-span-2 lg:col-span-7">
+      <h1
+        class="mb-6 text-2xl font-bold leading-[2.5rem] text-slate-200 md:text-3xl md:leading-[2.725rem]"
+      >
+        {entry.data.title}
+      </h1>
+
+      <div class="mb-12 flex items-center gap-x-3 md:gap-x-6">
+        <DateTime dateTime={entry.data.publishedDate} />
+        <span class="font-bold text-slate-600">|</span>
+        <div class="flex gap-x-2">
+          {
+            entry.data.tags.map((tag, i) => (
+              <>
+                {i !== 0 && <span class="font-bold text-slate-600">·</span>}
+                <Tag active>{tag}</Tag>
+              </>
+            ))
+          }
+        </div>
+      </div>
+
+      <article
+        class="prose !prose-invert prose-slate max-w-none prose-h2:text-xl prose-h3:text-lg md:prose-h2:text-2xl md:prose-h3:text-xl"
+      >
+        <Content components={components} />
+      </article>
+    </div>
+    <aside
+      class="-mt-6 hidden md:col-span-1 md:col-start-3 md:block lg:col-span-3 lg:col-start-8"
+    >
+      <HeadingsDesktop headings={headings} client:visible />
+    </aside>
+  </div>
+</Layout>

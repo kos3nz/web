@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content'
-import Layout from 'layouts/base.astro'
-import Filter from 'ui/solidjs/filter.tsx'
-import Snippets from 'ui/solidjs/snippets.tsx'
+import { getCollection } from "astro:content"
+import Layout from "@/layouts/base.astro"
+import Filter from "@/ui/solid/filter.tsx"
+import SnippetsList from "@/ui/solid/snippets-list"
 
 const allSnippets = (
-  await getCollection('snippets', ({ data }) => {
+  await getCollection("snippets", ({ data }) => {
     return data.draft !== true
   })
 ).map((snippet) => ({
@@ -25,6 +25,6 @@ const tags = [...new Set(allSnippets.map((snippet) => snippet.tags).flat())]
   </div>
   <Filter tags={tags} client:load />
   <div class="mt-14">
-    <Snippets snippets={allSnippets} client:load />
+    <SnippetsList snippets={allSnippets} client:load />
   </div>
 </Layout>

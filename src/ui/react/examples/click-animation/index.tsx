@@ -1,12 +1,12 @@
 /** @jsxImportSource react */
 
-import cx from 'clsx'
-import { stagger, useAnimate } from 'framer-motion'
-import { useCallback, useState } from 'react'
-import FullScreen from './full-screen'
-import MiniCards from './mini-cards'
-import ScheduleLinks from './schedule-links'
-import { sleep } from 'utils/helpers'
+import cx from "clsx"
+import { stagger, useAnimate } from "framer-motion"
+import { useCallback, useState } from "react"
+import FullScreen from "./full-screen"
+import MiniCards from "./mini-cards"
+import ScheduleLinks from "./schedule-links"
+import { sleep } from "@/utils/helpers"
 
 export default function ClickAnimation() {
   const [show, setShow] = useState(false)
@@ -15,7 +15,7 @@ export default function ClickAnimation() {
   const animateStart = useCallback(async () => {
     animate([
       [
-        '.full-screen',
+        ".full-screen",
         {
           scale: 1,
           opacity: 1,
@@ -23,52 +23,52 @@ export default function ClickAnimation() {
         {
           delay: 0.25,
           duration: 0.6,
-          ease: 'easeIn',
+          ease: "easeIn",
         },
       ],
       [
-        '.date-card.top',
+        ".date-card.top",
         {
           y: 150,
           scale: 0,
           opacity: 0,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           delay: stagger(0.3),
-          at: '<',
+          at: "<",
         },
       ],
       [
-        '.date-card.middle',
+        ".date-card.middle",
         {
           scale: 0,
           opacity: 0,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.1,
           delay: stagger(0.15),
         },
       ],
       [
-        '.date-card.bottom',
+        ".date-card.bottom",
         {
           y: -150,
           scale: 0,
           opacity: 0,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.2,
           delay: stagger(0.05),
         },
       ],
       [
-        '.gradient',
+        ".gradient",
         { scale: 0, opacity: 0 },
         {
           at: 0.15,
@@ -86,14 +86,14 @@ export default function ClickAnimation() {
     setShow(false)
 
     animate(
-      '.full-screen',
+      ".full-screen",
       {
         scale: 0.95,
         opacity: 0,
       },
       {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     )
 
@@ -101,48 +101,48 @@ export default function ClickAnimation() {
 
     animate([
       [
-        '.date-card.top',
+        ".date-card.top",
         {
           y: 0,
           scale: 1,
           opacity: 1,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           delay: stagger(0.3),
-          at: '<',
+          at: "<",
         },
       ],
       [
-        '.date-card.middle',
+        ".date-card.middle",
         {
           scale: 1,
           opacity: 1,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.1,
           delay: stagger(0.15),
         },
       ],
       [
-        '.date-card.bottom',
+        ".date-card.bottom",
         {
           y: 0,
           scale: 1,
           opacity: 1,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.2,
           delay: stagger(0.05),
         },
       ],
       [
-        '.gradient',
+        ".gradient",
         { scale: 1, opacity: 1 },
         {
           at: 0.1,
@@ -153,13 +153,13 @@ export default function ClickAnimation() {
   }, [animate])
 
   return (
-    <div ref={scope} className="flex h-full w-full items-center justify-center">
+    <div ref={scope} className="flex size-full items-center justify-center">
       <div className="relative z-10 aspect-square w-[460px] shrink-0 scale-[0.6] md:scale-90 lg:scale-100">
         {/* Gradient Background */}
         <div
           className={cx(
-            'gradient',
-            'absolute inset-0 origin-bottom-left rounded-3xl bg-gradient-to-br from-[#f7fff5] via-[#ffe5c6] via-40% to-[#ffd8ad] to-80%',
+            "gradient",
+            "absolute inset-0 origin-bottom-left rounded-3xl bg-gradient-to-br from-[#f7fff5] via-[#ffe5c6] via-40% to-[#ffd8ad] to-80%",
           )}
         />
 

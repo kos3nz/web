@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks*/
 
-import { useStore } from '@nanostores/solid'
-import { atom, map } from 'nanostores'
+import { useStore } from "@nanostores/solid"
+import { atom, map } from "nanostores"
 
 type FilterBy = {
   title: string
   tags: string[]
 }
 
-export const searchQuery = atom('')
+export const searchQuery = atom("")
 
 export const selectedTags = map<Record<string, string | undefined>>({})
 

@@ -1,27 +1,8 @@
 ---
-import Layout from 'layouts/base.astro'
-import Confirm from 'ui/react/confirm.tsx'
-import Form from 'ui/react/form.tsx'
-import SuccessMessage from 'ui/react/success-message.tsx'
-import Profile from 'ui/solidjs/profile.tsx'
-
-import styles from 'styles/contact.module.css'
+import Layout from "@/layouts/base.astro"
+import Profile from "@/ui/solid/profile.tsx"
 ---
 
 <Layout>
   <Profile client:load />
-
-  <span class="my-20 block h-px w-full bg-slate-400/20"></span>
-
-  <div class="mx-auto flex max-w-3xl flex-col gap-y-8 md:gap-y-10">
-    <div class="flex flex-col items-center gap-y-1">
-      <h2 class="text-2xl font-bold text-slate-200 md:text-3xl">Contact</h2>
-      <span class="block h-[2px] w-8 bg-cyan-500"></span>
-    </div>
-    <div class={styles['contact-form']}>
-      <Form client:idle />
-      <Confirm client:idle />
-      <SuccessMessage client:idle />
-    </div>
-  </div>
 </Layout>

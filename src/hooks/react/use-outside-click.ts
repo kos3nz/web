@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react'
+import { RefObject, useEffect } from "react"
 
 export const useOutsideClick = <T extends HTMLElement>(
   elements: (RefObject<T> | string)[],
@@ -8,7 +8,7 @@ export const useOutsideClick = <T extends HTMLElement>(
     const isInsideElement = elements.some((value) => {
       if (!value) return
 
-      if (typeof value === 'string') {
+      if (typeof value === "string") {
         const element = document.querySelector(value)
 
         return element?.contains(event.target as Node)
@@ -25,9 +25,9 @@ export const useOutsideClick = <T extends HTMLElement>(
   }
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleOnClick)
+    document.addEventListener("mousedown", handleOnClick)
 
-    return () => document.removeEventListener('mousedown', handleOnClick)
+    return () => document.removeEventListener("mousedown", handleOnClick)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

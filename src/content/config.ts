@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
-import { z, defineCollection } from 'astro:content'
+import { z, defineCollection } from "astro:content"
 
-const blogCollection = defineCollection({
+const postsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -12,7 +12,7 @@ const blogCollection = defineCollection({
   }),
 })
 
-const snippetCollection = defineCollection({
+const snippetsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -22,6 +22,6 @@ const snippetCollection = defineCollection({
 })
 
 export const collections = {
-  blog: blogCollection,
-  snippets: snippetCollection,
+  posts: postsCollection,
+  snippets: snippetsCollection,
 }

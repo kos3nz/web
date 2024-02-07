@@ -1,7 +1,7 @@
 ---
 title: Env Variables Varidation
 description: Treat environment variables as a type safety object with Zod
-tags: ['typescript']
+tags: ["typescript"]
 ---
 
 ---
@@ -13,7 +13,7 @@ Zod のバリデーションを使って型セーフに Environment variables �
 <Code>
 
 ```typescript showLineNumbers title="env.ts"
-import { z } from 'zod'
+import { z } from "zod"
 
 const envVariables = z.object({
   WEBHOOK_URL: z.string().url(),

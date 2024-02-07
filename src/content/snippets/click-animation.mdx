@@ -1,10 +1,10 @@
 ---
 title: Click Animation Component
 description: Click animation with framer motion
-tags: ['react', 'component']
+tags: ["react", "component"]
 ---
 
-import ClickAnimation from 'ui/react/examples/click-animation'
+import ClickAnimation from "@/ui/react/examples/click-animation"
 
 <div class="not-prose col-span-3 !col-start-1">
   <Playground>
@@ -31,12 +31,12 @@ State の切り替えと Framer motion の `animate()` ファンクションを�
 <Code>
 
 ```tsx showLineNumbers title="index.tsx"
-import cx from 'clsx'
-import { stagger, useAnimate } from 'framer-motion'
-import { useCallback, useState } from 'react'
-import FullScreen from './full-screen'
-import MiniCards from './mini-cards'
-import ScheduleLinks from './schedule-links'
+import cx from "clsx"
+import { stagger, useAnimate } from "framer-motion"
+import { useCallback, useState } from "react"
+import FullScreen from "./full-screen"
+import MiniCards from "./mini-cards"
+import ScheduleLinks from "./schedule-links"
 
 function sleep(wait: number) {
   return new Promise((resolve) => setTimeout(resolve, wait))
@@ -49,7 +49,7 @@ export default function ClickAnimation() {
   const animateStart = useCallback(async () => {
     animate([
       [
-        '.full-screen',
+        ".full-screen",
         {
           scale: 1,
           opacity: 1,
@@ -57,52 +57,52 @@ export default function ClickAnimation() {
         {
           delay: 0.25,
           duration: 0.6,
-          ease: 'easeIn',
+          ease: "easeIn",
         },
       ],
       [
-        '.date-card.top',
+        ".date-card.top",
         {
           y: 150,
           scale: 0,
           opacity: 0,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           delay: stagger(0.3),
-          at: '<',
+          at: "<",
         },
       ],
       [
-        '.date-card.middle',
+        ".date-card.middle",
         {
           scale: 0,
           opacity: 0,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.1,
           delay: stagger(0.15),
         },
       ],
       [
-        '.date-card.bottom',
+        ".date-card.bottom",
         {
           y: -150,
           scale: 0,
           opacity: 0,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.2,
           delay: stagger(0.05),
         },
       ],
       [
-        '.gradient',
+        ".gradient",
         { scale: 0, opacity: 0 },
         {
           at: 0.15,
@@ -120,14 +120,14 @@ export default function ClickAnimation() {
     setShow(false)
 
     animate(
-      '.full-screen',
+      ".full-screen",
       {
         scale: 0.95,
         opacity: 0,
       },
       {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     )
 
@@ -135,48 +135,48 @@ export default function ClickAnimation() {
 
     animate([
       [
-        '.date-card.top',
+        ".date-card.top",
         {
           y: 0,
           scale: 1,
           opacity: 1,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           delay: stagger(0.3),
-          at: '<',
+          at: "<",
         },
       ],
       [
-        '.date-card.middle',
+        ".date-card.middle",
         {
           scale: 1,
           opacity: 1,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.1,
           delay: stagger(0.15),
         },
       ],
       [
-        '.date-card.bottom',
+        ".date-card.bottom",
         {
           y: 0,
           scale: 1,
           opacity: 1,
         },
         {
-          type: 'spring',
+          type: "spring",
           bounce: 0.3,
           at: 0.2,
           delay: stagger(0.05),
         },
       ],
       [
-        '.gradient',
+        ".gradient",
         { scale: 1, opacity: 1 },
         {
           at: 0.1,
@@ -192,8 +192,8 @@ export default function ClickAnimation() {
         {/* Gradient Background */}
         <div
           className={cx(
-            'gradient',
-            'absolute inset-0 origin-bottom-left rounded-3xl bg-gradient-to-br from-[#f7fff5] via-[#ffe5c6] via-40% to-[#ffd8ad] to-80%',
+            "gradient",
+            "absolute inset-0 origin-bottom-left rounded-3xl bg-gradient-to-br from-[#f7fff5] via-[#ffe5c6] via-40% to-[#ffd8ad] to-80%",
           )}
         />
 
@@ -221,26 +221,26 @@ export default function ClickAnimation() {
 ```
 
 ```tsx showLineNumbers title="schedule-links.tsx"
-import cx from 'clsx'
-import { motion } from 'framer-motion'
+import cx from "clsx"
+import { motion } from "framer-motion"
 
 export default function ScheduleLinks({ show }: { show: boolean }) {
   return (
     <motion.div
       className="absolute left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white shadow-xl"
       initial={{
-        width: '70%',
-        height: '60%',
-        top: '50%',
+        width: "70%",
+        height: "60%",
+        top: "50%",
       }}
       animate={{
-        width: show ? '150%' : '70%',
-        height: show ? '86%' : '60%',
-        top: show ? '74%' : '50%',
+        width: show ? "150%" : "70%",
+        height: show ? "86%" : "60%",
+        top: show ? "74%" : "50%",
       }}
       transition={{
-        type: 'tween',
-        ease: 'easeInOut',
+        type: "tween",
+        ease: "easeInOut",
         duration: 0.6,
       }}
     >
@@ -250,9 +250,7 @@ export default function ScheduleLinks({ show }: { show: boolean }) {
           <span className="block text-[10px] font-medium uppercase text-purple-300">
             select a slot
           </span>
-          <h5 className="font-medium leading-5 text-gray-900">
-            January 25, 2022
-          </h5>
+          <h5 className="font-medium leading-5 text-gray-900">January 25, 2022</h5>
         </div>
 
         {/* Date */}
@@ -265,23 +263,23 @@ export default function ScheduleLinks({ show }: { show: boolean }) {
           </button>
           <ul className="flex flex-1 gap-x-2.5 overflow-hidden py-1">
             {[
-              'Mon 24',
-              'Tue 25',
-              'Wed 26',
-              'Thu 27',
-              'Fri 28',
-              'Sat 29',
-              'Sun 30',
-              'Mon 31',
+              "Mon 24",
+              "Tue 25",
+              "Wed 26",
+              "Thu 27",
+              "Fri 28",
+              "Sat 29",
+              "Sun 30",
+              "Mon 31",
             ].map((item, i) => {
-              const [day, date] = item.split(' ')
+              const [day, date] = item.split(" ")
               return (
                 <li
                   key={date}
                   className={cx(
-                    'px-[25px] py-2 text-center font-medium',
-                    i >= 1 && i < 5 ? 'text-gray-700' : 'text-gray-300',
-                    i === 1 && 'rounded-lg bg-white shadow-sm',
+                    "px-[25px] py-2 text-center font-medium",
+                    i >= 1 && i < 5 ? "text-gray-700" : "text-gray-300",
+                    i === 1 && "rounded-lg bg-white shadow-sm",
                   )}
                 >
                   <span className="block text-[10px] leading-3">{day}</span>
@@ -303,18 +301,18 @@ export default function ScheduleLinks({ show }: { show: boolean }) {
           <div className="mt-1">
             <span
               className={cx(
-                'block pb-7 text-[10px] text-gray-300 transition-all duration-700',
-                show ? 'visible opacity-100' : 'invisible opacity-0',
+                "block pb-7 text-[10px] text-gray-300 transition-all duration-700",
+                show ? "visible opacity-100" : "invisible opacity-0",
               )}
             >
               09:00
             </span>
-            {['10:00', '11:00', '12:00', '13:00', '14:00'].map((time) => (
+            {["10:00", "11:00", "12:00", "13:00", "14:00"].map((time) => (
               <span
                 key={time}
                 className={cx(
-                  'block pb-7 text-[10px] text-gray-300 transition-transform duration-500 ease-in-out last-of-type:pb-0',
-                  show ? 'translate-y-0' : '-translate-y-[100%]',
+                  "block pb-7 text-[10px] text-gray-300 transition-transform duration-500 ease-in-out last-of-type:pb-0",
+                  show ? "translate-y-0" : "-translate-y-[100%]",
                 )}
               >
                 {time}
@@ -322,27 +320,23 @@ export default function ScheduleLinks({ show }: { show: boolean }) {
             ))}
           </div>
           <ul className="flex-1 space-y-1.5 py-3.5">
-            {['10:00 - 11:00', '11:00 - 12:00', '12:00 - 13:00'].map(
-              (schedule, i) => (
-                <li
-                  key={i}
-                  className={cx(
-                    'flex items-center gap-x-2 rounded-lg bg-gray-100 px-3 py-3 transition-all duration-500',
-                    show
-                      ? 'translate-y-[calc(100%+0.375rem)] last-of-type:visible last-of-type:opacity-100'
-                      : 'translate-y-0 last-of-type:invisible last-of-type:opacity-0',
-                  )}
-                >
-                  <input
-                    type="checkbox"
-                    className="border-1.5 checkbox-success checkbox h-3.5 w-3.5 rounded-full border-gray-300"
-                  />
-                  <p className="text-xs font-medium text-gray-700">
-                    {schedule}
-                  </p>
-                </li>
-              ),
-            )}
+            {["10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00"].map((schedule, i) => (
+              <li
+                key={i}
+                className={cx(
+                  "flex items-center gap-x-2 rounded-lg bg-gray-100 px-3 py-3 transition-all duration-500",
+                  show
+                    ? "translate-y-[calc(100%+0.375rem)] last-of-type:visible last-of-type:opacity-100"
+                    : "translate-y-0 last-of-type:invisible last-of-type:opacity-0",
+                )}
+              >
+                <input
+                  type="checkbox"
+                  className="border-1.5 checkbox-success checkbox h-3.5 w-3.5 rounded-full border-gray-300"
+                />
+                <p className="text-xs font-medium text-gray-700">{schedule}</p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -352,50 +346,50 @@ export default function ScheduleLinks({ show }: { show: boolean }) {
 ```
 
 ```tsx showLineNumbers title="mini-cards.tsx"
-import cx from 'clsx'
+import cx from "clsx"
 
 const cards = [
   {
-    rotate: '10deg',
-    translate: '-90px -190px',
-    day: 'Sat',
-    date: '22',
-    pos: 'top',
+    rotate: "10deg",
+    translate: "-90px -190px",
+    day: "Sat",
+    date: "22",
+    pos: "top",
   },
   {
-    rotate: '-6deg',
-    translate: '50px -165px',
-    day: 'Tue',
-    date: '25',
-    pos: 'top',
+    rotate: "-6deg",
+    translate: "50px -165px",
+    day: "Tue",
+    date: "25",
+    pos: "top",
   },
   {
-    rotate: '6deg',
-    translate: '-175px -50px',
-    day: 'Thu',
-    date: '27',
-    pos: 'middle',
+    rotate: "6deg",
+    translate: "-175px -50px",
+    day: "Thu",
+    date: "27",
+    pos: "middle",
   },
   {
-    rotate: '-6deg',
-    translate: '105px 10px',
-    day: 'Sun',
-    date: '23',
-    pos: 'middle',
+    rotate: "-6deg",
+    translate: "105px 10px",
+    day: "Sun",
+    date: "23",
+    pos: "middle",
   },
   {
-    rotate: '-10deg',
-    translate: '-110px 135px',
-    day: 'Fri',
-    date: '28',
-    pos: 'bottom',
+    rotate: "-10deg",
+    translate: "-110px 135px",
+    day: "Fri",
+    date: "28",
+    pos: "bottom",
   },
   {
-    rotate: '8deg',
-    translate: '55px 120px',
-    day: 'Mon',
-    date: '5',
-    pos: 'bottom',
+    rotate: "8deg",
+    translate: "55px 120px",
+    day: "Mon",
+    date: "5",
+    pos: "bottom",
   },
 ]
 
@@ -406,8 +400,8 @@ export default function MiniCards() {
         <div
           key={date}
           className={cx(
-            'date-card',
-            'absolute left-1/2 top-1/2 origin-bottom rounded-lg bg-white px-[25px] py-1.5 text-center font-medium text-gray-700 shadow-sm',
+            "date-card",
+            "absolute left-1/2 top-1/2 origin-bottom rounded-lg bg-white px-[25px] py-1.5 text-center font-medium text-gray-700 shadow-sm",
             pos,
           )}
           style={{
@@ -425,7 +419,7 @@ export default function MiniCards() {
 ```
 
 ```tsx showLineNumbers title="full-screen.tsx"
-import cx from 'clsx'
+import cx from "clsx"
 
 export default function FullScreen({
   show,
@@ -438,8 +432,8 @@ export default function FullScreen({
     <>
       <div
         className={cx(
-          'full-screen',
-          'absolute inset-0 flex scale-95 justify-center opacity-0',
+          "full-screen",
+          "absolute inset-0 flex scale-95 justify-center opacity-0",
         )}
       >
         <div className="hidden w-[690px] lg:block">
@@ -462,9 +456,7 @@ export default function FullScreen({
             </div>
             <div className="col-start-3">
               <div className="rounded-xl bg-white p-4 shadow-xl">
-                <span className="block text-[10px] uppercase text-purple-500">
-                  Where
-                </span>
+                <span className="block text-[10px] uppercase text-purple-500">Where</span>
                 <span className="block text-lg font-medium text-gray-700">
                   Google Meet
                 </span>
@@ -475,15 +467,9 @@ export default function FullScreen({
             </div>
             <div className="col-start-3 row-start-2">
               <div className="rounded-xl bg-white p-4 shadow-xl">
-                <span className="block text-[10px] uppercase text-yellow-500">
-                  When
-                </span>
-                <span className="block text-lg font-medium text-gray-700">
-                  ---
-                </span>
-                <span className="block text-xs text-gray-400">
-                  No slot selected
-                </span>
+                <span className="block text-[10px] uppercase text-yellow-500">When</span>
+                <span className="block text-lg font-medium text-gray-700">---</span>
+                <span className="block text-xs text-gray-400">No slot selected</span>
               </div>
             </div>
           </div>
@@ -493,8 +479,8 @@ export default function FullScreen({
       <button
         type="button"
         className={cx(
-          'absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-xl bg-black px-4 py-1 font-medium transition duration-500 md:block',
-          show ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0',
+          "absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-xl bg-black px-4 py-1 font-medium transition duration-500 md:block",
+          show ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
         )}
         onClick={animateBack}
       >

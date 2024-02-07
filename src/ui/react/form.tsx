@@ -1,21 +1,21 @@
 /** @jsxImportSource react */
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useStore } from '@nanostores/react'
-import cx from 'clsx'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useStore } from "@nanostores/react"
+import cx from "clsx"
 import {
   FieldErrors,
   RegisterOptions,
   SubmitHandler,
   UseFormRegister,
   useForm,
-} from 'react-hook-form'
-import { contactInfo, increaseStep, step } from 'store/contact-store.ts'
-import type { ComponentPropsWithAs } from 'types/helpers.ts'
-import type { ContactSchema } from 'types/validation.types.ts'
-import { contactSchema } from 'utils/form-validation.ts'
-import { RightChevronIcon } from 'ui/react/icons.tsx'
-import { DevTool } from '@hookform/devtools'
+} from "react-hook-form"
+import { contactInfo, increaseStep, step } from "@/store/contact-store.ts"
+import type { ComponentPropsWithAs } from "@/types/helpers.ts"
+import type { ContactSchema } from "@/types/validation.types.ts"
+import { contactSchema } from "@/utils/form-validation.ts"
+import { RightChevronIcon } from "@/ui/react/icons.tsx"
+import { DevTool } from "@hookform/devtools"
 
 export default function Form() {
   const $step = useStore(step)
@@ -99,7 +99,7 @@ export default function Form() {
         </div>
       </form>
 
-      {process.env.NODE_ENV === 'development' && (
+      {process.env.NODE_ENV === "development" && (
         <DevTool control={control} placement="bottom-right" />
       )}
     </>
@@ -115,7 +115,7 @@ type CommonProps = {
   required?: boolean
 }
 
-function FormInput<T extends 'input' | 'textarea' = 'input'>({
+function FormInput<T extends "input" | "textarea" = "input">({
   name,
   label,
   register,
@@ -125,7 +125,7 @@ function FormInput<T extends 'input' | 'textarea' = 'input'>({
   required,
   ...rest
 }: ComponentPropsWithAs<T, CommonProps>) {
-  const Component = as || 'input'
+  const Component = as || "input"
 
   return (
     <div className="form-control w-full">
@@ -146,26 +146,21 @@ function FormInput<T extends 'input' | 'textarea' = 'input'>({
         {...rest}
         id={name}
         className={cx(
-          'mt-2 w-full bg-slate-700/50 text-[15px] focus-visible:outline-cyan-500/75',
-          Component === 'input'
-            ? 'input h-[2.75rem]'
-            : 'textarea py-3 leading-6',
+          "mt-2 w-full bg-slate-700/50 text-[15px] focus-visible:outline-cyan-500/75",
+          Component === "input" ? "input h-[2.75rem]" : "textarea py-3 leading-6",
         )}
-        aria-invalid={errors?.[name] ? 'true' : 'false'}
+        aria-invalid={errors?.[name] ? "true" : "false"}
         {...register(name, { ...options })}
       />
       {errors?.[name] && (
-        <p
-          role="alert"
-          className="mt-2 flex items-center gap-x-1 text-xs text-red-400"
-        >
+        <p role="alert" className="mt-2 flex items-center gap-x-1 text-xs text-red-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="h-5 w-5"
+            className="size-5"
           >
             <path
               strokeLinecap="round"

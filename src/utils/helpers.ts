@@ -1,5 +1,7 @@
-import cx, { ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import cx, { ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 /**
  * Merge TailwindCSS classes without style conflicts

@@ -208,11 +208,7 @@
   "tokenColors": [
     {
       "name": "Comment",
-      "scope": [
-        "comment",
-        "punctuation.definition.comment",
-        "string.quoted.docstring"
-      ],
+      "scope": ["comment", "punctuation.definition.comment", "string.quoted.docstring"],
       "settings": {
         "foreground": "#7a88cf"
       }
@@ -281,12 +277,7 @@
     },
     {
       "name": "Keyword, Storage",
-      "scope": [
-        "keyword",
-        "storage.type",
-        "storage.modifier",
-        "keyword.other.important"
-      ],
+      "scope": ["keyword", "storage.type", "storage.modifier", "keyword.other.important"],
       "settings": {
         "foreground": "#c099ff"
       }
@@ -686,10 +677,7 @@
     },
     {
       "name": "Regular Expressions - Character Class",
-      "scope": [
-        "constant.other.character-class.regexp",
-        "keyword.control.anchor.regexp"
-      ],
+      "scope": ["constant.other.character-class.regexp", "keyword.control.anchor.regexp"],
       "settings": {
         "foreground": "#c099ff"
       }
@@ -741,9 +729,7 @@
     },
     {
       "name": "ES7 Bind Operator",
-      "scope": [
-        "source.js constant.other.object.key.js string.unquoted.label.js"
-      ],
+      "scope": ["source.js constant.other.object.key.js string.unquoted.label.js"],
       "settings": {
         "foreground": "#ff757f"
       }
@@ -948,10 +934,7 @@
     },
     {
       "name": "Markdown - Fenced Bode Block Variable",
-      "scope": [
-        "markup.fenced_code.block.markdown",
-        "markup.inline.raw.string.markdown"
-      ],
+      "scope": ["markup.fenced_code.block.markdown", "markup.inline.raw.string.markdown"],
       "settings": {
         "foreground": "#86e1fc"
       }

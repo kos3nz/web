@@ -1,40 +1,40 @@
 /** @jsxImportSource react */
 
-import cx from 'clsx'
-import { useEffect, useRef } from 'react'
-import { useIntersectionObserver } from 'hooks/react/use-intersection-observer'
+import cx from "clsx"
+import { useEffect, useRef } from "react"
+import { useIntersectionObserver } from "@/hooks/react/use-intersection-observer"
 // zustand-store.ts
-import { create } from 'zustand'
+import { create } from "zustand"
 
 const features = [
   {
-    title: 'Use your calendar as a todo list',
-    id: 'todo-list',
+    title: "Use your calendar as a todo list",
+    id: "todo-list",
     Card: Todo,
   },
   {
-    title: 'Color your calendar to organize',
-    id: 'colors',
+    title: "Color your calendar to organize",
+    id: "colors",
     Card: Colors,
   },
   {
-    title: 'Instantly know if someone is available',
-    id: 'availability',
+    title: "Instantly know if someone is available",
+    id: "availability",
     Card: Availability,
   },
   {
-    title: 'Track what you listened to when',
-    id: 'music',
+    title: "Track what you listened to when",
+    id: "music",
     Card: Music,
   },
   {
-    title: 'Send scheduling links guests love',
-    id: 'scheduling-links',
+    title: "Send scheduling links guests love",
+    id: "scheduling-links",
     Card: SchedulingLinks,
   },
   {
-    title: 'Always know what your team is up to',
-    id: 'team',
+    title: "Always know what your team is up to",
+    id: "team",
     Card: Team,
   },
 ]
@@ -91,13 +91,13 @@ function FeatureTitle({ id, children }: FeatureTitleProps) {
   const rootRef = useRef<HTMLDivElement | null>(null)
   const [ref, isInView] = useIntersectionObserver<HTMLParagraphElement>({
     root: rootRef.current,
-    rootMargin: '-50% 0px -50% 0px',
+    rootMargin: "-50% 0px -50% 0px",
   })
   const inViewFeature = useFeatureStore((state) => state.inViewFeature)
   const setInViewFeature = useFeatureStore((state) => state.setInViewFeature)
 
   useEffect(() => {
-    rootRef.current = document.querySelector('#scroll-animation')
+    rootRef.current = document.querySelector("#scroll-animation")
   }, [])
 
   useEffect(() => {
@@ -109,8 +109,8 @@ function FeatureTitle({ id, children }: FeatureTitleProps) {
     <p
       ref={ref}
       className={cx(
-        'py-16 text-4xl transition-colors duration-300',
-        isInView ? 'text-gray-200' : 'text-gray-500',
+        "py-16 text-4xl transition-colors duration-300",
+        isInView ? "text-gray-200" : "text-gray-500",
       )}
     >
       {children}
@@ -129,9 +129,9 @@ function FeatureCard({ id, gradient, children }: FeatureCardProps) {
   return (
     <div
       className={cx(
-        'absolute inset-0 bg-gradient-to-br transition-opacity duration-300',
+        "absolute inset-0 bg-gradient-to-br transition-opacity duration-300",
         gradient,
-        inViewFeature === id ? 'opacity-100' : 'opacity-0',
+        inViewFeature === id ? "opacity-100" : "opacity-0",
       )}
     >
       {children}

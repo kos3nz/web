@@ -1,17 +1,12 @@
 /** @jsxImportSource react */
 
-import { useStore } from '@nanostores/react'
-import axios from 'axios'
-import cx from 'clsx'
-import { FormEventHandler, useEffect, useState } from 'react'
-import {
-  contactInfo,
-  decreaseStep,
-  increaseStep,
-  step,
-} from 'store/contact-store'
-import type { ContactSchema } from 'types/validation.types.ts'
-import { PaperAirplaneIcon, SpinnerIcon } from './icons.tsx'
+import { useStore } from "@nanostores/react"
+import axios from "axios"
+import cx from "clsx"
+import { FormEventHandler, useEffect, useState } from "react"
+import { contactInfo, decreaseStep, increaseStep, step } from "@/store/contact-store"
+import type { ContactSchema } from "@/types/validation.types.ts"
+import { PaperAirplaneIcon, SpinnerIcon } from "./icons.tsx"
 
 type Status = {
   submitted: boolean
@@ -39,8 +34,8 @@ export default function Confirm() {
       submitting: true,
     }))
     axios({
-      method: 'POST',
-      url: 'https://formspree.io/f/xlekzqrz',
+      method: "POST",
+      url: "https://formspree.io/f/xlekzqrz",
       data: contactInfo.get(),
       signal: controller.signal,
     })
@@ -58,7 +53,7 @@ export default function Confirm() {
       setStatus({
         submitted: true,
         submitting: false,
-        info: { error: false, message: '' },
+        info: { error: false, message: "" },
       })
       increaseStep()
     } else {
@@ -66,7 +61,7 @@ export default function Confirm() {
         ...prevStatus,
         info: {
           error: true,
-          message: '正常に動作しませんでした。後でもう一度やり直してください。',
+          message: "正常に動作しませんでした。後でもう一度やり直してください。",
         },
       }))
     }
@@ -101,8 +96,8 @@ export default function Confirm() {
           <button
             type="submit"
             className={cx(
-              'btn gap-x-2 border-0 bg-cyan-400 text-slate-900 hover:bg-cyan-300 focus-visible:outline-cyan-500/75 disabled:bg-slate-600/50',
-              status.submitting && 'w-[96px]',
+              "btn gap-x-2 border-0 bg-cyan-400 text-slate-900 hover:bg-cyan-300 focus-visible:outline-cyan-500/75 disabled:bg-slate-600/50",
+              status.submitting && "w-[96px]",
             )}
             disabled={status.submitting}
           >
@@ -121,21 +116,13 @@ export default function Confirm() {
   )
 }
 
-function ListItem({
-  label,
-  name,
-}: {
-  label: string
-  name: keyof ContactSchema
-}) {
+function ListItem({ label, name }: { label: string; name: keyof ContactSchema }) {
   const $contactInfo = useStore(contactInfo)
 
-  let info: string | JSX.Element | JSX.Element[] = $contactInfo[name] || (
-    <>&nbsp;</>
-  )
+  let info: string | JSX.Element | JSX.Element[] = $contactInfo[name] || <>&nbsp;</>
 
-  if (name === 'message' && typeof info === 'string') {
-    info = info.split('\n').map((line, i) => (
+  if (name === "message" && typeof info === "string") {
+    info = info.split("\n").map((line, i) => (
       <span key={i} className="mb-1 block last-of-type:mb-0">
         {line}
       </span>
@@ -147,8 +134,8 @@ function ListItem({
       <span className="text-xs font-semibold text-slate-300">{label}</span>
       <p
         className={cx(
-          'rounded-lg bg-slate-700/50 px-4',
-          name === 'message' ? 'py-3' : 'py-2.5',
+          "rounded-lg bg-slate-700/50 px-4",
+          name === "message" ? "py-3" : "py-2.5",
         )}
       >
         {info}

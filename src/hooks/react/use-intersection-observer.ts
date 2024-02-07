@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import type { RefObject } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import type { RefObject } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type IntersectionObserverOptions = IntersectionObserverInit & {
   once?: boolean
@@ -9,7 +9,7 @@ type IntersectionObserverOptions = IntersectionObserverInit & {
 
 const defaultOptions: IntersectionObserverOptions = {
   root: null, // Viewport is root element when the value is null,
-  rootMargin: '0px 0px 0px 0px', // Viewport without margin
+  rootMargin: "0px 0px 0px 0px", // Viewport without margin
   threshold: 0, // Observer callback will be executed when root-margin hits the top of the element
   once: false,
 }

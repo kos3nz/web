@@ -47,7 +47,6 @@
     // "allowUnreachableCode": false,
     // Report an error for unused labels instead of just a warning.
     // "allowUnusedLabels": false,
-
     "strictNullChecks": true,
 
     // Check your imports and tell you when import type should be used (since Typescript 5.0)
@@ -56,22 +55,27 @@
     // Emit .js files with the JSX changed to _jsx calls
     "jsx": "preserve",
     // Importing the jsx and jsxs factory functions for React
-    "jsxImportSource": "solid-js",
+    "jsxImportSource": "react",
 
     // Allows Typescript files to impoert each other with a Typescript-specific extension like .ts, .mts, or .tsx
     "allowImportingTsExtensions": true,
 
     "baseUrl": ".",
     "paths": {
-      "hooks/*": ["src/hooks/*"],
-      "layouts/*": ["src/layouts/*"],
-      "store/*": ["src/store/*"],
-      "styles/*": ["src/styles/*"],
-      "types/*": ["src/types/*"],
-      "ui/*": ["src/ui/*"],
-      "utils/*": ["src/utils/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+
+    "checkJs": true,
+    "allowJs": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.astro",
+    ".eslintrc.cjs",
+    ".prettierrc.cjs",
+    "**/*.cjs",
+    "**/*.mjs"
+  ],
+  "exclude": ["node_modules", ".astro", "dist"]
 }

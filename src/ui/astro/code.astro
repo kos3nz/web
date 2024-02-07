@@ -1,37 +1,35 @@
 ---
-import { parse } from 'node-html-parser'
+import { parse } from "node-html-parser"
 
 // Get slot component as html string
-const rawHtml = await Astro.slots.render('default')
+const rawHtml = await Astro.slots.render("default")
 
 // Parse back to html element
 const html = parse(rawHtml)
 
 // Get code block filenames
 const codeTitles = Array.from(
-  html.querySelectorAll('[data-rehype-pretty-code-title]'),
+  html.querySelectorAll("[data-rehype-pretty-code-title]"),
 ).map((elem) => elem.text)
 
 // Get code block elements
-const codeBlocks = Array.from(html.querySelectorAll('[data-code]'))
+const codeBlocks = Array.from(html.querySelectorAll("[data-code]"))
 
 if (codeTitles.length !== codeBlocks.length)
-  throw new Error('Each code block needs a title')
+  throw new Error("Each code block needs a title")
 ---
 
 <div>
   <astro-code data-titles={codeTitles}>
-    <div
-      class="relative flex overflow-x-auto rounded-t-md bg-[#333547]/70 pr-8"
-    >
+    <div class="relative flex overflow-x-auto rounded-t-md bg-[#333547]/70 pr-8">
       {
         codeTitles.map((title, i) => (
           <button
             type="button"
             class:list={[
-              'tab',
-              'px-4 h-10 text-sm text-slate-400 shrink-0 transition-colors duration-300 hover:text-slate-300',
-              i === 0 && 'active',
+              "tab",
+              "px-4 h-10 text-sm text-slate-400 shrink-0 transition-colors duration-300 hover:text-slate-300",
+              i === 0 && "active",
             ]}
           >
             {title}
@@ -46,10 +44,7 @@ if (codeTitles.length !== codeBlocks.length)
     </div>
     {
       codeBlocks.map((code, i) => (
-        <div
-          data-title={codeTitles[i]}
-          data-code-visible={i === 0 ? 'show' : 'hidden'}
-        >
+        <div data-title={codeTitles[i]} data-code-visible={i === 0 ? "show" : "hidden"}>
           {code}
         </div>
       ))
@@ -58,11 +53,11 @@ if (codeTitles.length !== codeBlocks.length)
 </div>
 
 <style>
-  div[data-code-visible='hidden'] {
+  div[data-code-visible="hidden"] {
     display: none;
   }
 
-  div[data-code-visible='show'] {
+  div[data-code-visible="show"] {
     display: block;
   }
 
@@ -71,6 +66,7 @@ if (codeTitles.length !== codeBlocks.length)
     color: #f2f6fa;
     cursor: default;
     background-color: #222436;
+
     /* border-bottom: 1.5px solid #06b6d4; */
   }
 </style>

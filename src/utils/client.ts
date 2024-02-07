@@ -9,10 +9,7 @@ export const getOffsetTop = () => {
  * Get the vertical offset position from the bottom of the viewport
  */
 export const getOffsetBottom = () => {
-  return (
-    Math.max(window.scrollY, document.documentElement.scrollTop) +
-    window.innerHeight
-  )
+  return Math.max(window.scrollY, document.documentElement.scrollTop) + window.innerHeight
 }
 
 /**

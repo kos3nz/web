@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "@/layouts/base.astro"
+import Filter from "@/ui/solid/filter.tsx"
+import PostsList from "@/ui/solid/posts-list"
+import { stripMarkdown } from "@/utils/markdown"
+
+const allPosts = (
+  await getCollection("posts", ({ data }) => {
+    return data.draft !== true
+  })
+)
+  .map((post) => ({
+    slug: post.slug,
+    title: post.data.title,
+    description:
+      post.data.description || stripMarkdown(post.body).substring(0, 100) + "...",
+    tags: post.data.tags,
+    publishedDate: post.data.publishedDate,
+    updatedDate: post.data.updatedDate,
+  }))
+  .sort((post1, post2) => post2.publishedDate.getTime() - post1.publishedDate.getTime())
+
+const tags = [...new Set(allPosts.map((post) => post.tags).flat())]
+---
+
+<Layout>
+  <div class="mb-10 flex flex-col gap-y-1">
+    <h2 class="text-2xl font-bold text-slate-200 md:text-3xl">Posts</h2>
+    <span class="block h-[2px] w-8 bg-cyan-500"></span>
+  </div>
+  <Filter tags={tags} client:load />
+  <div class="mt-14">
+    <PostsList posts={allPosts} client:load />
+  </div>
+</Layout>

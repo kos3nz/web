@@ -1,9 +1,6 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback } from "react"
 
-export const useCopyToClipboard = (
-  text?: string,
-  options?: { duration?: number },
-) => {
+export const useCopyToClipboard = (text?: string, options?: { duration?: number }) => {
   const ref = useRef<HTMLPreElement>(null)
   const [copied, setCopied] = useState(false)
 

@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import { useStore } from '@nanostores/react'
-import { step } from 'store/contact-store'
+import { useStore } from "@nanostores/react"
+import { step } from "@/store/contact-store"
 
 export default function SuccessMessage() {
   const $step = useStore(step)

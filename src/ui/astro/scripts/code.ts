@@ -2,11 +2,11 @@ export class AstroCode extends HTMLElement {
   constructor() {
     super()
 
-    const titles = this.dataset.titles?.split(',')
-    const tabs = this.querySelectorAll('.tab')
-    const codeBlocks = this.querySelectorAll('[data-code-visible]')
+    const titles = this.dataset.titles?.split(",")
+    const tabs = this.querySelectorAll(".tab")
+    const codeBlocks = this.querySelectorAll("[data-code-visible]")
 
-    const bar = this.querySelector('#bar') as HTMLSpanElement
+    const bar = this.querySelector("#bar") as HTMLSpanElement
     const initialBarStyle = {
       width: tabs[0].getBoundingClientRect().width,
     }
@@ -18,20 +18,20 @@ export class AstroCode extends HTMLElement {
 
       const title = titles[i]
 
-      tab.addEventListener('click', () => {
+      tab.addEventListener("click", () => {
         tabs.forEach((t) => {
           if (t.textContent?.trim() === title) {
-            t.classList.add('active')
+            t.classList.add("active")
           } else {
-            t.classList.remove('active')
+            t.classList.remove("active")
           }
         })
 
         codeBlocks.forEach((codeBlock) => {
-          if (codeBlock.getAttribute('data-title') === title) {
-            codeBlock.setAttribute('data-code-visible', 'show')
+          if (codeBlock.getAttribute("data-title") === title) {
+            codeBlock.setAttribute("data-code-visible", "show")
           } else {
-            codeBlock.setAttribute('data-code-visible', 'hidden')
+            codeBlock.setAttribute("data-code-visible", "hidden")
           }
         })
 
@@ -46,4 +46,4 @@ export class AstroCode extends HTMLElement {
   }
 }
 
-customElements.define('astro-code', AstroCode)
+customElements.define("astro-code", AstroCode)

@@ -1,16 +1,16 @@
 /** @jsxImportSource react */
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 
 const draw = {
-  hidden: { opacity: 0, pathLength: 0, fill: 'rgba(248, 250, 252, 0)' },
+  hidden: { opacity: 0, pathLength: 0, fill: "rgba(248, 250, 252, 0)" },
   visible: {
     opacity: 1,
     pathLength: 1,
-    fill: 'rgba(248, 250, 252, 1)',
+    fill: "rgba(248, 250, 252, 1)",
     transition: {
       opacity: { duration: 0.01 },
-      pathLength: { delay: 0.2, type: 'spring', duration: 1.5, bounce: 0 },
+      pathLength: { delay: 0.2, type: "spring", duration: 1.5, bounce: 0 },
       fill: { duration: 0.4, delay: 1 },
     },
   },

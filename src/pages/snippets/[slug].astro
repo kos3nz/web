@@ -1,18 +1,18 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { getCollection } from 'astro:content'
-import Layout from 'layouts/base.astro'
-import Tag from 'ui/solidjs/tag.tsx'
-import { components } from 'ui/astro/mdx-components.astro'
+import type { CollectionEntry } from "astro:content"
+import { getCollection } from "astro:content"
+import Layout from "@/layouts/base.astro"
+import Tag from "@/ui/solid/tag.tsx"
+import { components } from "@/ui/astro/mdx-components.astro"
 
-import 'styles/mdx.css'
+import "@/styles/mdx.css"
 
 interface Props {
-  entry: CollectionEntry<'snippets'>
+  entry: CollectionEntry<"snippets">
 }
 
 export async function getStaticPaths() {
-  const allSnippets = await getCollection('snippets', ({ data }) => {
+  const allSnippets = await getCollection("snippets", ({ data }) => {
     return data.draft !== true
   })
 
@@ -39,14 +39,14 @@ const { Content } = await entry.render()
         entry.data.tags.map((tag, i) => (
           <>
             {i !== 0 && <span class="font-bold text-slate-600">·</span>}
-            <Tag name={tag} />
+            <Tag active>{tag}</Tag>
           </>
         ))
       }
     </div>
 
     <article
-      class="!prose-invert prose-slate prose grid w-full max-w-none grid-cols-[1fr,minmax(0,768px),1fr] [&>*]:col-start-2"
+      class="prose !prose-invert prose-slate grid w-full max-w-none grid-cols-[1fr,minmax(0,768px),1fr] [&>*]:col-start-2"
     >
       <Content components={components} />
     </article>

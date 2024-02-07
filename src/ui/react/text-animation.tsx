@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import cx from 'clsx'
-import { stagger, useAnimate } from 'framer-motion'
-import { useEffect } from 'react'
+import cx from "clsx"
+import { stagger, useAnimate } from "framer-motion"
+import { useEffect } from "react"
 
 export default function TextAnimation() {
   const [scope, animate] = useAnimate()
@@ -11,28 +11,28 @@ export default function TextAnimation() {
     async function sequence() {
       await animate([
         [
-          '.box',
+          ".box",
           { scaleX: [0, 1] },
-          { duration: 0.5, type: 'spring', bounce: 0.1, delay: 0.5 },
+          { duration: 0.5, type: "spring", bounce: 0.1, delay: 0.5 },
         ],
         [
-          '.text',
+          ".text",
           { y: [100, 0] },
           {
             delay: stagger(0.05),
             duration: 0.4,
-            type: 'spring',
+            type: "spring",
             bounce: 0.1,
             at: 0.8,
           },
         ],
         [
-          '.box',
+          ".box",
           { scaleY: [1, 0.01] },
-          { duration: 0.4, type: 'spring', bounce: 0.1, delay: 0.2 },
+          { duration: 0.4, type: "spring", bounce: 0.1, delay: 0.2 },
         ],
         [
-          '.text',
+          ".text",
           { opacity: [1, 0] },
           {
             duration: 0.001,
@@ -47,7 +47,7 @@ export default function TextAnimation() {
     <div ref={scope} className="relative flex justify-center overflow-hidden">
       <div
         className={cx(
-          'box flex w-fit scale-x-0 gap-x-4 bg-slate-200 p-2 text-5xl font-bold text-slate-800',
+          "box flex w-fit scale-x-0 gap-x-4 bg-slate-200 p-2 text-5xl font-bold text-slate-800",
         )}
       >
         <div className="flex">

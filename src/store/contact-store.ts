@@ -1,21 +1,21 @@
-import { atom, map } from 'nanostores'
-import type { ContactSchema } from 'types/validation.types.ts'
+import { atom, map } from "nanostores"
+import type { ContactSchema } from "@/types/validation.types.ts"
 
 export const contactInfo = map<ContactSchema>({
-  name: '',
-  companyName: '',
-  email: '',
-  phoneNumber: '',
-  message: '',
+  name: "",
+  companyName: "",
+  email: "",
+  phoneNumber: "",
+  message: "",
 })
 
 export const emptyInfo = () => {
   contactInfo.set({
-    name: '',
-    companyName: '',
-    email: '',
-    phoneNumber: '',
-    message: '',
+    name: "",
+    companyName: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
   })
 }
 

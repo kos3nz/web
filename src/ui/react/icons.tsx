@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
-import { motion } from 'framer-motion'
-import type { ComponentProps } from 'react'
-import { cn } from 'utils/helpers'
+import { motion } from "framer-motion"
+import type { ComponentProps } from "react"
+import { cn } from "@/utils/helpers"
 
-export function AboutIcon({ className, ...rest }: ComponentProps<'svg'>) {
+export function AboutIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ export function AboutIcon({ className, ...rest }: ComponentProps<'svg'>) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={cn('h-4 w-4', className)}
+      className={cn("size-4", className)}
       {...rest}
     >
       <path
@@ -23,7 +23,7 @@ export function AboutIcon({ className, ...rest }: ComponentProps<'svg'>) {
   )
 }
 
-export function BlogIcon({ className, ...rest }: ComponentProps<'svg'>) {
+export function BlogIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ export function BlogIcon({ className, ...rest }: ComponentProps<'svg'>) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={cn('h-4 w-4', className)}
+      className={cn("size-4", className)}
       {...rest}
     >
       <path
@@ -43,22 +43,22 @@ export function BlogIcon({ className, ...rest }: ComponentProps<'svg'>) {
   )
 }
 
-export function CheckIcon({ className, ...rest }: ComponentProps<'svg'>) {
+export function CheckIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
       strokeWidth={3}
-      className={cn('h-4 w-4', className)}
+      className={cn("size-4", className)}
       {...rest}
     >
       <motion.path
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
         transition={{
-          type: 'tween',
-          ease: 'easeOut',
+          type: "tween",
+          ease: "easeOut",
           duration: 0.3,
         }}
         strokeLinecap="round"
@@ -69,33 +69,26 @@ export function CheckIcon({ className, ...rest }: ComponentProps<'svg'>) {
   )
 }
 
-export function RightChevronIcon({
-  className,
-  ...rest
-}: ComponentProps<'svg'>) {
+export function MailIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={2}
+      fill="none"
       stroke="currentColor"
-      className={cn('h-4 w-4', className)}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={cn("size-4", className)}
       {...rest}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-      />
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   )
 }
 
-export function PaperAirplaneIcon({
-  className,
-  ...rest
-}: ComponentProps<'svg'>) {
+export function RightChevronIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +96,23 @@ export function PaperAirplaneIcon({
       viewBox="0 0 24 24"
       strokeWidth={2}
       stroke="currentColor"
-      className={cn('h-4 w-4', className)}
+      className={cn("size-4", className)}
+      {...rest}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+    </svg>
+  )
+}
+
+export function PaperAirplaneIcon({ className, ...rest }: ComponentProps<"svg">) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+      className={cn("size-4", className)}
       {...rest}
     >
       <path
@@ -115,7 +124,7 @@ export function PaperAirplaneIcon({
   )
 }
 
-export function SnippetsIcon({ className, ...rest }: ComponentProps<'svg'>) {
+export function SnippetsIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +132,7 @@ export function SnippetsIcon({ className, ...rest }: ComponentProps<'svg'>) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={cn('h-4 w-4', className)}
+      className={cn("size-4", className)}
       {...rest}
     >
       <path
@@ -135,13 +144,13 @@ export function SnippetsIcon({ className, ...rest }: ComponentProps<'svg'>) {
   )
 }
 
-export function SpinnerIcon({ className, ...rest }: ComponentProps<'svg'>) {
+export function SpinnerIcon({ className, ...rest }: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className={cn('h-5 w-5 animate-spin text-slate-300', className)}
+      className={cn("size-5 animate-spin text-slate-300", className)}
       {...rest}
     >
       <circle

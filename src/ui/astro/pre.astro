@@ -1,14 +1,14 @@
 ---
-import { parse } from 'node-html-parser'
-import CopyToClipboard from 'ui/astro/copy-to-clipboard.astro'
+import { parse } from "node-html-parser"
+import CopyToClipboard from "@/ui/astro/copy-to-clipboard.astro"
 
 // Get slot component as html string
-const rawHtml = await Astro.slots.render('default')
+const rawHtml = await Astro.slots.render("default")
 
 // Parse back to html element
 const html = parse(rawHtml)
 
-const code = html.querySelector('code')?.textContent.trim()
+const code = html.querySelector("code")?.textContent.trim()
 
 const props = Astro.props
 ---
