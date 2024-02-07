@@ -12,10 +12,10 @@ import {
   UseFormRegister,
 } from "react-hook-form"
 
+import { RightChevronIcon } from "@/components/react/icons"
 import { contactInfo, increaseStep, step } from "@/store/contact-store.ts"
 import type { ComponentPropsWithAs } from "@/types/helpers.ts"
 import type { ContactSchema } from "@/types/validation.types.ts"
-import { RightChevronIcon } from "@/ui/react/icons.tsx"
 import { contactSchema } from "@/utils/form-validation.ts"
 
 export default function Form() {

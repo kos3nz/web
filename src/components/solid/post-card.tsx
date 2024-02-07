@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 
+import DateTime from "@/components/solid/date-time"
 import type { Post } from "@/types/global.types.ts"
-import DateTime from "@/ui/solid/date-time.tsx"
 
 export default function PostCard({ post }: { post: Post }) {
   return (

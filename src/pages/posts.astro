@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content"
 
+import Filter from "@/components/solid/filter.tsx"
+import PostsList from "@/components/solid/posts-list"
 import Layout from "@/layouts/base.astro"
-import Filter from "@/ui/solid/filter.tsx"
-import PostsList from "@/ui/solid/posts-list"
 import { stripMarkdown } from "@/utils/markdown"
 
 const allPosts = (

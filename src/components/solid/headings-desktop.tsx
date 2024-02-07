@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 
+import TableOfContents from "@/components/solid/table-of-contents"
 import { createActiveHeading } from "@/hooks/solid/create-active-heading"
 import type { Heading } from "@/types/global.types.ts"
-import TableOfContents from "@/ui/solid/table-of-contents.tsx"
 
 export default function HeadingsDesktop(props: { headings: Heading[] }) {
   // eslint-disable-next-line solid/reactivity

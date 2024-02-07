@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 
-import MotionLogo from "@/ui/solid/motion-logo"
+import MotionLogo from "@/components/solid/motion-logo"
 
 import { Icons } from "./icons"
 

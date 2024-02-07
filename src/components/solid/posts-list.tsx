@@ -2,9 +2,9 @@
 
 import { For } from "solid-js"
 
+import PostCard from "@/components/solid/post-card"
 import { filterValue } from "@/store/filter-store.ts"
 import type { Post } from "@/types/global.types.ts"
-import PostCard from "@/ui/solid/post-card.tsx"
 
 export default function PostsList(props: { posts: Post[] }) {
   const filtered = () => filterValue(props.posts)

@@ -3,8 +3,8 @@
 import cx from "clsx"
 import { createSignal, For } from "solid-js"
 
+import { SearchIcon } from "@/components/solid/icons"
 import { searchQuery, selectedTags } from "@/store/filter-store.ts"
-import { SearchIcon } from "@/ui/solid/icons.tsx"
 
 import Tag from "./tag"
 

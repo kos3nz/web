@@ -4,10 +4,10 @@ import { Motion, Presence } from "@motionone/solid"
 import cx from "clsx"
 import { createSignal, onMount, Show } from "solid-js"
 
+import TableOfContents from "@/components/solid/table-of-contents.tsx"
 import { createActiveHeading } from "@/hooks/solid/create-active-heading"
 import { createOutsideClick } from "@/hooks/solid/create-outside-click"
 import type { Heading } from "@/types/global.types.ts"
-import TableOfContents from "@/ui/solid/table-of-contents.tsx"
 
 import { ChevronIcon, ListIcon } from "./icons.tsx"
 

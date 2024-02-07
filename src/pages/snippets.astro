@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content"
 
+import Filter from "@/components/solid/filter.tsx"
+import SnippetsList from "@/components/solid/snippets-list"
 import Layout from "@/layouts/base.astro"
-import Filter from "@/ui/solid/filter.tsx"
-import SnippetsList from "@/ui/solid/snippets-list"
 
 const allSnippets = (
   await getCollection("snippets", ({ data }) => {
