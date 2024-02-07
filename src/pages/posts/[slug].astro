@@ -1,12 +1,13 @@
 ---
-import type { CollectionEntry } from "astro:content"
-import { getCollection } from "astro:content"
+import { getCollection, type CollectionEntry } from "astro:content"
+
 import Layout from "@/layouts/base.astro"
+import { components } from "@/ui/astro/mdx-components.astro"
+import DateTime from "@/ui/solid/date-time.tsx"
 import HeadingsDesktop from "@/ui/solid/headings-desktop.tsx"
 import HeadingsMobile from "@/ui/solid/headings-mobile.tsx"
 import Tag from "@/ui/solid/tag.tsx"
-import DateTime from "@/ui/solid/date-time.tsx"
-import { components } from "@/ui/astro/mdx-components.astro"
+
 // import { createCloudinaryImageSrc } from '@/utils/image'
 
 import "@/styles/mdx.css"

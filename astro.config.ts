@@ -1,15 +1,16 @@
-import { defineConfig } from "astro/config"
-import tailwind from "@astrojs/tailwind"
+import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import solid from "@astrojs/solid-js"
-import mdx from "@astrojs/mdx"
+import tailwind from "@astrojs/tailwind"
 import vercel from "@astrojs/vercel/static"
-import rehypeSlug from "rehype-slug"
+import { defineConfig } from "astro/config"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypePrettyCode, {
-  type Theme as RehypePrettyCodeTheme,
   type Options as RehypePrettyCodeOptions,
+  type Theme as RehypePrettyCodeTheme,
 } from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
+
 import moonLightII from "./theme/moonlight-ii.json"
 
 // https://astro.build/config

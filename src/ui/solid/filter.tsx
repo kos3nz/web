@@ -1,10 +1,11 @@
 /** @jsxImportSource solid-js */
 
 import cx from "clsx"
-import { For, createSignal } from "solid-js"
+import { createSignal, For } from "solid-js"
 
 import { searchQuery, selectedTags } from "@/store/filter-store.ts"
 import { SearchIcon } from "@/ui/solid/icons.tsx"
+
 import Tag from "./tag"
 
 export default function Filter(props: { tags: string[] }) {

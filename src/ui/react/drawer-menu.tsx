@@ -2,10 +2,11 @@
 
 import { useStore } from "@nanostores/react"
 import cx from "clsx"
-import { PanInfo, motion } from "framer-motion"
+import { motion, PanInfo } from "framer-motion"
 import { useRef, useState } from "react"
-import { useOutsideClick } from "@/hooks/react/use-outside-click"
+
 import { navItems } from "@/config/navigation-items"
+import { useOutsideClick } from "@/hooks/react/use-outside-click"
 import { closeDrawer, isDrawerOpen } from "@/store/drawer-store.ts"
 
 const initialTransitionDuration = 0.3

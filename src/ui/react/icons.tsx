@@ -1,6 +1,7 @@
 /** @jsxImportSource react */
 import { motion } from "framer-motion"
 import type { ComponentProps } from "react"
+
 import { cn } from "@/utils/helpers"
 
 export function AboutIcon({ className, ...rest }: ComponentProps<"svg">) {

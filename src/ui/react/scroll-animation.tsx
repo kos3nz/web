@@ -2,9 +2,10 @@
 
 import cx from "clsx"
 import { useEffect, useRef } from "react"
-import { useIntersectionObserver } from "@/hooks/react/use-intersection-observer"
 // zustand-store.ts
 import { create } from "zustand"
+
+import { useIntersectionObserver } from "@/hooks/react/use-intersection-observer"
 
 const features = [
   {

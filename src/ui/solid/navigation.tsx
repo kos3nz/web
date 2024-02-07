@@ -1,9 +1,10 @@
 /** @jsxImportSource solid-js */
 
 import cx from "clsx"
-import { For, Show, onMount } from "solid-js"
-import { createNavigationMarker } from "@/hooks/solid/create-navigation-marker"
+import { For, onMount, Show } from "solid-js"
+
 import { navItems } from "@/config/navigation-items"
+import { createNavigationMarker } from "@/hooks/solid/create-navigation-marker"
 
 export default function Navigation(props: { pathname: string }) {
   const currentPath = () => {

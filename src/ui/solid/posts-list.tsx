@@ -1,6 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import { For } from "solid-js"
+
 import { filterValue } from "@/store/filter-store.ts"
 import type { Post } from "@/types/global.types.ts"
 import PostCard from "@/ui/solid/post-card.tsx"

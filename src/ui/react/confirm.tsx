@@ -4,8 +4,10 @@ import { useStore } from "@nanostores/react"
 import axios from "axios"
 import cx from "clsx"
 import { FormEventHandler, useEffect, useState } from "react"
+
 import { contactInfo, decreaseStep, increaseStep, step } from "@/store/contact-store"
 import type { ContactSchema } from "@/types/validation.types.ts"
+
 import { PaperAirplaneIcon, SpinnerIcon } from "./icons.tsx"
 
 type Status = {

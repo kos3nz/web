@@ -15,6 +15,7 @@ React は Batching を活用することで、複数の State を更新すると
 
 ```tsx
 import { useEffect, useState } from "react"
+
 import styles from "../styles/App.module.css"
 
 const App = () => {
@@ -136,6 +137,7 @@ const App = () => {
 
 ```tsx {1, 6-10}
 import { unstable_batchedUpdates } from "react-dom"
+
 // ...
 const handleClick = async () => {
   const data = await (await fetch("/api/user-example")).json()
@@ -193,6 +195,7 @@ pnpm install next@latest react@latest react-dom@latest
 
 ```tsx
 import { useEffect, useState } from "react"
+
 import styles from "../styles/App.module.css"
 
 const App = () => {
@@ -261,6 +264,7 @@ element.addEventListner("click", () => {
 
 ```tsx {8-14}
 import { flushSync } from "react-dom"
+
 // ...
 const App = () => {
   // ...

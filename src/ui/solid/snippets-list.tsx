@@ -1,6 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import { For } from "solid-js"
+
 import { filterValue } from "@/store/filter-store.ts"
 import type { Snippet } from "@/types/global.types.ts"
 import SnippetCard from "@/ui/solid/snippet-card.tsx"

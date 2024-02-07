@@ -1,8 +1,9 @@
 /** @jsxImportSource solid-js */
 
 import cx from "clsx"
-import { createScrollDirection } from "@/hooks/solid/create-scroll-direction"
 import type { JSXElement } from "solid-js"
+
+import { createScrollDirection } from "@/hooks/solid/create-scroll-direction"
 
 export default function Navbar(props: { children: JSXElement }) {
   const bounds = 200

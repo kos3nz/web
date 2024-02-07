@@ -1,5 +1,6 @@
 /** @jsxImportSource react */
 
+import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
 import cx from "clsx"
@@ -7,15 +8,15 @@ import {
   FieldErrors,
   RegisterOptions,
   SubmitHandler,
-  UseFormRegister,
   useForm,
+  UseFormRegister,
 } from "react-hook-form"
+
 import { contactInfo, increaseStep, step } from "@/store/contact-store.ts"
 import type { ComponentPropsWithAs } from "@/types/helpers.ts"
 import type { ContactSchema } from "@/types/validation.types.ts"
-import { contactSchema } from "@/utils/form-validation.ts"
 import { RightChevronIcon } from "@/ui/react/icons.tsx"
-import { DevTool } from "@hookform/devtools"
+import { contactSchema } from "@/utils/form-validation.ts"
 
 export default function Form() {
   const $step = useStore(step)

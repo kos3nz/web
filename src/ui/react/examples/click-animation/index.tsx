@@ -3,10 +3,12 @@
 import cx from "clsx"
 import { stagger, useAnimate } from "framer-motion"
 import { useCallback, useState } from "react"
+
+import { sleep } from "@/utils/helpers"
+
 import FullScreen from "./full-screen"
 import MiniCards from "./mini-cards"
 import ScheduleLinks from "./schedule-links"
-import { sleep } from "@/utils/helpers"
 
 export default function ClickAnimation() {
   const [show, setShow] = useState(false)

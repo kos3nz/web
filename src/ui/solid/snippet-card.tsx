@@ -1,6 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import type { Snippet } from "@/types/global.types.ts"
+
 import { Icons } from "./icons.tsx"
 
 export default function SnippetCard({

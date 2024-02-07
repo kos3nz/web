@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { z, defineCollection } from "astro:content"
+import { defineCollection, z } from "astro:content"
 
 const postsCollection = defineCollection({
   schema: z.object({

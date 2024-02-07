@@ -1,6 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import type { ComponentProps } from "solid-js"
+
 import { cn } from "@/utils/helpers"
 
 export function AboutIcon({ class: className, ...rest }: ComponentProps<"svg">) {

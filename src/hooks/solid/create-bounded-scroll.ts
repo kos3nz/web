@@ -1,5 +1,6 @@
 import { transform } from "framer-motion/dom"
 import { createEffect, createSignal, onCleanup } from "solid-js"
+
 import { getOffsetTop } from "@/utils/client"
 import { clamp } from "@/utils/helpers"
 

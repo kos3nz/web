@@ -2,12 +2,13 @@
 
 import { Motion, Presence } from "@motionone/solid"
 import cx from "clsx"
-import { Show, createSignal, onMount } from "solid-js"
+import { createSignal, onMount, Show } from "solid-js"
 
 import { createActiveHeading } from "@/hooks/solid/create-active-heading"
 import { createOutsideClick } from "@/hooks/solid/create-outside-click"
 import type { Heading } from "@/types/global.types.ts"
 import TableOfContents from "@/ui/solid/table-of-contents.tsx"
+
 import { ChevronIcon, ListIcon } from "./icons.tsx"
 
 export default function HeadingsMobile(props: { headings: Heading[] }) {

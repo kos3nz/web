@@ -1,4 +1,5 @@
 import { atom, map } from "nanostores"
+
 import type { ContactSchema } from "@/types/validation.types.ts"
 
 export const contactInfo = map<ContactSchema>({

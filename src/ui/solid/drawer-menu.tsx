@@ -3,8 +3,9 @@
 import { useStore } from "@nanostores/solid"
 import cx from "clsx"
 import { For, onMount } from "solid-js"
-import { createOutsideClick } from "@/hooks/solid/create-outside-click"
 import { navItems } from "src/config/navigation-items"
+
+import { createOutsideClick } from "@/hooks/solid/create-outside-click"
 import { closeDrawer, isDrawerOpen } from "@/store/drawer-store.ts"
 
 export default function DrawerMenu(props: { pathname: string }) {
