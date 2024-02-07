@@ -1,12 +1,12 @@
 /** @jsxImportSource solid-js */
 
 import { useStore } from "@nanostores/solid"
-import cx from "clsx"
 import { For, onMount } from "solid-js"
 import { navItems } from "src/config/navigation-items"
 
 import { createOutsideClick } from "@/hooks/solid/create-outside-click"
 import { closeDrawer, isDrawerOpen } from "@/store/drawer-store.ts"
+import { cn } from "@/utils/helpers"
 
 export default function DrawerMenu(props: { pathname: string }) {
   const currentPath = () => {
@@ -25,14 +25,14 @@ export default function DrawerMenu(props: { pathname: string }) {
   return (
     <>
       <div
-        class={cx(
+        class={cn(
           "fixed inset-0 z-[99] bg-slate-900/50",
           $isDrawerOpen() ? "visible" : "invisible",
         )}
       />
       <div
         ref={drawerMenuRef}
-        class={cx(
+        class={cn(
           "fixed bottom-0 left-0 z-[100] w-full overflow-hidden transition-transform duration-300 ease-in-out",
           $isDrawerOpen() ? "translate-y-0" : "translate-y-[100%]",
         )}
@@ -45,19 +45,16 @@ export default function DrawerMenu(props: { pathname: string }) {
               <li>
                 <a
                   href={item.path}
-                  class={cx("group flex w-full justify-start px-3 py-6")}
+                  class={cn("group flex w-full justify-start px-3 py-6")}
                 >
                   <div
-                    class={cx(
+                    class={cn(
                       "flex items-center gap-x-1.5 text-sm font-semibold transition-colors duration-300",
                       currentPath() === item.path
                         ? "border-b-2 border-cyan-400"
                         : "text-slate-400 group-hover:text-slate-300",
                     )}
                   >
-                    <span class="shrink-0">
-                      <item.Icon />
-                    </span>
                     <span>{item.label}</span>
                   </div>
                 </a>

@@ -1,10 +1,10 @@
 /** @jsxImportSource solid-js */
 
-import cx from "clsx"
 import { For, onMount, Show } from "solid-js"
 
 import { navItems } from "@/config/navigation-items"
 import { createNavigationMarker } from "@/hooks/solid/create-navigation-marker"
+import { cn } from "@/utils/helpers"
 
 export default function Navigation(props: { pathname: string }) {
   const currentPath = () => {
@@ -40,8 +40,8 @@ export default function Navigation(props: { pathname: string }) {
             >
               <a
                 href={item.path}
-                class={cx([
-                  "relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md px-1.5 py-1.5 text-sm",
+                class={cn([
+                  "relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md p-1.5 text-sm",
                   isActive
                     ? "text-slate-200"
                     : "text-slate-400 transition-colors duration-300 hover:text-slate-200",
@@ -52,7 +52,7 @@ export default function Navigation(props: { pathname: string }) {
               </a>
               <Show when={isActive}>
                 <div
-                  class={cx(
+                  class={cn(
                     "@/layout",
                     "pointer-events-none absolute bottom-0 left-0 hidden h-[1.5px] w-full origin-left rounded-sm bg-cyan-500 transition-transform duration-300 lg:block",
                   )}

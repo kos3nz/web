@@ -1,8 +1,9 @@
 /** @jsxImportSource react */
 
-import cx from "clsx"
 import { stagger, useAnimate } from "framer-motion"
 import { useEffect } from "react"
+
+import { cn } from "@/utils/helpers"
 
 export default function TextAnimation() {
   const [scope, animate] = useAnimate()
@@ -46,7 +47,7 @@ export default function TextAnimation() {
   return (
     <div ref={scope} className="relative flex justify-center overflow-hidden">
       <div
-        className={cx(
+        className={cn(
           "box flex w-fit scale-x-0 gap-x-4 bg-slate-200 p-2 text-5xl font-bold text-slate-800",
         )}
       >

@@ -1,11 +1,11 @@
 /** @jsxImportSource react */
 
-import cx from "clsx"
 import { useEffect, useRef } from "react"
 // zustand-store.ts
 import { create } from "zustand"
 
 import { useIntersectionObserver } from "@/hooks/react/use-intersection-observer"
+import { cn } from "@/utils/helpers"
 
 const features = [
   {
@@ -109,7 +109,7 @@ function FeatureTitle({ id, children }: FeatureTitleProps) {
   return (
     <p
       ref={ref}
-      className={cx(
+      className={cn(
         "py-16 text-4xl transition-colors duration-300",
         isInView ? "text-gray-200" : "text-gray-500",
       )}
@@ -129,7 +129,7 @@ function FeatureCard({ id, gradient, children }: FeatureCardProps) {
 
   return (
     <div
-      className={cx(
+      className={cn(
         "absolute inset-0 bg-gradient-to-br transition-opacity duration-300",
         gradient,
         inViewFeature === id ? "opacity-100" : "opacity-0",

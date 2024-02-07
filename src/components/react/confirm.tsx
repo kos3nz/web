@@ -2,11 +2,11 @@
 
 import { useStore } from "@nanostores/react"
 import axios from "axios"
-import cx from "clsx"
 import { FormEventHandler, useEffect, useState } from "react"
 
 import { contactInfo, decreaseStep, increaseStep, step } from "@/store/contact-store"
 import type { ContactSchema } from "@/types/validation.types.ts"
+import { cn } from "@/utils/helpers.ts"
 
 import { PaperAirplaneIcon, SpinnerIcon } from "./icons.tsx"
 
@@ -97,7 +97,7 @@ export default function Confirm() {
         <form onSubmit={handleOnSubmit}>
           <button
             type="submit"
-            className={cx(
+            className={cn(
               "btn gap-x-2 border-0 bg-cyan-400 text-slate-900 hover:bg-cyan-300 focus-visible:outline-cyan-500/75 disabled:bg-slate-600/50",
               status.submitting && "w-[96px]",
             )}
@@ -135,7 +135,7 @@ function ListItem({ label, name }: { label: string; name: keyof ContactSchema })
     <div className="w-full space-y-2">
       <span className="text-xs font-semibold text-slate-300">{label}</span>
       <p
-        className={cx(
+        className={cn(
           "rounded-lg bg-slate-700/50 px-4",
           name === "message" ? "py-3" : "py-2.5",
         )}

@@ -1,10 +1,10 @@
 /** @jsxImportSource solid-js */
 
-import cx from "clsx"
 import { createSignal, For } from "solid-js"
 
 import { SearchIcon } from "@/components/solid/icons"
 import { searchQuery, selectedTags } from "@/store/filter-store.ts"
+import { cn } from "@/utils/helpers"
 
 import Tag from "./tag"
 
@@ -57,8 +57,8 @@ function TagButton(props: { name: string }) {
   return (
     <button
       type="button"
-      class={cx(
-        "flex justify-center items-center rounded-lg outline-none outline-offset-2 focus-visible:outline-cyan-500/75",
+      class={cn(
+        "flex items-center justify-center rounded-lg outline-none outline-offset-2 focus-visible:outline-cyan-500/75",
       )}
       onClick={toggleFilter}
     >

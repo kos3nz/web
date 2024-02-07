@@ -1,13 +1,13 @@
 /** @jsxImportSource solid-js */
 
 import { Motion, Presence } from "@motionone/solid"
-import cx from "clsx"
 import { createSignal, onMount, Show } from "solid-js"
 
 import TableOfContents from "@/components/solid/table-of-contents.tsx"
 import { createActiveHeading } from "@/hooks/solid/create-active-heading"
 import { createOutsideClick } from "@/hooks/solid/create-outside-click"
 import type { Heading } from "@/types/global.types.ts"
+import { cn } from "@/utils/helpers.ts"
 
 import { ChevronIcon, ListIcon } from "./icons.tsx"
 
@@ -31,17 +31,17 @@ export default function HeadingsMobile(props: { headings: Heading[] }) {
         <button
           ref={buttonRef}
           type="button"
-          class={cx(
+          class={cn(
             "flex min-w-0 items-center gap-x-1.5 rounded-lg border border-slate-400/20 bg-slate-800 px-4 py-2",
           )}
           onClick={() => setOpen((prev) => !prev)}
         >
-          <span class={cx("shrink-0 text-slate-400")}>
+          <span class={cn("shrink-0 text-slate-400")}>
             <ListIcon />
           </span>
 
           <Show when={activeHeading()}>
-            <span class={cx("shrink-0 text-slate-400")}>
+            <span class={cn("shrink-0 text-slate-400")}>
               <ChevronIcon />
             </span>
             <span class="min-w-0">

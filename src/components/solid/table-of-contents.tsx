@@ -1,9 +1,9 @@
 /** @jsxImportSource solid-js */
 
-import cx from "clsx"
 import { For } from "solid-js"
 
 import type { Heading } from "@/types/global.types.ts"
+import { cn } from "@/utils/helpers"
 
 export default function TableOfContents(props: {
   headings: Heading[]
@@ -18,7 +18,7 @@ export default function TableOfContents(props: {
             <li class="leading-2 relative mt-3 first-of-type:mt-0">
               <a
                 href={heading.hash}
-                class={cx(
+                class={cn(
                   "block leading-5 transition-colors duration-300",
                   (heading.depth === 1 || heading.depth === 2) && "pl-4",
                   heading.depth >= 3 && "pl-8",

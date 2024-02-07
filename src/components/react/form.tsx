@@ -3,7 +3,6 @@
 import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
-import cx from "clsx"
 import {
   FieldErrors,
   RegisterOptions,
@@ -17,6 +16,7 @@ import { contactInfo, increaseStep, step } from "@/store/contact-store.ts"
 import type { ComponentPropsWithAs } from "@/types/helpers.ts"
 import type { ContactSchema } from "@/types/validation.types.ts"
 import { contactSchema } from "@/utils/form-validation.ts"
+import { cn } from "@/utils/helpers"
 
 export default function Form() {
   const $step = useStore(step)
@@ -146,7 +146,7 @@ function FormInput<T extends "input" | "textarea" = "input">({
       <Component
         {...rest}
         id={name}
-        className={cx(
+        className={cn(
           "mt-2 w-full bg-slate-700/50 text-[15px] focus-visible:outline-cyan-500/75",
           Component === "input" ? "input h-[2.75rem]" : "textarea py-3 leading-6",
         )}

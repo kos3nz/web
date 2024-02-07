@@ -1,13 +1,13 @@
 /** @jsxImportSource react */
 
 import { useStore } from "@nanostores/react"
-import cx from "clsx"
 import { motion, PanInfo } from "framer-motion"
 import { useRef, useState } from "react"
 
 import { navItems } from "@/config/navigation-items"
 import { useOutsideClick } from "@/hooks/react/use-outside-click"
 import { closeDrawer, isDrawerOpen } from "@/store/drawer-store.ts"
+import { cn } from "@/utils/helpers"
 
 const initialTransitionDuration = 0.3
 const maxVelocity = 200
@@ -50,7 +50,7 @@ export default function DrawerMenu({ pathname }: { pathname: string }) {
   return (
     <>
       <motion.div
-        className={cx(
+        className={cn(
           "fixed inset-0 z-[99] bg-slate-900/50 transition-all duration-500",
           $isDrawerOpen ? "visible opacity-100" : "invisible opacity-0",
         )}
@@ -60,7 +60,7 @@ export default function DrawerMenu({ pathname }: { pathname: string }) {
       />
       <motion.div
         ref={drawerMenuRef}
-        className={cx("fixed bottom-0 left-0 z-[100] w-full overflow-hidden ease-in-out")}
+        className={cn("fixed bottom-0 left-0 z-[100] w-full overflow-hidden ease-in-out")}
         style={{
           transform: `translateY(calc(${$isDrawerOpen ? "0" : "100"}% + ${y}px))`,
           transition: `transform ${duration.current}s`,
@@ -76,10 +76,10 @@ export default function DrawerMenu({ pathname }: { pathname: string }) {
             <li key={item.label}>
               <a
                 href={item.path}
-                className={cx("group flex w-full justify-start px-3 py-6")}
+                className={cn("group flex w-full justify-start px-3 py-6")}
               >
                 <div
-                  className={cx(
+                  className={cn(
                     "flex items-center gap-x-1.5 text-sm font-semibold transition-colors duration-300",
                     currentPath === item.path
                       ? "border-b-2 border-cyan-400"
