@@ -14,7 +14,7 @@ export default function ScheduleLinks({ show }: { show: boolean }) {
       }}
       animate={{
         width: show ? "150%" : "70%",
-        height: show ? "86%" : "60%",
+        height: show ? "72%" : "60%",
         top: show ? "74%" : "50%",
       }}
       transition={{

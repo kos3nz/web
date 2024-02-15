@@ -2,7 +2,7 @@ import { atom, map } from "nanostores"
 
 import type { ContactSchema } from "@/types/validation.types.ts"
 
-export const contactInfo = map<ContactSchema>({
+export const $contactInfo = map<ContactSchema>({
   name: "",
   companyName: "",
   email: "",
@@ -11,7 +11,7 @@ export const contactInfo = map<ContactSchema>({
 })
 
 export const emptyInfo = () => {
-  contactInfo.set({
+  $contactInfo.set({
     name: "",
     companyName: "",
     email: "",
@@ -20,12 +20,12 @@ export const emptyInfo = () => {
   })
 }
 
-export const step = atom(1)
+export const $step = atom(1)
 
 export const increaseStep = () => {
-  step.set(step.get() + 1)
+  $step.set($step.get() + 1)
 }
 
 export const decreaseStep = () => {
-  step.set(step.get() - 1)
+  $step.set($step.get() - 1)
 }

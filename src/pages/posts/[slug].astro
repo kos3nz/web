@@ -3,12 +3,11 @@ import { getCollection, type CollectionEntry } from "astro:content"
 
 import { components } from "@/components/astro/mdx-components.astro"
 import DateTime from "@/components/solid/date-time.tsx"
-import HeadingsDesktop from "@/components/solid/headings-desktop.tsx"
-import HeadingsMobile from "@/components/solid/headings-mobile.tsx"
 import Tag from "@/components/solid/tag.tsx"
+import TocDesktop from "@/components/solid/toc-desktop.tsx"
+import TocMobile from "@/components/solid/toc-mobile"
 import Layout from "@/layouts/base.astro"
-
-// import { createCloudinaryImageSrc } from '@/utils/image'
+import Main from "@/layouts/main.astro"
 
 import "@/styles/mdx.css"
 
@@ -53,40 +52,43 @@ const headings = (astroHeadings as AstroHeading[]).map((heading) => {
 ---
 
 <Layout title={entry.data.title}>
-  <HeadingsMobile headings={headings} client:visible />
-  <div class="grid grid-cols-1 md:grid-cols-3 md:gap-x-0 lg:grid-cols-10 lg:gap-x-4">
-    <div class="col-span-1 md:col-span-2 lg:col-span-7">
+  <TocMobile headings={headings} client:visible />
+  <Main>
+    <div class="mb-12 space-y-4">
       <h1
-        class="mb-6 text-2xl font-bold leading-[2.5rem] text-slate-200 md:text-3xl md:leading-[2.725rem]"
+        class="text-2xl font-bold leading-[2.5rem] text-heading md:text-3xl md:leading-[2.725rem]"
       >
         {entry.data.title}
       </h1>
 
-      <div class="mb-12 flex items-center gap-x-3 md:gap-x-6">
+      <div class="flex items-center gap-x-3 md:gap-x-6">
         <DateTime dateTime={entry.data.publishedDate} />
-        <span class="font-bold text-slate-600">|</span>
+        <span class="font-bold text-muted">|</span>
         <div class="flex gap-x-2">
           {
             entry.data.tags.map((tag, i) => (
               <>
-                {i !== 0 && <span class="font-bold text-slate-600">·</span>}
+                {i !== 0 && <span class="font-bold text-muted">·</span>}
                 <Tag active>{tag}</Tag>
               </>
             ))
           }
         </div>
       </div>
-
-      <article
-        class="prose !prose-invert prose-slate max-w-none prose-h2:text-xl prose-h3:text-lg md:prose-h2:text-2xl md:prose-h3:text-xl"
-      >
-        <Content components={components} />
-      </article>
     </div>
-    <aside
-      class="-mt-6 hidden md:col-span-1 md:col-start-3 md:block lg:col-span-3 lg:col-start-8"
+    <div
+      class="grid grid-cols-1 md:mt-0 md:grid-cols-3 md:gap-x-0 lg:grid-cols-10 lg:gap-x-6"
     >
-      <HeadingsDesktop headings={headings} client:visible />
-    </aside>
-  </div>
+      <div class="col-span-1 md:col-span-2 lg:col-span-7">
+        <article class="prose prose-invert max-w-none">
+          <Content components={components} />
+        </article>
+      </div>
+      <aside
+        class="-mt-4 hidden md:col-span-1 md:col-start-3 md:block lg:col-span-3 lg:col-start-8"
+      >
+        <TocDesktop headings={headings} client:visible />
+      </aside>
+    </div>
+  </Main>
 </Layout>

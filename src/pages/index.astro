@@ -1,8 +1,11 @@
 ---
 import Profile from "@/components/solid/profile.tsx"
 import Layout from "@/layouts/base.astro"
+import Main from "@/layouts/main.astro"
 ---
 
 <Layout>
-  <Profile client:load />
+  <Main>
+    <Profile client:load />
+  </Main>
 </Layout>

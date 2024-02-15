@@ -4,30 +4,63 @@
 
 @layer base {
   :root {
-    --accent: 124, 58, 237;
-    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+    color-scheme: dark;
+
+    --background: 210 27% 6%;
+    --foreground: 210 20% 77%;
+    --heading: 210 20% 88%;
+    --link: 210 20% 88%;
+    --active: 210 14% 88%;
+    --inactive: 210 14% 50%;
+    --card: 189 48% 8%;
+    --card-foreground: var(--foreground);
+    --popover: 189 48% 8%;
+    --popover-foreground: var(--foreground);
+    --primary: 239 84% 69%;
+    --primary-foreground: 239 84% 90%;
+    --secondary: 189 84% 40%;
+    --secondary-foreground: 189 84% 90%;
+    --muted: 210 14% 18%;
+    --muted-foreground: 210 14% 50%;
+    --accent: 239 84% 69%;
+    --accent-foreground: 239 84% 90%;
+    --gradient: linear-gradient(
+      to top right,
+      hsl(var(--gradient-from)),
+      hsl(var(--gradient-to))
+    );
+    --gradient-from: var(--primary);
+    --gradient-to: var(--secondary);
+    --destructive: 351 95% 71%;
+    --destructive-foreground: 349 59% 11%;
+    --border: var(--muted);
+    --input: var(--muted);
+    --ring: var(--primary);
+    --radius: 0.5rem;
+    --header-height: 4rem;
   }
 }
 
 @layer base {
+  * {
+    @apply border-border outline-none focus-visible:ring-1 focus-visible:ring-primary;
+  }
+
   html,
   body {
-    @apply h-full w-full bg-slate-900 font-sans text-slate-300;
+    @apply min-h-screen font-sans;
 
+    /*
     touch-action: var(--touch-action);
     -webkit-tap-highlight-color: transparent;
+    */
   }
 
-  /* Custom scrollbar */
-  *::-webkit-scrollbar {
-    /* @apply h-[4px] w-[4px]; */
-  }
+  body {
+    @apply bg-background text-foreground;
 
-  *::-webkit-scrollbar-track {
-    /* @apply bg-slate-900; */
-  }
-
-  *::-webkit-scrollbar-thumb {
-    /* @apply rounded-2xl bg-slate-400; */
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }

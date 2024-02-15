@@ -4,6 +4,7 @@ import { getCollection, type CollectionEntry } from "astro:content"
 import { components } from "@/components/astro/mdx-components.astro"
 import Tag from "@/components/solid/tag.tsx"
 import Layout from "@/layouts/base.astro"
+import Main from "@/layouts/main.astro"
 
 import "@/styles/mdx.css"
 
@@ -27,28 +28,23 @@ const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title}>
-  <div class="mx-auto flex flex-col items-center">
-    <h1
-      class="mb-6 break-words text-2xl font-bold leading-[2.5rem] text-slate-200 md:text-3xl md:leading-[2.725rem]"
-    >
-      {entry.data.title}
-    </h1>
+  <Main>
+    <div class="mx-auto flex flex-col items-center">
+      <h1
+        class="mb-6 break-words text-2xl font-bold leading-[2.5rem] text-heading md:text-3xl md:leading-[2.725rem]"
+      >
+        {entry.data.title}
+      </h1>
 
-    <div class="mb-12 flex gap-x-2">
-      {
-        entry.data.tags.map((tag, i) => (
-          <>
-            {i !== 0 && <span class="font-bold text-slate-600">·</span>}
-            <Tag active>{tag}</Tag>
-          </>
-        ))
-      }
+      <div class="mb-12 flex items-center gap-x-2">
+        {entry.data.tags.map((tag) => <Tag active>{tag}</Tag>)}
+      </div>
+
+      <article
+        class="prose prose-invert grid w-full max-w-none grid-cols-[1fr,minmax(0,768px),1fr] [&>*]:col-start-2"
+      >
+        <Content components={components} />
+      </article>
     </div>
-
-    <article
-      class="prose !prose-invert prose-slate grid w-full max-w-none grid-cols-[1fr,minmax(0,768px),1fr] [&>*]:col-start-2"
-    >
-      <Content components={components} />
-    </article>
-  </div>
+  </Main>
 </Layout>

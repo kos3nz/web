@@ -3,17 +3,17 @@
 import { useStore } from "@nanostores/react"
 import { motion } from "framer-motion"
 
-import { CheckIcon } from "@/components/react/icons"
-import { step } from "@/store/contact-store"
+import { Icons } from "@/components/react/icons"
+import { $step } from "@/stores/contact.store"
 
 export default function Steps() {
-  const $step = useStore(step)
+  const step = useStore($step)
 
   return (
     <div className="flex rounded p-4">
-      <Step step={1} currentStep={$step} />
-      <Step step={2} currentStep={$step} />
-      <Step step={3} currentStep={$step} lastIndex />
+      <Step step={1} currentStep={step} />
+      <Step step={2} currentStep={step} />
+      <Step step={3} currentStep={step} lastIndex />
     </div>
   )
 }
@@ -36,25 +36,25 @@ function Step({
         initial={false}
         variants={{
           inactive: {
-            backgroundColor: "#475569", // slate-600
+            backgroundColor: "#475569",
             transition: { duration: 0 },
           },
           active: {
-            backgroundColor: "#06b6d4", // cyan-500
+            backgroundColor: "#06b6d4",
             transition: {
               delay: 0.6,
               duration: 0.3,
             },
           },
           complete: {
-            backgroundColor: "#06b6d4", // cyan-500
+            backgroundColor: "#06b6d4",
           },
         }}
         className="relative z-10 flex size-4 items-center justify-center rounded-full font-semibold md:size-5"
       >
         <div className="flex items-center justify-center">
           {status === "complete" ? (
-            <CheckIcon className="size-3 text-slate-300 md:size-4" />
+            <Icons.animate.check className="size-3 text-slate-300 md:size-4" />
           ) : null}
         </div>
       </motion.div>

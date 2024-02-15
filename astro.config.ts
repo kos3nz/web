@@ -17,12 +17,18 @@ import moonLightII from "./theme/moonlight-ii.json"
 export default defineConfig({
   compressHTML: true,
   integrations: [
-    tailwind(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
     react({
-      include: ["**/react/*"],
+      include: ["**/react/**"],
     }),
     solid({
-      include: ["**/solid/*", "**/node_modules/@motionone/solid/**"],
+      include: [
+        "**/solid/**",
+        "**/node_modules/@motionone/solid/**",
+        "**/node_modules/@kobalte/core/**",
+      ],
     }),
     mdx(),
   ],

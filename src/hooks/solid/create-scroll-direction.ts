@@ -1,14 +1,21 @@
-import { createEffect, createSignal, onCleanup } from "solid-js"
+/* eslint-disable react-hooks/rules-of-hooks */
 
+import { useStore } from "@nanostores/solid"
+import { atom } from "nanostores"
+import { createSignal, onCleanup, onMount } from "solid-js"
+
+// import { $scrollDirection } from "@/stores/scroll.store"
 import { getOffsetTop } from "@/utils/client"
 import { throttle } from "@/utils/helpers"
 
+export const $scrollDirection = atom<"up" | "down">("up")
+
 export const createScrollDirection = (bounds = 100) => {
-  const [direction, setDirection] = createSignal<"up" | "down">("up")
+  const scrollDirection = useStore($scrollDirection)
   const [scrollY, setScrollY] = createSignal(0)
   const [scrollYBounded, setScrollYBounded] = createSignal(0)
 
-  const handleOnThrottledScroll = throttle(
+  const handleThrottledScroll = throttle(
     { interval: 100, trailing: true, leading: false },
     // eslint-disable-next-line solid/reactivity
     () => {
@@ -18,9 +25,9 @@ export const createScrollDirection = (bounds = 100) => {
 
       setScrollYBounded(scrollYBounded() + diff)
 
-      if (scrollYBounded() > bounds) setDirection("down")
+      if (scrollYBounded() > bounds) $scrollDirection.set("down")
       if (diff < 0) {
-        setDirection("up")
+        $scrollDirection.set("up")
         setScrollYBounded(0)
       }
 
@@ -28,17 +35,23 @@ export const createScrollDirection = (bounds = 100) => {
     },
   )
 
-  createEffect(() => {
+  const handleHashChange = () => {
+    console.log("changed")
+  }
+
+  onMount(() => {
     setScrollY(getOffsetTop())
 
-    window.addEventListener("scroll", handleOnThrottledScroll)
-    // console.log('The scroll event attached')
+    console.log(location.hash)
+
+    window.addEventListener("scroll", handleThrottledScroll)
+    window.addEventListener("hashchange", handleHashChange)
 
     onCleanup(() => {
-      window.removeEventListener("scroll", handleOnThrottledScroll)
-      // console.log('The scroll event removed')
+      window.removeEventListener("scroll", handleThrottledScroll)
+      window.removeEventListener("hashchange", handleHashChange)
     })
   })
 
-  return direction
+  return { scrollDirection, scrollY }
 }

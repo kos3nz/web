@@ -14,17 +14,17 @@ export default function SnippetCard({
   return (
     <a
       href={slug}
-      class="group relative w-full rounded-xl p-4 ring-1 ring-slate-400/20 duration-300 hover:ring-2 hover:ring-cyan-500/50 md:hover:-translate-y-1"
+      class="group relative w-full rounded-md p-4 ring-1 ring-muted duration-300 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 md:hover:-translate-y-0.5 md:focus-visible:-translate-y-0.5"
     >
       {/* Shadow */}
-      <div class="absolute inset-0 hidden rounded-xl opacity-0 shadow-[0_4px_20px_2px] shadow-cyan-700/30 transition-opacity duration-500 group-hover:opacity-100 md:block" />
+      <div class="absolute inset-0 hidden rounded-xl opacity-0 shadow-[0_4px_20px_2px] shadow-primary/30 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 md:block" />
 
       <div>
         {Icon && (
-          <Icon class="size-6 text-cyan-500 transition-colors duration-300 group-hover:text-cyan-500 md:text-slate-300" />
+          <Icon class="size-5 text-muted-foreground transition-colors duration-300" />
         )}
-        <h3 class="mb-2 mt-4 font-bold">{title}</h3>
-        <p class="text-xs text-slate-400">{description}</p>
+        <h3 class="mb-1 mt-3 font-bold text-link">{title}</h3>
+        <p class="text-xs text-muted-foreground">{description}</p>
       </div>
     </a>
   )

@@ -1,9 +1,5 @@
 import { onCleanup, onMount } from "solid-js"
 
-// TODO: create jsdoc
-/**
- *
- */
 export const createOutsideClick = <T extends HTMLElement>(
   elements: (T | string | undefined)[],
   cb: (event: MouseEvent) => void,

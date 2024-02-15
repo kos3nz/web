@@ -1,16 +1,19 @@
 /** @jsxImportSource solid-js */
 
-const formatter = new Intl.DateTimeFormat("ja-Jpan-JP", {
-  dateStyle: "short",
-})
+import dayjs from "dayjs"
+
+import { cn } from "@/utils/helpers"
 
 export default function DateTime(props: { dateTime: Date; class?: string }) {
   return (
     <time
       dateTime={props.dateTime.toISOString()}
-      class={"whitespace-nowrap text-sm tracking-wide text-slate-400"}
+      class={cn(
+        "whitespace-nowrap text-sm tracking-wide text-muted-foreground",
+        props.class,
+      )}
     >
-      {formatter.format(props.dateTime).split("/").join("-")}
+      {dayjs(props.dateTime).format("MMMM D, YYYY")}
     </time>
   )
 }

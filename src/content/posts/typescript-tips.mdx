@@ -52,7 +52,7 @@ const object = {
 ```
 
 object の `two` と `three` の値の Union 型を抽出するにはどうすれば良いでしょうか？
-そのような場合は[Index Signature](https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures) シンタックスを使うことで解決できます。
+そのような場合は [Index Signature](https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures) シンタックスを使うことで解決できます。
 
 ```typescript
 type TwoAndThree = (typeof object)["two" | "three"]
@@ -70,7 +70,7 @@ type ExceptOne = (typeof object)[Exclude<keyof typeof object, "one">]
 
 ## 3. Template Literal Types
 
-[Template Literal Types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) は Javascript の[template literal strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) の
+[Template Literal Types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) は Javascript の [template literal strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) の
 型バージョンです。String と型を組み合わせることができます。
 
 ```typescript

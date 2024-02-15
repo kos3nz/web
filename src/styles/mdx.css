@@ -10,7 +10,7 @@ pre > code {
 }
 
 code [data-line] {
-  padding-right: 3rem;
+  padding-right: 3.5rem;
   padding-left: 1rem;
   border-left: 2px solid transparent;
 }
@@ -81,18 +81,22 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 }
 
 /* Anchor */
-.prose .anchor {
+.prose .anchor,
+.prose-sm .anchor {
   @apply absolute inset-0 no-underline outline-none;
 }
 
-.prose .anchor .anchor-icon {
-  @apply absolute -right-6 top-[-2px] cursor-pointer text-3xl font-bold text-cyan-500 opacity-0 transition-opacity duration-200;
+.prose .anchor .anchor-icon,
+.prose-sm .anchor .anchor-icon {
+  @apply absolute -right-6 top-0 cursor-pointer text-2xl font-bold text-primary opacity-0 transition-opacity duration-200;
 }
 
-.prose .anchor:hover .anchor-icon {
+.prose .anchor:hover .anchor-icon,
+.prose-sm .anchor:hover .anchor-icon {
   @apply opacity-100;
 }
 
-.prose .anchor:focus .anchor-icon {
+.prose .anchor:focus .anchor-icon,
+.prose-sm .anchor:focus .anchor-icon {
   @apply opacity-100;
 }

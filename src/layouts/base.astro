@@ -1,7 +1,8 @@
 ---
+import { ViewTransitions } from "astro:transitions"
+
 import Footer from "@/components/astro/footer.astro"
 import Header from "@/components/astro/header.astro"
-import DrawerMenu from "@/components/react/drawer-menu.tsx"
 
 import "@/styles/global.css"
 
@@ -11,7 +12,6 @@ export interface Props {
 }
 
 const { title, description } = Astro.props
-const { pathname } = Astro.url
 ---
 
 <!doctype html>
@@ -23,13 +23,27 @@ const { pathname } = Astro.url
     <meta name="generator" content={Astro.generator} />
     <title>{title ? title + " | K's Web" : "K's Web"}</title>
     {description && <meta name="description" content={description} />}
+    <ViewTransitions />
   </head>
-  <body class="mx-auto flex max-w-6xl flex-col px-6">
+  <body class="mx-auto grid min-h-screen grid-rows-[auto,1fr,auto]">
     <Header />
-    <main class="relative flex-1 pb-16 pt-36">
-      <slot />
-    </main>
+    <slot />
     <Footer />
-    <DrawerMenu pathname={pathname} client:media="(max-width: 768px)" />
+    <!-- <script>
+      document.addEventListener(
+        "astro:page-load",
+        () => {
+          console.log("page-load")
+        },
+        { once: true },
+      )
+      document.addEventListener(
+        "astro:after-swap",
+        () => {
+          console.log("after-swap")
+        },
+        { once: true },
+      )
+    </script> -->
   </body>
 </html>

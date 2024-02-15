@@ -1,0 +1,22 @@
+---
+import { parse } from "node-html-parser"
+
+// import CopyToClipboard from "@/components/astro/mdx/copy-to-clipboard.astro"
+import CopyToClipboard from "@/components/solid/mdx/copy-to-clipboard.tsx"
+
+// Get slot component as html string
+const rawHtml = await Astro.slots.render("default")
+
+// Parse back to html element
+const html = parse(rawHtml)
+
+const code = html.querySelector("code")?.textContent.trim()
+
+const props = Astro.props
+---
+
+<div data-code class="group/pre relative">
+  <pre
+    tabindex="-1"
+    {...props}><slot /><div class="absolute right-1 top-1"><CopyToClipboard text={code} client:idle /></div></pre>
+</div>

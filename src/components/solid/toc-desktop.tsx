@@ -2,14 +2,15 @@
 
 import TableOfContents from "@/components/solid/table-of-contents"
 import { createActiveHeading } from "@/hooks/solid/create-active-heading"
-import type { Heading } from "@/types/global.types.ts"
+import type { Heading } from "@/types/global.types"
 
-export default function HeadingsDesktop(props: { headings: Heading[] }) {
+export default function TocDesktop(props: { headings: Heading[] }) {
   // eslint-disable-next-line solid/reactivity
   const activeHeading = createActiveHeading(props.headings)
 
   return (
-    <div class="sticky top-20">
+    <div class="sticky top-24">
+      <span class="ml-5 block text-sm font-semibold">On this page</span>
       <TableOfContents headings={props.headings} activeHeading={activeHeading()} />
     </div>
   )

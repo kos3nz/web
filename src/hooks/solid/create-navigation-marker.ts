@@ -4,6 +4,7 @@ export function createNavigationMarker() {
   const [position, setPosition] = createSignal({
     x: 0,
     width: 0,
+    initialWidth: 0,
     translateX: 0,
     scaleX: 1,
   })
@@ -18,6 +19,7 @@ export function createNavigationMarker() {
       ...prev,
       x,
       width,
+      initialWidth: width,
     }))
   }
 
@@ -29,6 +31,7 @@ export function createNavigationMarker() {
 
     setPosition((state) => ({
       ...state,
+      width: width,
       translateX: x - state.x,
       scaleX: width / state.width,
     }))
@@ -39,6 +42,7 @@ export function createNavigationMarker() {
 
     setPosition((state) => ({
       ...state,
+      width: state.initialWidth,
       translateX: 0,
       scaleX: 1,
     }))

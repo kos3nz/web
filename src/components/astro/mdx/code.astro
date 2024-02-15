@@ -28,7 +28,7 @@ if (codeTitles.length !== codeBlocks.length)
             type="button"
             class:list={[
               "tab",
-              "px-4 h-10 text-sm text-slate-400 shrink-0 transition-colors duration-300 hover:text-slate-300",
+              "px-4 h-10 text-sm text-foreground/50 shrink-0 transition-colors duration-300 hover:text-foreground",
               i === 0 && "active",
             ]}
           >
@@ -38,7 +38,7 @@ if (codeTitles.length !== codeBlocks.length)
       }
       <span
         id="bar"
-        class="pointer-events-none absolute bottom-0 left-0 h-[2px] origin-left bg-gradient-to-tr from-indigo-500 to-cyan-500 transition-transform duration-300"
+        class="pointer-events-none absolute bottom-0 left-0 h-[2px] origin-left bg-gradient transition-transform duration-300"
       ></span>
     </div>
     {

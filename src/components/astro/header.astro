@@ -1,25 +1,23 @@
 ---
-import Drawer from "@/components/solid/drawer.tsx"
 import Logo from "@/components/solid/logo.tsx"
 import Navbar from "@/components/solid/nav-bar.tsx"
-import Navigation from "@/components/solid/navigation.tsx"
+import NavigationDesktop from "@/components/solid/navigation-desktop"
+import NavigationMobile from "@/components/solid/navigation-mobile"
 
 const pathname = Astro.url.pathname
 ---
 
-<div class="fixed left-1/2 top-0 z-50 mt-3 w-full max-w-6xl -translate-x-1/2 px-6">
-  <Navbar>
-    <a href="/" aria-label="Home" class="p-1">
-      <Logo class="h-[31.5px] w-[14px] text-slate-200" />
-    </a>
+<Navbar client:load>
+  <a href="/" aria-label="Home" class="p-1">
+    <Logo class="h-[31.5px] w-[14px] text-heading" />
+  </a>
 
-    <nav class="flex items-center justify-end">
-      <div class="hidden md:block">
-        <Navigation pathname={pathname} client:visible />
-      </div>
-      <div class="block md:hidden">
-        <Drawer client:visible />
-      </div>
-    </nav>
-  </Navbar>
-</div>
+  <nav class="flex items-center justify-end">
+    <div class="hidden md:block">
+      <NavigationDesktop pathname={pathname} client:visible />
+    </div>
+    <div class="block md:hidden">
+      <NavigationMobile client:visible />
+    </div>
+  </nav>
+</Navbar>

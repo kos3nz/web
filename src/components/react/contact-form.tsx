@@ -11,16 +11,18 @@ import {
   UseFormRegister,
 } from "react-hook-form"
 
-import { RightChevronIcon } from "@/components/react/icons"
-import { contactInfo, increaseStep, step } from "@/store/contact-store.ts"
+import { $contactInfo, $step, increaseStep } from "@/stores/contact.store"
 import type { ComponentPropsWithAs } from "@/types/helpers.ts"
 import type { ContactSchema } from "@/types/validation.types.ts"
 import { contactSchema } from "@/utils/form-validation.ts"
 import { cn } from "@/utils/helpers"
 
-export default function Form() {
-  const $step = useStore(step)
-  const $contactInfo = useStore(contactInfo)
+import { Icons } from "./icons"
+import { Button } from "./ui/button"
+
+export default function ContactForm() {
+  const step = useStore($step)
+  const contactInfo = useStore($contactInfo)
 
   const {
     register,
@@ -28,24 +30,20 @@ export default function Form() {
     formState: { errors },
     control,
   } = useForm<ContactSchema>({
-    defaultValues: $contactInfo || undefined,
+    defaultValues: contactInfo || undefined,
     resolver: zodResolver(contactSchema),
   })
 
   const onSubmit: SubmitHandler<ContactSchema> = (data, e) => {
     e?.preventDefault()
 
-    contactInfo.set(data)
+    $contactInfo.set(data)
     increaseStep()
   }
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        aria-hidden={$step !== 1}
-        className="w-full"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} aria-hidden={step !== 1} className="w-full">
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-5">
             <div className="flex flex-col gap-x-4 gap-y-5 md:flex-row md:items-start">
@@ -90,13 +88,12 @@ export default function Form() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="btn mx-auto flex items-center gap-x-1 border-0 bg-cyan-400 text-slate-900 hover:bg-cyan-300 focus-visible:outline-cyan-500/75"
-          >
-            Continue
-            <RightChevronIcon />
-          </button>
+          <div className="flex justify-center">
+            <Button type="submit" className="w-full md:w-fit">
+              Continue
+              <Icons.chevronRight className="size-3.5" />
+            </Button>
+          </div>
         </div>
       </form>
 
@@ -133,28 +130,29 @@ function FormInput<T extends "input" | "textarea" = "input">({
       <div className="flex items-center gap-x-2">
         <label
           htmlFor={name}
-          className="border border-transparent text-xs font-semibold text-slate-300"
+          className="relative border border-transparent text-xs font-semibold"
         >
           {label}
+          {required && (
+            <span className="absolute -right-2 top-0 text-destructive">*</span>
+          )}
         </label>
-        {required && (
-          <span className="rounded-full border border-emerald-400/50 px-2 text-xs capitalize text-emerald-400">
-            必須
-          </span>
-        )}
       </div>
       <Component
         {...rest}
         id={name}
         className={cn(
-          "mt-2 w-full bg-slate-700/50 text-[15px] focus-visible:outline-cyan-500/75",
-          Component === "input" ? "input h-[2.75rem]" : "textarea py-3 leading-6",
+          "mt-2 w-full rounded-md border bg-muted/30 text-[15px] ring-offset-background placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+          Component === "input" ? "input h-[2.75rem] px-3" : "textarea p-3 leading-6",
         )}
         aria-invalid={errors?.[name] ? "true" : "false"}
         {...register(name, { ...options })}
       />
       {errors?.[name] && (
-        <p role="alert" className="mt-2 flex items-center gap-x-1 text-xs text-red-400">
+        <p
+          role="alert"
+          className="mt-2 flex items-center gap-x-1 text-xs text-destructive"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

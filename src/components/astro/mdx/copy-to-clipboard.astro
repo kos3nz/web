@@ -8,12 +8,12 @@ const { text } = Astro.props
 
 <astro-copy-btn data-text={text}
   ><span
-    class="invisible absolute -top-6 right-[-16px] rounded-lg bg-slate-200 px-1.5 py-[3px] text-xs font-bold text-slate-900 opacity-0 transition duration-300"
+    class="invisible absolute -top-6 right-[-16px] rounded-lg bg-active px-1.5 py-[3px] text-xs font-bold text-muted opacity-0 transition duration-300"
     >Copied!</span
   ><button
     aria-label="Copy to clipboard"
     title="Copy to clipboard"
-    class="group rounded-lg border border-slate-400/20 bg-[#222436] p-1"
+    class="group rounded-lg border border-muted-foreground bg-[#222436] p-1"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -22,7 +22,7 @@ const { text } = Astro.props
       fill="none"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="size-5 text-slate-500 transition-colors duration-300 group-hover:text-slate-100"
+      class="size-5 text-muted-foreground transition-colors duration-300 group-hover:text-foreground"
       ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
         d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
       ></path><rect x="9" y="3" width="6" height="4" rx="2"></rect><path d="M9 12h6"

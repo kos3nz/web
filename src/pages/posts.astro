@@ -4,6 +4,7 @@ import { getCollection } from "astro:content"
 import Filter from "@/components/solid/filter.tsx"
 import PostsList from "@/components/solid/posts-list"
 import Layout from "@/layouts/base.astro"
+import Main from "@/layouts/main.astro"
 import { stripMarkdown } from "@/utils/markdown"
 
 const allPosts = (
@@ -26,12 +27,21 @@ const tags = [...new Set(allPosts.map((post) => post.tags).flat())]
 ---
 
 <Layout>
-  <div class="mb-10 flex flex-col gap-y-1">
-    <h2 class="text-2xl font-bold text-slate-200 md:text-3xl">Posts</h2>
-    <span class="block h-[2px] w-8 bg-cyan-500"></span>
-  </div>
-  <Filter tags={tags} client:load />
-  <div class="mt-14">
-    <PostsList posts={allPosts} client:load />
-  </div>
+  <Main>
+    <div class="flex flex-col gap-y-1">
+      <h2 class="text-2xl font-bold text-heading md:text-3xl">Posts</h2>
+      <hr class="block h-[2px] w-8 border-none bg-gradient" />
+    </div>
+    <hr
+      class="my-8 h-px border-none bg-gradient-to-l from-transparent via-muted to-transparent"
+    />
+    <div class="flex flex-col gap-x-8 gap-y-12 md:flex-row-reverse">
+      <div class="w-64">
+        <Filter tags={tags} client:load />
+      </div>
+      <div class="flex-1">
+        <PostsList posts={allPosts} client:load />
+      </div>
+    </div>
+  </Main>
 </Layout>

@@ -12,9 +12,11 @@ export default function Tag(props: {
   return (
     <span
       class={cn(
-        "rounded-lg px-2.5 py-1.5 text-xs font-bold underline-offset-2 transition-colors",
-        props.active ? "bg-cyan-900/50 text-cyan-300" : "bg-slate-700/50 text-slate-300",
-        props.clickable && "cursor-pointer hover:underline",
+        "flex h-5 items-center justify-center rounded-full px-2.5 text-xs font-bold underline-offset-1 transition-colors",
+        props.active
+          ? "bg-primary/50 text-primary-foreground"
+          : "bg-muted text-muted-foreground hover:bg-primary/50 hover:text-primary-foreground ",
+        props.clickable && "cursor-pointer",
       )}
     >
       {props.children}

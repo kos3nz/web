@@ -3,10 +3,11 @@
 import { For, onMount, Show } from "solid-js"
 
 import { navItems } from "@/config/navigation-items"
+import createMediaQuery from "@/hooks/solid/create-media-query"
 import { createNavigationMarker } from "@/hooks/solid/create-navigation-marker"
 import { cn } from "@/utils/helpers"
 
-export default function Navigation(props: { pathname: string }) {
+export default function NavigationDesktop(props: { pathname: string }) {
   const currentPath = () => {
     if (props.pathname.includes("/posts/")) return "/posts/"
     if (props.pathname.includes("/snippets/")) return "/snippets/"
@@ -15,9 +16,10 @@ export default function Navigation(props: { pathname: string }) {
 
   const { position, handleOnMount, handleOnMouseEnter, handleOnMouseLeave } =
     createNavigationMarker()
+  const { device } = createMediaQuery()
 
   return (
-    <ul class="relative flex items-center gap-x-4">
+    <ul class="relative flex items-center">
       <For each={navItems}>
         {(item) => {
           const isActive = currentPath() === item.path
@@ -30,7 +32,7 @@ export default function Navigation(props: { pathname: string }) {
           return (
             <li
               ref={ref}
-              class="relative"
+              class={cn("relative h-8")}
               onMouseEnter={() => {
                 handleOnMouseEnter(ref, isActive)
               }}
@@ -40,12 +42,12 @@ export default function Navigation(props: { pathname: string }) {
             >
               <a
                 href={item.path}
-                class={cn([
-                  "relative z-10 flex cursor-pointer items-center gap-x-1 rounded-md p-1.5 text-sm",
+                class={cn(
+                  "relative z-10 flex h-full items-center px-4 text-sm",
                   isActive
-                    ? "text-slate-200"
-                    : "text-slate-400 transition-colors duration-300 hover:text-slate-200",
-                ])}
+                    ? "text-active"
+                    : "text-inactive transition-colors hover:text-active",
+                )}
               >
                 {/* <item.Icon /> */}
                 <span class="capitalize">{item.label}</span>
@@ -53,13 +55,17 @@ export default function Navigation(props: { pathname: string }) {
               <Show when={isActive}>
                 <div
                   class={cn(
-                    "@/layout",
-                    "pointer-events-none absolute bottom-0 left-0 hidden h-[1.5px] w-full origin-left rounded-sm bg-cyan-500 transition-transform duration-300 lg:block",
+                    "pointer-events-none absolute inset-0 origin-left rounded-full bg-muted transition-all duration-300",
                   )}
                   style={{
-                    transform: `
-                    translateX(${position().translateX}px)
-                    scaleX(${position().scaleX})`,
+                    width:
+                      device() === "desktop" && position().width > 0
+                        ? `${position().width}px`
+                        : undefined,
+                    transform:
+                      device() === "desktop"
+                        ? `translateX(${position().translateX}px)`
+                        : undefined,
                   }}
                 />
               </Show>
