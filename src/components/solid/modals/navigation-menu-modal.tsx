@@ -24,9 +24,9 @@ function NavigationMenuModal({
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
         disableStyles
-        class="fixed left-0 top-header z-50 grid w-full gap-4 border-b border-muted bg-background p-6 shadow-lg animate-duration-300 data-[expanded]:animate-in data-[closed]:animate-out data-[closed]:fade-out data-[expanded]:fade-in-0 data-[closed]:slide-out-to-top-4 data-[expanded]:slide-in-from-top-4"
+        class="group fixed left-0 top-header z-50 grid w-full gap-4 border-b border-muted bg-background p-6 shadow-lg animate-duration-300 data-[expanded]:animate-in data-[closed]:animate-out data-[closed]:fade-out data-[expanded]:fade-in-0"
       >
-        <ul class="divide-y divide-muted py-8">
+        <ul class="divide-y divide-muted py-8 animate-duration-300 group-[[data-expanded]]:animate-in group-[[data-closed]]:animate-out group-[[data-closed]]:slide-out-to-right-2 group-[[data-expanded]]:slide-in-from-right-2">
           <For each={navItems}>
             {(item) => (
               <li>

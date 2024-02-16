@@ -14,10 +14,10 @@ const pathname = Astro.url.pathname
 
   <nav class="flex items-center justify-end">
     <div class="hidden md:block">
-      <NavigationDesktop pathname={pathname} client:visible />
+      <NavigationDesktop pathname={pathname} client:media="(min-width: 768px)" />
     </div>
     <div class="block md:hidden">
-      <NavigationMobile client:visible />
+      <NavigationMobile client:media="(max-width: 767px)" />
     </div>
   </nav>
 </Navbar>

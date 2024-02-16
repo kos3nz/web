@@ -21,7 +21,7 @@ export default function NavigationMobile() {
           class={cn(
             "block h-[2px] w-5 rounded-md bg-current duration-300",
             showNavigationMenu()
-              ? "translate-y-1.5 rotate-[-135deg]"
+              ? "translate-x-1 translate-y-1.5 rotate-[-135deg]"
               : "origin-right group-hover/drawer-trigger:scale-x-50",
           )}
         />
@@ -37,7 +37,7 @@ export default function NavigationMobile() {
           class={cn(
             "block h-[2px] rounded-md bg-current duration-300",
             showNavigationMenu()
-              ? "w-5 -translate-y-1.5 rotate-[135deg]"
+              ? "w-5 -translate-y-1.5 translate-x-1 rotate-[135deg]"
               : "w-2 origin-right group-hover/drawer-trigger:scale-x-[1.75]",
           )}
         />
