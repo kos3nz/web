@@ -14,7 +14,7 @@ export default function CopyToClipboard(props: { text?: string }) {
     <button
       aria-label="Copy to clipboard"
       title="Copy to clipboard"
-      class="group rounded-lg bg-[#222436] p-3 outline-none backdrop-blur-sm transition-opacity focus-visible:ring-1 focus-visible:ring-primary lg:opacity-0 lg:group-hover/pre:opacity-100 [@supports(backdrop-filter:blur(0px))]:bg-[#222436]/50"
+      class="group rounded-lg bg-[#222436] p-3 outline-none backdrop-blur-sm transition-opacity focus-visible:ring-1 focus-visible:ring-primary lg:opacity-0 lg:focus-visible:opacity-100 lg:group-hover/pre:opacity-100 [@supports(backdrop-filter:blur(0px))]:bg-[#222436]/50"
       onClick={() => {
         navigator.clipboard.writeText(props.text || "")
         setCopied(true)

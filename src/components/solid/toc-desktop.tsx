@@ -9,7 +9,7 @@ export default function TocDesktop(props: { headings: Heading[] }) {
   const activeHeading = createActiveHeading(props.headings)
 
   return (
-    <div class="sticky top-24">
+    <div class="sticky top-32">
       <span class="ml-5 block text-sm font-semibold">On this page</span>
       <TableOfContents headings={props.headings} activeHeading={activeHeading()} />
     </div>

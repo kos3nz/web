@@ -48,7 +48,7 @@ export default function TocMobile(props: { headings: Heading[] }) {
           ref={buttonRef}
           type="button"
           class={cn(
-            "mx-auto flex w-[calc(100%-25px*2)] items-center gap-x-2 py-3 text-sm",
+            "ml-6 flex max-w-[calc(100%-24px*2)] items-center gap-x-2 py-3 text-sm",
           )}
           onClick={() => setOpen((prev) => !prev)}
         >
@@ -58,8 +58,7 @@ export default function TocMobile(props: { headings: Heading[] }) {
           </span>
 
           <Show when={activeHeading()}>
-            {/* NOTE: Add max-w-[300px] to prevent the button from changing its size. Is there a better way? */}
-            <span class="min-w-0 max-w-[300px]">
+            <span class="min-w-0">
               <div class="truncate text-left font-medium text-heading">
                 {activeHeading()?.text}
               </div>

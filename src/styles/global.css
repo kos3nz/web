@@ -43,24 +43,26 @@
 
 @layer base {
   * {
-    @apply border-border outline-none focus-visible:ring-1 focus-visible:ring-primary;
+    @apply border-border;
   }
 
   html,
   body {
     @apply min-h-screen font-sans;
 
-    /*
-    touch-action: var(--touch-action);
-    -webkit-tap-highlight-color: transparent;
-    */
+    -webkit-tap-highlight-color: hsl(var(--primary) / 20%);
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
 
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+  }
+
+  a,
+  button {
+    @apply outline-none focus-visible:ring-1 focus-visible:ring-primary;
   }
 }

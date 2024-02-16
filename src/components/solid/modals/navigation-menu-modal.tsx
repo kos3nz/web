@@ -19,17 +19,17 @@ function NavigationMenuModal({
     <Dialog open={showNavigationMenu()} onOpenChange={setShowNavigationMenu}>
       <DialogOverlay
         onClick={() => setShowNavigationMenu(false)}
-        class="top-header animate-duration-300"
+        class="top-header animate-duration-200"
       />
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
         disableStyles
-        class="group fixed left-0 top-header z-50 grid w-full gap-4 border-b border-muted bg-background p-6 shadow-lg animate-duration-300 data-[expanded]:animate-in data-[closed]:animate-out data-[closed]:fade-out data-[expanded]:fade-in-0"
+        class="group fixed left-0 top-header z-50 grid w-full gap-4 border-b border-muted bg-background p-6 shadow-lg animate-duration-200 data-[expanded]:animate-in data-[closed]:animate-out data-[closed]:fade-out data-[expanded]:fade-in-0"
       >
-        <ul class="divide-y divide-muted py-8 animate-duration-300 group-[[data-expanded]]:animate-in group-[[data-closed]]:animate-out group-[[data-closed]]:slide-out-to-right-2 group-[[data-expanded]]:slide-in-from-right-2">
+        <ul class="divide-y divide-muted py-8 animate-duration-200 group-[[data-expanded]]:animate-in group-[[data-closed]]:animate-out group-[[data-closed]]:slide-out-to-right-2 group-[[data-expanded]]:slide-in-from-right-2">
           <For each={navItems}>
             {(item) => (
-              <li>
+              <li class="mb-px last-of-type:mb-0">
                 <a
                   href={item.path}
                   class={
