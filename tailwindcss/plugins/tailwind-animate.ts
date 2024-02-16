@@ -120,17 +120,17 @@ export default plugin(
     })
 
     matchUtilities(
-      { "fill-mode": (value: string) => ({ animationFillMode: value }) },
+      { "animate-fill-mode": (value: string) => ({ animationFillMode: value }) },
       { values: theme("animationFillMode") },
     )
 
     matchUtilities(
-      { direction: (value: string) => ({ animationDirection: value }) },
+      { "animate-direction": (value: string) => ({ animationDirection: value }) },
       { values: theme("animationDirection") },
     )
 
     matchUtilities(
-      { repeat: (value: string) => ({ animationIterationCount: value }) },
+      { "animate-repeat": (value: string) => ({ animationIterationCount: value }) },
       { values: theme("animationRepeat") },
     )
   },
