@@ -43,13 +43,11 @@ export default function TocMobile(props: { headings: Heading[] }) {
         //   : "translate-y-0",
       )}
     >
-      <div class="relative">
+      <div class="relative px-6">
         <button
           ref={buttonRef}
           type="button"
-          class={cn(
-            "ml-6 flex max-w-[calc(100%-24px*2)] items-center gap-x-2 py-3 text-sm",
-          )}
+          class={cn("flex items-center gap-x-2 py-3 text-sm")}
           onClick={() => setOpen((prev) => !prev)}
         >
           <span class={cn("flex shrink-0 items-center gap-x-1 font-medium")}>
@@ -59,7 +57,8 @@ export default function TocMobile(props: { headings: Heading[] }) {
 
           <Show when={activeHeading()}>
             <span class="min-w-0">
-              <div class="truncate text-left font-medium text-heading">
+              {/* specifying max-width to prevent layout shift */}
+              <div class="max-w-[calc(100vw-102px-24px*2)] truncate text-left font-medium text-heading">
                 {activeHeading()?.text}
               </div>
             </span>
