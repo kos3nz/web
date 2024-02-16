@@ -43,7 +43,7 @@ export default function TocMobile(props: { headings: Heading[] }) {
         //   : "translate-y-0",
       )}
     >
-      <div class="relative px-6">
+      <div class="px-6">
         <button
           ref={buttonRef}
           type="button"
@@ -66,34 +66,36 @@ export default function TocMobile(props: { headings: Heading[] }) {
         </button>
 
         {/* Headings List */}
-        <div ref={listRef}>
-          <Presence>
+        <div ref={listRef} class="relative">
+          <Presence exitBeforeEnter>
             <Show when={open()}>
-              <Motion.ul
-                class="absolute left-5 top-10 z-50 w-[calc(100%-40px)] rounded-lg border bg-background"
-                initial={{ opacity: 0, y: -15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={outsideClick() ? { opacity: 0, y: -15 } : undefined}
-                transition={{ duration: 0.3 }}
-              >
-                <TableOfContents
-                  headings={props.headings}
-                  activeHeading={activeHeading()}
-                  cb={() => setOpen(false)}
-                />
-                <li class="border-t">
-                  <button
-                    type="button"
-                    class="w-full p-5 text-left text-xs font-semibold text-primary"
-                    onClick={() => {
-                      setOpen(false)
-                      window.scrollTo({ top: 0, behavior: "instant" })
-                    }}
-                  >
-                    Return to Top
-                  </button>
-                </li>
-              </Motion.ul>
+              <div class="absolute -left-1 -top-1 z-20">
+                <Motion.ul
+                  class="max-h-[80svh] w-[calc(100%+8px)] overflow-y-auto rounded-lg border bg-background"
+                  initial={{ opacity: 0, y: -15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={outsideClick() ? { opacity: 0, y: -15 } : undefined}
+                  transition={{ duration: 0.3 }}
+                >
+                  <li class="border-b">
+                    <button
+                      type="button"
+                      class="w-full p-5 text-left text-xs font-semibold text-primary"
+                      onClick={() => {
+                        setOpen(false)
+                        window.scrollTo({ top: 0, behavior: "instant" })
+                      }}
+                    >
+                      Return to Top
+                    </button>
+                  </li>
+                  <TableOfContents
+                    headings={props.headings}
+                    activeHeading={activeHeading()}
+                    cb={() => setOpen(false)}
+                  />
+                </Motion.ul>
+              </div>
             </Show>
           </Presence>
         </div>
