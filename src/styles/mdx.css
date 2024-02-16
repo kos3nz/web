@@ -88,7 +88,7 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 
 .prose .anchor .anchor-icon,
 .prose-sm .anchor .anchor-icon {
-  @apply absolute -right-6 top-0 cursor-pointer text-2xl font-bold text-primary opacity-0 transition-opacity duration-200;
+  @apply absolute -left-5 top-0 cursor-pointer text-2xl font-bold text-primary opacity-0 transition-opacity duration-200 lg:-left-6;
 }
 
 .prose .anchor:hover .anchor-icon,
