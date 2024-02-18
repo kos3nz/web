@@ -12,33 +12,33 @@ export default function NavigationMobile() {
     <>
       <button
         id="drawer-trigger"
-        class="group/drawer-trigger -mr-1.5 size-8 space-y-1"
+        class="group/drawer-trigger -mr-1.5 flex size-8 flex-col items-center justify-center gap-y-1"
         onClick={() => {
           setShowNavigationMenu(!showNavigationMenu())
         }}
       >
         <span
           class={cn(
-            "ml-auto mr-1.5 block h-[2px] w-5 rounded-md bg-current duration-200",
+            "ml-auto mr-1.5 block h-[2px] w-5 origin-right rounded-md bg-current transition-all",
             showNavigationMenu()
-              ? "translate-x-0.5 translate-y-1.5 rotate-[45deg]"
-              : "origin-right group-hover/drawer-trigger:scale-x-50",
+              ? "translate-x-[-3px] translate-y-3.5 rotate-[45deg]"
+              : "group-hover/drawer-trigger:scale-x-50",
           )}
         />
         <span
           class={cn(
-            "ml-auto mr-1.5 block h-[2px] w-3.5 rounded-md bg-current duration-100",
+            "ml-auto mr-1.5 block h-[2px] w-3.5 origin-right rounded-md bg-current transition-all",
             showNavigationMenu()
               ? "opacity-0"
-              : "origin-right group-hover/drawer-trigger:scale-x-[1.4]",
+              : "group-hover/drawer-trigger:scale-x-[1.4]",
           )}
         />
         <span
           class={cn(
-            "ml-auto mr-1.5 block h-[2px] rounded-md bg-current duration-200",
+            "ml-auto mr-1.5 block h-[2px] origin-right rounded-md bg-current transition-all",
             showNavigationMenu()
-              ? "w-5 -translate-y-1.5 translate-x-0.5 rotate-[135deg]"
-              : "w-2 origin-right group-hover/drawer-trigger:scale-x-[1.75]",
+              ? "w-5 translate-x-[-17px] translate-y-0.5 rotate-[135deg]"
+              : "w-2 group-hover/drawer-trigger:scale-x-[1.75]",
           )}
         />
       </button>
