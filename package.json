@@ -15,7 +15,7 @@
     "lint:fix:style": "pnpm lint:style --fix",
     "format:check": "prettier --check \"**/*.{css,js,ts,jsx,tsx,astro,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{css,js,ts,jsx,tsx,astro,mdx}\" --cache",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.2",
